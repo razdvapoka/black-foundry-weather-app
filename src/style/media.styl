@@ -1,0 +1,26 @@
+@import './consts.styl'
+@import './utils.styl'
+
+desktop()
+  @media (min-width: $MOBILE_BP)
+    {block}
+
+tablet()
+  @media (max-width: $TABLET_BP)
+    {block}
+
+mobile()
+  @media (max-width: $MOBILE_BP)
+    {block}
+
+desktopOnly()
+  +tablet()
+    display: none
+
+tabletOnly()
+  +mobile()
+    display: none
+
+mobileOnly()
+  +desktop()
+    hide()

@@ -1,0 +1,31 @@
+@import './consts.styl'
+@import './media.styl'
+@import './text.styl'
+@import './utils.styl'
+
+html, body
+  height: 100%
+  width: 100%
+  color: $BLACK
+
+:root {
+  font-family: 'Helvetica Neue', Helvetica, arial, sans-serif
+  font-weight: normal
+  font-size: ($ROOT_FONT_SIZE / $CANONIC_SCREEN_WIDTH * 100) vw
+}
+
++tablet()
+  :root {
+    font-size: ($ROOT_FONT_SIZE / $CANONIC_SCREEN_WIDTH_T * 100) vw
+  }
+
++mobile()
+  :root {
+    font-size: ($ROOT_FONT_SIZE / $CANONIC_SCREEN_WIDTH_M * 100) vw
+  }
+
+#app
+  height: 100%
+
+h2
+  font-weight: normal

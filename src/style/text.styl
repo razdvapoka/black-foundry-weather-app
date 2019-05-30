@@ -1,0 +1,60 @@
+@import './utils.styl'
+
+.huge
+  font-size: pxToRem(88)
+  line-height: (75 / 88)
+  letter-spacing: tracking(-40)
+  text-transform: uppercase
+
+.big
+  font-size: pxToRem(50)
+  line-height: (45 / 50)
+  letter-spacing: tracking(-40)
+  text-transform: uppercase
+
+.regular
+  font-size: pxToRem(28)
+  line-height: (37 / 28)
+
+.small
+  font-size: pxToRem(22)
+  line-height: (23 / 22)
+  letter-spacing: tracking(-40)
+  text-transform: uppercase
+
+.tiny
+  font-size: pxToRem(10)
+  line-height: (12 / 10)
+  letter-spacing: tracking(-40)
+
+.underlined
+  text-decoration: underline
+
+.upper
+  text-transform: uppercase
+
+.regular
+.tiny
+  a
+    display: inline-block
+    position: relative
+  a:after
+    content: ''
+    display: block
+    position: absolute
+    width: 25%
+    height: pxToRem(2)
+    left: 0
+    top: 100%
+    background-color: $BLACK
+    transition: width 0.2s ease
+  a:hover:after
+    width: 100%
+
+.regular
+  a:after
+    height: pxToRem(2)
+
+.tiny
+  a:after
+    height: pxToRem(0.5)
