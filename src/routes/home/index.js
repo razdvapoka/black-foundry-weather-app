@@ -84,16 +84,15 @@ class Home extends Component {
 
     return (
       <div className={style.home}>
-        <h1>
-          {weatherText}
-        </h1>
+        <h1>{weatherText}</h1>
       </div>
     )
   }
 
-  componentDidMount = async () => {
-    const weather = await getWeather()
-    this.setState({ weather })
+  componentDidMount () {
+    getWeather().then((weather) => {
+      this.setState({ weather })
+    })
   }
 }
 
