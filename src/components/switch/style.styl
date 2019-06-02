@@ -1,0 +1,49 @@
+@import '../../style/utils.styl'
+
+.switch
+  display: flex
+
+.switchLabel
+  transform: translateY(- pxToRem(2))
+
+.switchInputBox
+  position: relative
+  display: inline-block
+  width: pxToRem(28)
+  height: pxToRem(14)
+  margin-left: pxToRem(10)
+
+.switchInput
+  opacity: 0
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  cursor: pointer
+
+.switchSlider
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  pointer-events: none
+  border: pxToRem(2) solid black
+
+.switchSlider:before
+  position: absolute
+  content: ""
+  height: pxToRem(13)
+  width: pxToRem(13)
+  left: - pxToRem(1)
+  top: - pxToRem(1)
+  background-color: black
+  border-radius: 9999px
+  transition: transform 200ms ease
+
+.switchInput:checked + .switchSlider:before
+  transform: translateX(pxToRem(13))
+
+.switchSlider
+  border-radius: 9999px

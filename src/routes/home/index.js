@@ -2,6 +2,8 @@ import style from './style.styl'
 import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
 import queryString from 'query-string'
+import Header from '../../components/header'
+import { cc } from '../../utils'
 
 const getIp = async () => {
   const ipResponse = await window.fetch('https://api.ipify.org?format=json')
@@ -70,21 +72,43 @@ const getWeather = async () => {
 
 class Home extends Component {
   state = {
-    weather: null
+    weather: null,
+    isFahrenheitOn: false,
+    isFilterOn: false
+  }
+
+  toggleFahrenheit = () => {
+    this.setState(({ isFahrenheitOn }) => ({
+      isFahrenheitOn: !isFahrenheitOn
+    }))
+  }
+
+  toggleFilter = () => {
+    this.setState(({ isFilterOn }) => ({
+      isFilterOn: !isFilterOn
+    }))
   }
 
   render () {
-    const { weather } = this.state
-    const weatherText = weather
-      ? `
-        ${weather.current_observation.condition.text},
-        ${weather.current_observation.condition.temperature}°C
-      `
-      : 'fetching weather'
+    const {
+      weather,
+      isFilterOn,
+      isFahrenheitOn
+    } = this.state
 
     return (
-      <div className={style.home}>
-        <h1>{weatherText}</h1>
+      <div className={cc(style.home, 'default')}>
+        {weather ? (
+          <Header
+            city={weather.location.city}
+            condition={weather.current_observation.condition.text}
+            temperature={weather.current_observation.condition.temperature}
+            toggleFilter={this.toggleFilter}
+            toggleFahrenheit={this.toggleFahrenheit}
+            isFilterOn={isFilterOn}
+            isFahrenheitOn={isFahrenheitOn}
+          />
+        ) : <h1>loading...</h1>}
       </div>
     )
   }
