@@ -1,9 +1,10 @@
-import style from './style.styl'
+import styles from './style.styl'
 import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
 import queryString from 'query-string'
 import Header from '../../components/header'
-import { cc } from '../../utils'
+import { S, XXL, XS, XXS, M, L, XL, Gargantuan } from '../../components/text'
+import { tempToStr, cc, withClass } from '../../utils'
 
 const getIp = async () => {
   const ipResponse = await window.fetch('https://api.ipify.org?format=json')
@@ -70,7 +71,97 @@ const getWeather = async () => {
   return weather
 }
 
+const getCurrentTime = () =>
+  new Date().toLocaleTimeString('en-US', {
+    hour12: false,
+    hour: 'numeric',
+    minute: 'numeric'
+  })
+
+const formatTime = (timeString) =>
+  timeString.replace(/ (am|pm)$/, '')
+
+const Column = withClass(styles.col)('div')
+const ColumnContent = withClass(styles.colContent)('div')
+const ColumnCaption = withClass(styles.colCaption)(L)
+
+const Announcement = () => (
+  <Column>
+    <ColumnCaption>Good Evening!</ColumnCaption>
+    <ColumnContent>
+      <M>
+        Looks like it’s sunny and a little windy in Paris
+        It will evolve to partly cloudy, with a maximum temperature of 19°C
+        Tomorrow will be mostly cloudy, with a maximum temperature of 20°C
+      </M>
+    </ColumnContent>
+    <ColumnContent>
+      <div>
+        <XXS>Designed by Black[Foundry]</XXS>
+        <XL>Set in Grtsk</XL>
+        <S as='a' className={styles.try}>
+          Try Font
+        </S>
+      </div>
+    </ColumnContent>
+  </Column>
+)
+
+const ForecastItem = ({
+  label,
+  value
+}) => (
+  <div className={styles.forecastItem}>
+    <XS>{label}</XS>
+    <XXL>{value}</XXL>
+  </div>
+)
+
+const Forecast = ({
+  weather,
+  isFahrenheitOn
+}) => (
+  <Column>
+    <ColumnCaption>Forecast</ColumnCaption>
+    <ColumnContent>
+      <ForecastItem
+        label='Now'
+        value={getCurrentTime()}
+      />
+      <ForecastItem
+        label='Sunrise'
+        value={formatTime(weather.current_observation.astronomy.sunrise)}
+      />
+      <ForecastItem
+        label='Sunset'
+        value={formatTime(weather.current_observation.astronomy.sunset)}
+      />
+      <ForecastItem
+        label='Humidity'
+        value={weather.current_observation.atmosphere.humidity + '%'}
+      />
+      <ForecastItem
+        label='Wind'
+        value={weather.current_observation.wind.speed + 'm/s'}
+      />
+    </ColumnContent>
+    <ColumnContent>
+      {weather.forecasts.slice(1, 6).map((item, itemIndex) => (
+        <ForecastItem
+          key={itemIndex}
+          label={item.day}
+          value={tempToStr(item.high, isFahrenheitOn)}
+        />
+      ))}
+    </ColumnContent>
+  </Column>
+)
+
 class Home extends Component {
+  defaultProps = {
+    persistWeather: false
+  }
+
   state = {
     weather: null,
     isFahrenheitOn: false,
@@ -96,27 +187,53 @@ class Home extends Component {
       isFahrenheitOn
     } = this.state
 
-    return (
-      <div className={cc(style.home, 'default')}>
-        {weather ? (
-          <Header
-            city={weather.location.city}
-            condition={weather.current_observation.condition.text}
-            temperature={weather.current_observation.condition.temperature}
-            toggleFilter={this.toggleFilter}
-            toggleFahrenheit={this.toggleFahrenheit}
-            isFilterOn={isFilterOn}
-            isFahrenheitOn={isFahrenheitOn}
-          />
-        ) : <h1>loading...</h1>}
+    return weather ? (
+      <div className={cc(styles.home, 'default')}>
+        <Header
+          city={weather.location.city}
+          condition={weather.current_observation.condition.text}
+          temperature={weather.current_observation.condition.temperature}
+          toggleFilter={this.toggleFilter}
+          toggleFahrenheit={this.toggleFahrenheit}
+          isFilterOn={isFilterOn}
+          isFahrenheitOn={isFahrenheitOn}
+        />
+        <Gargantuan className={styles.slogan} as='h1'>
+          have<br />
+          a nice<br />
+          day
+        </Gargantuan>
+        <div className={styles.forecast}>
+          <div className={styles.row}>
+            <Announcement />
+            <Forecast
+              weather={weather}
+              isFahrenheitOn={isFahrenheitOn}
+            />
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div className={cc(styles.home, 'default')}>
+        <h1>loading...</h1>
       </div>
     )
   }
 
   componentDidMount () {
-    getWeather().then((weather) => {
-      this.setState({ weather })
-    })
+    const { persistWeather } = this.props
+    if (persistWeather && window.localStorage.getItem('weather')) {
+      this.setState({
+        weather: JSON.parse(window.localStorage.getItem('weather'))
+      })
+    } else {
+      getWeather().then((weather) => {
+        this.setState({ weather })
+        if (persistWeather) {
+          window.localStorage.setItem('weather', JSON.stringify(weather))
+        }
+      })
+    }
   }
 }
 

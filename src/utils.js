@@ -13,3 +13,8 @@ export const withClass = (givenClassName) =>
       {...props}
     />
   )
+
+export const cToF = c => Math.round(c * 1.8 + 32)
+export const tempToStr = (temperature, isFahrenheitOn) => isFahrenheitOn
+  ? `${cToF(temperature)}°F`
+  : `${temperature}°C`

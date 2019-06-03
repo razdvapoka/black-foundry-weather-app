@@ -5,3 +5,35 @@
   position: relative
   padding: pxToRem(60)
 
+.slogan
+  text-align: center
+  margin-top: pxToRem(50)
+
+.forecast
+  margin-top: pxToRem(80)
+
+.row
+  display: flex
+  justify-content: space-between
+  childrenSpacingX(pxToRem(105))
+
+.col
+  flex: 1
+  &Content
+    display: flex
+    align-items: center
+    justify-content: space-between
+    min-height: pxToRem(144)
+    border-top: 1px solid #D1D1BF
+  &Caption
+    margin-bottom: pxToRem(5)
+
+.forecastItem
+  width: pxToRem(75px)
+
+.try
+  display: inline-block
+  border: pxToRem(1) solid black
+  padding: pxToRem(12)
+  margin-top: pxToRem(20)
+  cursor: pointer

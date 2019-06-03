@@ -2,6 +2,7 @@ import { Component } from 'preact'
 import styles from './style.styl'
 import { MONTH, DAY_OF_WEEK } from '../../consts'
 import Switch from '../switch'
+import { tempToStr } from '../../utils'
 import {
   XS,
   XXL,
@@ -23,20 +24,16 @@ class Header extends Component {
     const date = new Date()
     const dayOfWeek = DAY_OF_WEEK[date.getDay()]
     const dateString = date.getDate() + ' ' + MONTH[date.getMonth()]
-
-    const temperatureString = isFahrenheitOn
-      ? Math.round(temperature * 1.8 + 32)
-      : temperature
-    const unit = isFahrenheitOn ? 'F' : 'C'
+    const temperatureString = tempToStr(temperature, isFahrenheitOn)
 
     return (
       <header className={styles.header}>
-        <div className={styles.left}>
-          <div className={styles.leftTempCol}>
+        <div className={styles.info}>
+          <div className={styles.temperature}>
             <XS>city</XS>
             <XXL className={styles.secondRow}>{city}</XXL>
             <Gigantic className={styles.thirdRow}>
-              {temperatureString}°{unit}
+              {temperatureString}
             </Gigantic>
           </div>
           <div>
@@ -45,7 +42,7 @@ class Header extends Component {
             <Gigantic className={styles.thirdRow}>{condition}</Gigantic>
           </div>
         </div>
-        <div className={styles.right}>
+        <div className={styles.switches}>
           <Switch
             label='°C / °F'
             isOn={isFahrenheitOn}
