@@ -3,8 +3,18 @@ import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
 import queryString from 'query-string'
 import Header from '../../components/header'
-import { S, XXL, XS, XXS, M, L, XL, Gargantuan } from '../../components/text'
+import Bottom from '../../components/bottom'
 import { tempToStr, cc, withClass } from '../../utils'
+import {
+  XXS,
+  XS,
+  S,
+  M,
+  L,
+  XL,
+  XXL,
+  Gargantuan
+} from '../../components/text'
 
 const getIp = async () => {
   const ipResponse = await window.fetch('https://api.ipify.org?format=json')
@@ -158,8 +168,8 @@ const Forecast = ({
 )
 
 class Home extends Component {
-  defaultProps = {
-    persistWeather: false
+  static defaultProps = {
+    persistWeather: true
   }
 
   state = {
@@ -189,6 +199,7 @@ class Home extends Component {
 
     return weather ? (
       <div className={cc(styles.home, 'default')}>
+        <div className='top-line' />
         <Header
           city={weather.location.city}
           condition={weather.current_observation.condition.text}
@@ -210,6 +221,11 @@ class Home extends Component {
               weather={weather}
               isFahrenheitOn={isFahrenheitOn}
             />
+          </div>
+        </div>
+        <div className='bottomBox'>
+          <div className='bottom'>
+            <Bottom />
           </div>
         </div>
       </div>
