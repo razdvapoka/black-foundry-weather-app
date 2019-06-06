@@ -1,4 +1,5 @@
 @import '../utils.styl'
+@import '../media.styl'
 
 .default
   background-color: #FFFFE8
@@ -7,37 +8,56 @@
   .xxs
     font-size: pxToRem(12)
     line-height: (14 / 12)
+    font-family: GrtskPeta
   .xs
     font-size: pxToRem(14)
     line-height: (17 / 14)
+    font-family: GrtskPeta
   .s
     font-size: pxToRem(19)
     line-height: (23 / 19)
+    font-family: GrtskPetaBkslnt
   .m
     font-size: pxToRem(19)
     line-height: (27 / 19)
+    font-family: GrtskPeta
   .l
     font-size: pxToRem(21)
     line-height: (25 / 21)
+    font-family: GrtskPeta
+    font-weight: 600
   .xl
     font-size: pxToRem(22)
     line-height: (26 / 22)
+    font-family: GrtskMega
+    font-weight: 600
   .xxl
     font-size: pxToRem(27)
     line-height: (32 / 27)
+    font-family: GrtskPeta
   .gigantic
     font-size: pxToRem(45)
     line-height: (54  / 45)
+    font-family: GrtskPeta
   .gargantuan
     font-size: pxToRem(202)
     line-height: (178 / 202)
     letter-spacing: tracking(-40)
+    font-family: GrtskGiga
+    font-weight: 500
+    +tablet()
+      font-size: pxToRem(185)
+      line-height: (163 / 185)
+      font-family: GrtskTera
 
   .top-line
     background: linear-gradient(#C42BF2, #000AFF)
 
   .bottomBox
     background-color: #002CD9
+    +tablet()
+      &:after
+        background-color: #002CD9
 
   .bottom
     color: #C42BF2

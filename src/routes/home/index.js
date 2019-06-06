@@ -1,4 +1,5 @@
 import styles from './style.styl'
+import { Helmet } from 'react-helmet'
 import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
 import queryString from 'query-string'
@@ -95,35 +96,40 @@ const Column = withClass(styles.col)('div')
 const ColumnContent = withClass(styles.colContent)('div')
 const ColumnCaption = withClass(styles.colCaption)(L)
 
+const Promo = (props) => (
+  <ColumnContent {...props}>
+    <div>
+      <XXS className={styles.designedBy}>Designed by Black[Foundry]</XXS>
+      <XL className={styles.setIn}>Set in Grtsk</XL>
+      <S as='a' className={styles.try}>
+          Try Font
+      </S>
+    </div>
+  </ColumnContent>
+)
+
 const Announcement = () => (
   <Column>
     <ColumnCaption>Good Evening!</ColumnCaption>
     <ColumnContent>
       <M>
-        Looks like it’s sunny and a little windy in Paris
-        It will evolve to partly cloudy, with a maximum temperature of 19°C
+        Looks like it’s sunny and a little windy in Paris<br />
+        It will evolve to partly cloudy, with a <b>maximum temperature of 19°C</b><br />
         Tomorrow will be mostly cloudy, with a maximum temperature of 20°C
       </M>
     </ColumnContent>
-    <ColumnContent>
-      <div>
-        <XXS>Designed by Black[Foundry]</XXS>
-        <XL>Set in Grtsk</XL>
-        <S as='a' className={styles.try}>
-          Try Font
-        </S>
-      </div>
-    </ColumnContent>
+    <Promo className={styles.desktopPromo} />
   </Column>
 )
 
 const ForecastItem = ({
   label,
-  value
+  value,
+  isFirst
 }) => (
   <div className={styles.forecastItem}>
-    <XS>{label}</XS>
-    <XXL>{value}</XXL>
+    <XS className={isFirst ? styles.firstItem : ''}>{label}</XS>
+    <XXL className={isFirst ? styles.firstItem : ''}>{value}</XXL>
   </div>
 )
 
@@ -137,6 +143,7 @@ const Forecast = ({
       <ForecastItem
         label='Now'
         value={getCurrentTime()}
+        isFirst
       />
       <ForecastItem
         label='Sunrise'
@@ -200,6 +207,10 @@ class Home extends Component {
     return weather ? (
       <div className={cc(styles.home, 'default')}>
         <div className='top-line' />
+        <Helmet>
+          <title>My Title</title>
+          <link href='/assets/styles/default.css' rel='stylesheet' />
+        </Helmet>
         <Header
           city={weather.location.city}
           condition={weather.current_observation.condition.text}
@@ -223,6 +234,7 @@ class Home extends Component {
             />
           </div>
         </div>
+        <Promo className={styles.tabletPromo} />
         <div className='bottomBox'>
           <div className='bottom'>
             <Bottom />

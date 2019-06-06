@@ -1,22 +1,29 @@
 @import '../../style/utils.styl'
+@import '../../style/media.styl'
 
 .home
   min-height: 100%
   position: relative
   padding: pxToRem(60)
-  padding-bottom: pxToRem(120)
+  padding-bottom: pxToRem(180)
+  +tablet()
+    padding: pxToRem(60) pxToRem(80) pxToRem(180)
 
 .slogan
   text-align: center
   margin-top: pxToRem(50)
 
 .forecast
-  margin-top: pxToRem(80)
+  margin-top: pxToRem(120)
 
 .row
   display: flex
   justify-content: space-between
   childrenSpacingX(pxToRem(105))
+  +tablet()
+    flex-direction: column
+    childrenSpacingX(0)
+    childrenSpacingY(pxToRem(60))
 
 .col
   flex: 1
@@ -24,13 +31,23 @@
     display: flex
     align-items: center
     justify-content: space-between
-    min-height: pxToRem(144)
+    min-height: pxToRem(145)
     border-top: 1px solid #D1D1BF
   &Caption
     margin-bottom: pxToRem(5)
 
+.desktopPromo
+  desktopOnly()
+
+.tabletPromo
+  tabletOnly()
+
 .forecastItem
-  width: pxToRem(75px)
+  width: pxToRem(75)
+  childrenSpacingY(pxToRem(8))
+
+.designedBy
+  margin-top: pxToRem(40)
 
 .try
   display: inline-block
@@ -38,3 +55,9 @@
   padding: pxToRem(12)
   margin-top: pxToRem(20)
   cursor: pointer
+
+.setIn
+  margin-top: pxToRem(7)
+
+.firstItem
+  font-family: GrtskPetaBkslnt !important
