@@ -1,4 +1,5 @@
 @import '../../style/utils.styl'
+@import '../../style/media.styl'
 
 .header
   display: flex
@@ -6,17 +7,43 @@
 
 .info
   display: flex
+  +mobile()
+    flex: 1
+    justify-content: space-between
+    padding-right: pxToRem(45)
 
 .temperature
   width: pxToRem(245)
   margin-right: pxToRem(30)
+  +mobile()
+    width: auto
+
+.firstRow
+  +mobile()
+    display: none
 
 .secondRow
   margin-top: pxToRem(5)
+  +mobile()
+    display: none
+
+.secondRowMobile
+  mobileOnly()
 
 .thirdRow
   margin-top: pxToRem(10)
+  +mobile()
+    margin-top: pxToRem(8)
+
+.temperature
+  .thirdRow
+    +mobile()
+      margin-top: pxToRem(5)
 
 .switches
   display: flex
   childrenSpacingX(pxToRem(60))
+
+.filterSwitch
+  +mobile()
+    display: none !important

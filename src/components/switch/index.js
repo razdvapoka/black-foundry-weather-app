@@ -1,12 +1,16 @@
 import styles from './style.styl'
 import { XS } from '../text'
+import { withClass } from '../../utils'
+
+const SwitchBox = withClass(styles.switch)('div')
 
 const Switch = ({
   label,
   isOn,
-  toggle
+  toggle,
+  ...rest
 }) => (
-  <div className={styles.switch}>
+  <SwitchBox {...rest}>
     <XS as='label' className={styles.switchLabel}>{label}</XS>
     <div className={styles.switchInputBox}>
       <input
@@ -17,7 +21,7 @@ const Switch = ({
       />
       <span className={styles.switchSlider} />
     </div>
-  </div>
+  </SwitchBox>
 )
 
 export default Switch

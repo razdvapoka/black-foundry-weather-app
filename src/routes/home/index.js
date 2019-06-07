@@ -112,9 +112,9 @@ const Announcement = () => (
   <Column>
     <ColumnCaption>Good Evening!</ColumnCaption>
     <ColumnContent>
-      <M>
-        Looks like it’s sunny and a little windy in Paris<br />
-        It will evolve to partly cloudy, with a <b>maximum temperature of 19°C</b><br />
+      <M className={styles.fullText}>
+        Looks like it’s sunny and a little windy in Paris&nbsp;<br />
+        It will evolve to partly cloudy, with a <b>maximum temperature of 19°C&nbsp;</b><br />
         Tomorrow will be mostly cloudy, with a maximum temperature of 20°C
       </M>
     </ColumnContent>
@@ -235,9 +235,11 @@ class Home extends Component {
           </div>
         </div>
         <Promo className={styles.tabletPromo} />
+        <Promo className={styles.mobilePromo} />
         <div className='bottomBox'>
           <div className='bottom'>
-            <Bottom />
+            <Bottom id='d' className={styles.bottom} />
+            <Bottom id='m' rectHeight={90} className={styles.bottomMobile} />
           </div>
         </div>
       </div>

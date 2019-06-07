@@ -30,16 +30,18 @@ class Header extends Component {
       <header className={styles.header}>
         <div className={styles.info}>
           <div className={styles.temperature}>
-            <XS>city</XS>
+            <XS className={styles.firstRow}>{condition}</XS>
+            <XS className={styles.secondRowMobile}>{city}</XS>
             <XXL className={styles.secondRow}>{city}</XXL>
             <Gigantic className={styles.thirdRow}>
               {temperatureString}
             </Gigantic>
           </div>
           <div>
-            <XS>{dayOfWeek}</XS>
+            <XS className={styles.firstRow}>{dayOfWeek}</XS>
+            <XS className={styles.secondRowMobile}>{dateString}</XS>
             <XXL className={styles.secondRow}>{dateString}</XXL>
-            <Gigantic className={styles.thirdRow}>{condition}</Gigantic>
+            <Gigantic className={styles.thirdRow}>☀️</Gigantic>
           </div>
         </div>
         <div className={styles.switches}>
@@ -49,6 +51,7 @@ class Header extends Component {
             toggle={toggleFahrenheit}
           />
           <Switch
+            className={styles.filterSwitch}
             label='Filter'
             isOn={isFilterOn}
             toggle={toggleFilter}

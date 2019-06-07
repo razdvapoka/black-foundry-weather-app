@@ -10,11 +10,16 @@
   flex-direction: column
   +tablet()
     padding: pxToRem(60) pxToRem(80) pxToRem(180)
+  +mobile()
+    padding: pxToRem(30) pxToRem(30) pxToRem(150)
 
 .slogan
   text-align: center
   margin-top: pxToRem(50)
   margin-bottom: pxToRem(120)
+  +mobile()
+    margin-top: pxToRem(25)
+    margin-bottom: pxToRem(100)
 
 .forecast
   margin-top: auto
@@ -26,7 +31,7 @@
   +tablet()
     flex-direction: column
     childrenSpacingX(0)
-    childrenSpacingY(pxToRem(60))
+    childrenSpacingY(0)
 
 .col
   flex: 1
@@ -36,8 +41,22 @@
     justify-content: space-between
     min-height: pxToRem(145)
     border-top: 1px solid #D1D1BF
+    +mobile()
+      max-height: pxToRem(325)
+      padding-top: pxToRem(15)
+      padding-bottom: pxToRem(18)
+      flex-direction: column
+      flex-wrap: wrap
+      align-items: flex-start
+      justify-content: flex-start
   &Caption
     margin-bottom: pxToRem(5)
+    +mobile()
+      margin-bottom: pxToRem(15)
+
+.col + .col
+  +mobile()
+    margin-top: pxToRem(30)
 
 .desktopPromo
   desktopOnly()
@@ -45,12 +64,21 @@
 .tabletPromo
   tabletOnly()
 
+.mobilePromo
+  mobileOnly()
+
 .forecastItem
   width: pxToRem(75)
   childrenSpacingY(pxToRem(8))
+  +mobile()
+    margin-bottom: pxToRem(27)
+    childrenSpacingY(pxToRem(5))
 
 .designedBy
   margin-top: pxToRem(40)
+  +mobile()
+    margin-top: pxToRem(20)
+
 
 .try
   display: inline-block
@@ -64,3 +92,14 @@
 
 .firstItem
   font-family: GrtskPetaBkslnt, Helvetica, sans-serif !important
+
+.fullText
+  br
+    display: none
+
+.bottom
+  +mobile()
+    display: none
+
+.bottomMobile
+  mobileOnly()

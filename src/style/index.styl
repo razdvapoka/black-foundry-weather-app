@@ -51,6 +51,8 @@ h2
   +tablet()
     width: pxToRem(1880)
     margin-left: pxToRem(20)
+  +mobile()
+    height: pxToRem(100)
 
 .bottomBox
   position: absolute
@@ -68,3 +70,7 @@ h2
       top: 0
       height: 100%
       width: pxToRem(20)
+  +mobile()
+    padding: pxToRem(10) 0 0
+    &:after
+      width: pxToRem(15)

@@ -1,10 +1,17 @@
 @import '../../style/utils.styl'
+@import '../../style/media.styl'
 
 .switch
   display: flex
+  +mobile()
+    flex-direction: column
+    align-items: flex-end
 
 .switchLabel
   transform: translateY(- pxToRem(2))
+  white-space: nowrap
+  +mobile()
+    transform: none
 
 .switchInputBox
   position: relative
@@ -12,6 +19,9 @@
   width: pxToRem(28)
   height: pxToRem(14)
   margin-left: pxToRem(10)
+  +mobile()
+    margin-left: 0
+    margin-top: pxToRem(15)
 
 .switchInput
   opacity: 0
