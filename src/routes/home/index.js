@@ -5,6 +5,7 @@ import CryptoJS from 'crypto-js'
 import queryString from 'query-string'
 import Header from '../../components/header'
 import Bottom from '../../components/bottom'
+import { DAY_OF_WEEK_MAP } from '../../consts'
 import { tempToStr, cc, withClass } from '../../utils'
 import {
   XXS,
@@ -124,12 +125,11 @@ const Announcement = () => (
 
 const ForecastItem = ({
   label,
-  value,
-  isFirst
+  value
 }) => (
   <div className={styles.forecastItem}>
-    <XS className={isFirst ? styles.firstItem : ''}>{label}</XS>
-    <XXL className={isFirst ? styles.firstItem : ''}>{value}</XXL>
+    <XS>{label}</XS>
+    <XXL>{value}</XXL>
   </div>
 )
 
@@ -139,6 +139,15 @@ const Forecast = ({
 }) => (
   <Column>
     <ColumnCaption>Forecast</ColumnCaption>
+    <ColumnContent>
+      {weather.forecasts.slice(1, 6).map((item, itemIndex) => (
+        <ForecastItem
+          key={itemIndex}
+          label={itemIndex === 0 ? 'Tomorrow' : DAY_OF_WEEK_MAP[item.day]}
+          value={tempToStr(item.high, isFahrenheitOn)}
+        />
+      ))}
+    </ColumnContent>
     <ColumnContent>
       <ForecastItem
         label='Now'
@@ -162,21 +171,12 @@ const Forecast = ({
         value={weather.current_observation.wind.speed + 'm/s'}
       />
     </ColumnContent>
-    <ColumnContent>
-      {weather.forecasts.slice(1, 6).map((item, itemIndex) => (
-        <ForecastItem
-          key={itemIndex}
-          label={item.day}
-          value={tempToStr(item.high, isFahrenheitOn)}
-        />
-      ))}
-    </ColumnContent>
   </Column>
 )
 
 class Home extends Component {
   static defaultProps = {
-    persistWeather: true
+    persistWeather: false
   }
 
   state = {

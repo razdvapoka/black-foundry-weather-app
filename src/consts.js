@@ -22,3 +22,13 @@ export const DAY_OF_WEEK = [
   'Friday',
   'Saturday'
 ]
+
+export const DAY_OF_WEEK_MAP = {
+  'Mon': 'Monday',
+  'Tue': 'Tuesday',
+  'Wed': 'Wednesday',
+  'Thu': 'Thursday',
+  'Fri': 'Friday',
+  'Sat': 'Saturday',
+  'Sun': 'Sunday'
+}
