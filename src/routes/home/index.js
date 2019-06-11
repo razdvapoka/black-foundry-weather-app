@@ -220,11 +220,13 @@ class Home extends Component {
           isFilterOn={isFilterOn}
           isFahrenheitOn={isFahrenheitOn}
         />
-        <Gargantuan className={styles.slogan} as='h1'>
-          have<br />
-          a nice<br />
-          day
-        </Gargantuan>
+        <div className={styles.slogan}>
+          <Gargantuan as='h1'>
+            have<br />
+            a nice<br />
+            day
+          </Gargantuan>
+        </div>
         <div className={styles.forecast}>
           <div className={styles.row}>
             <Announcement />
