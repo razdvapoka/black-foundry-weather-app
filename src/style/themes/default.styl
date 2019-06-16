@@ -1,5 +1,6 @@
 @import '../utils.styl'
 @import '../media.styl'
+@import '../font-utils.styl'
 
 .default
   background-color: #FFFFE8
@@ -8,37 +9,35 @@
   .xxs
     font-size: pxToRem(12)
     line-height: (14 / 12)
-    font-family: GrtskPeta, Helvetica, sans-serif
+    grtskPeta()
   .xs
     font-size: pxToRem(14)
     line-height: (17 / 14)
-    font-family: GrtskPeta, Helvetica, sans-serif
+    grtskPeta()
   .s
     font-size: pxToRem(19)
     line-height: (23 / 19)
-    font-family: GrtskPetaBkslnt, Helvetica, sans-serif
+    grtskPetaBkslnt()
   .m
     font-size: pxToRem(19)
     line-height: (27 / 19)
-    font-family: GrtskPeta, Helvetica, sans-serif
+    grtskPeta()
   .l
     font-size: pxToRem(21)
     line-height: (25 / 21)
-    font-family: GrtskPeta, Helvetica, sans-serif
-    font-weight: 600
+    grtskPetaSemiBold()
   .xl
     font-size: pxToRem(22)
     line-height: (26 / 22)
-    font-family: GrtskMega, Helvetica, sans-serif
-    font-weight: 600
+    grtskMega()
   .xxl
     font-size: pxToRem(27)
     line-height: (32 / 27)
-    font-family: GrtskPeta, Helvetica, sans-serif
+    grtskPeta()
   .gigantic
     font-size: pxToRem(45)
     line-height: (54  / 45)
-    font-family: GrtskPeta
+    grtskPeta()
     +mobile()
       font-size: pxToRem(28)
       line-height: (34  / 28)
@@ -46,16 +45,15 @@
     font-size: pxToRem(202)
     line-height: (178 / 202)
     letter-spacing: tracking(-40)
-    font-family: GrtskGiga, Helvetica, sans-serif
-    font-weight: 500
+    grtskGiga()
     +tablet()
       font-size: pxToRem(185)
       line-height: (163 / 185)
-      font-family: GrtskTera, Helvetica, sans-serif
+      grtskTera()
     +mobile()
       font-size: pxToRem(130)
       line-height: (115 / 130)
-      font-family: GrtskZetta, Helvetica, sans-serif
+      grtskZetta()
 
   .top-line
     background: linear-gradient(270deg, #c42bf2, #ffff05, #aee6d5, #000aff)

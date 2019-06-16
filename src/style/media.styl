@@ -24,3 +24,11 @@ tabletOnly()
 mobileOnly()
   @media (min-width: $MOBILE_BP)
     display: none
+
+noVariable()
+  @supports not (font-variation-settings: normal)
+    {block}
+
+variable()
+  @supports (font-variation-settings: normal)
+    {block}

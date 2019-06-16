@@ -6,6 +6,7 @@ import queryString from 'query-string'
 import Header from '../../components/header'
 import Bottom from '../../components/bottom'
 import LoadingText from '../../components/loading-text'
+import FontFaceObserver from 'fontfaceobserver'
 import { DAY_OF_WEEK_MAP, LOADING_INTERVAL, LOADING_STEP } from '../../consts'
 import { tempToStr, cc, withClass } from '../../utils'
 import {
@@ -18,6 +19,12 @@ import {
   XXL,
   Gargantuan
 } from '../../components/text'
+
+const loadVariableFont = () => {
+  const variableFontsSupported = window.CSS.supports('font-variation-settings', 'normal')
+  const font = new FontFaceObserver('GrtskVariable')
+  return variableFontsSupported ? font.load() : Promise.resolve()
+}
 
 const getIp = async () => {
   const ipResponse = await window.fetch('https://api.ipify.org?format=json')
@@ -104,7 +111,7 @@ const Promo = (props) => (
       <XXS className={styles.designedBy}>Designed by Black[Foundry]</XXS>
       <XL className={styles.setIn}>Set in Grtsk</XL>
       <S as='a' className={styles.try}>
-          Try Font
+        Try Font
       </S>
     </div>
   </ColumnContent>
@@ -272,7 +279,6 @@ class Home extends Component {
         <div className='top-line' />
         <Helmet>
           <title>My Title</title>
-          <link href='/assets/styles/default.css' rel='stylesheet' />
         </Helmet>
         <Header
           city={weather.location.city}
@@ -319,7 +325,7 @@ class Home extends Component {
       })
     } else {
       this.setState({ isLoading: true })
-      getWeather().then((weather) => {
+      Promise.all([getWeather(), loadVariableFont()]).then(([ weather ]) => {
         this.setState({ weather, isLoading: false })
         if (persistWeather) {
           window.localStorage.setItem('weather', JSON.stringify(weather))
