@@ -92,9 +92,10 @@ const getWeatherByLocation = async (location) => {
   return weather
 }
 
-const getWeather = async () => {
+const getWeather = async (givenLocation) => {
+  // await new Promise(resolve => window.setTimeout(resolve, 10000))
   const ip = await getIp()
-  const location = await getLocation(ip)
+  const location = await (givenLocation || getLocation(ip))
   const weather = await getWeatherByLocation(location)
   if (weather.location.city) {
     return { weather }
@@ -230,6 +231,16 @@ class Loading extends Component {
     this.frames = {}
     this.timeouts = {}
 
+    const l1 = document.getElementById('loading-1')
+    const l2 = document.getElementById('loading-2')
+    const l3 = document.getElementById('loading-3')
+    const l4 = document.getElementById('loading-4')
+
+    l1.style.fontVariationSettings = `'wdth' 100`
+    l2.style.fontVariationSettings = `'wdth' 100`
+    l3.style.fontVariationSettings = `'wdth' 100`
+    l4.style.fontVariationSettings = `'wdth' 100`
+
     this.updateWidth('loading-1', 100, +1)
     this.timeouts['loading-2'] = window.setTimeout(
       () => this.updateWidth('loading-2', 100, +1),
@@ -302,6 +313,7 @@ class Home extends Component {
           toggleFahrenheit={this.toggleFahrenheit}
           isFilterOn={isFilterOn}
           isFahrenheitOn={isFahrenheitOn}
+          loadWeather={this.loadWeather}
         />
         <div className={styles.slogan}>
           <Gargantuan as='h1'>
@@ -331,7 +343,7 @@ class Home extends Component {
     )
   }
 
-  componentDidMount () {
+  loadWeather = (location) => {
     const { persistWeather } = this.props
     if (persistWeather && window.localStorage.getItem('weather')) {
       this.setState({
@@ -340,13 +352,17 @@ class Home extends Component {
       })
     } else {
       this.setState({ isLoading: true })
-      Promise.all([getWeather(), loadVariableFont()]).then(([ { weather, isDefault } ]) => {
+      Promise.all([getWeather(location), loadVariableFont()]).then(([ { weather, isDefault } ]) => {
         this.setState({ weather, isDefault, isLoading: false })
         if (persistWeather) {
           window.localStorage.setItem('weather', JSON.stringify(weather))
         }
       })
     }
+  }
+
+  componentDidMount () {
+    this.loadWeather()
   }
 }
 

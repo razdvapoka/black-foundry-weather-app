@@ -1,13 +1,53 @@
 @import '../../style/media.styl'
 @import '../../style/utils.styl'
+@import '../../style/font-utils.styl'
 
 .menu
   position: absolute
   top: 100%
   left: 0
   width: pxToRem(350)
-  height: pxToRem(365)
   background-color: #171717
   color: white
   box-shadow: 0 pxToRem(20) pxToRem(20) rgba(23, 23, 23, 0.2)
   border-radius: pxToRem(5)
+  &Input
+    height: pxToRem(55)
+    border-bottom: pxToRem(1) solid white
+    position: relative
+    &Icon
+      width: pxToRem(26)
+      height: pxToRem(24)
+      position: absolute
+      left: pxToRem(18)
+      top: pxToRem(15)
+    > input
+      width: 100%
+      height: 100%
+      border: 0
+      padding-left: pxToRem(60)
+      color: white
+      font-size: pxToRem(16)
+      line-height: (40 / 16)
+      grtskPeta()
+      &:focus
+        outline: none
+  &CitiesBox
+    height: pxToRem(312)
+    padding-left: pxToRem(60)
+    padding-top: pxToRem(17)
+    padding-right: pxToRem(20)
+    color: $GREY
+    overflow: auto
+  &CitiesItem
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
+    cursor: pointer
+    font-size: pxToRem(16)
+    line-height: (40 / 16)
+    grtskPeta()
+  &CitiesItem:hover
+      text-decoration: underline
+
+

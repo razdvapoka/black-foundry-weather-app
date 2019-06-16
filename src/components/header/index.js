@@ -30,7 +30,8 @@ class Header extends Component {
       isFahrenheitOn,
       isFilterOn,
       toggleFahrenheit,
-      toggleFilter
+      toggleFilter,
+      loadWeather
     } = this.props
 
     const { isMenuOpen } = this.state
@@ -58,7 +59,12 @@ class Header extends Component {
               >
                 {city}
               </XXL>
-              {isMenuOpen && <Menu />}
+              {isMenuOpen && (
+                <Menu
+                  toggleMenu={this.toggleMenu}
+                  loadWeather={loadWeather}
+                />
+              )}
             </div>
             <Gigantic className={styles.thirdRow}>
               {temperatureString}
