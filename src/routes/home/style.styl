@@ -1,6 +1,37 @@
 @import '../../style/utils.styl'
 @import '../../style/media.styl'
 
+// @font-face {
+//   font-family: 'GrtskLoading';
+//   src: url("data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAASIAA4AAAAAB9QAAAQxAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAoGYD9TVEFUMgBULyQKg3iDNTCCZAE2AiQDGAsOAAQgBYMfBy4biwYAngXlmNeoGk9eRtcHOdnbkhu9eB5+7du5b2ZFJS3aRKSpNuq2QoUQiSSVZomqFr///+/Z73PTdmYlYzRjPLAjqnhg8ix9QZ8Q8z8cIHAGzqkLkVs1gCz7FNEiu9rwUVilF4gWPshB/MvwIlYH4CcwvMpnmgOl1jKNFQMOhbvIeUQkCGgSpjh2qCgTGmrLlfq/x9wLcmRAIH/YCcAsIloVDAoWQ0Pr9c0EHlPxIIiCyfYCULCSB2EuuL22HXS27ZParBOaaekb/1PmMttuuXnmRkC/oFcRg2jtixOiHlyF6gNAgGbQiX7cALwAQA3aUSxdk9lMVLxCZSIYGyuslBY2fI2JkWk5hOTzJBQi7yGgPTyChchxAkYkUY/El0dUicohHLV0UWqqEip4oJzKT6Xgy+R794Tpd8DaOXkXP+3IHlSRCxinFxWXTtzGoDd1GE23FcoiSVBISzfawmb7/A0HzA7unqPS6dvXFxUI6MzSywNfDPy0tWdTjzqrPrQ+9qaHvZhXs8Wy3YbHTvTYVL+xvxjrHSvWJ6Zd6gaIXmKM2LzJIzaxVipCKnGbamja+E5MTAgpQTfmplCL6Lo9pSMnaERO++LjM64c79Td/Npzpi08Ph2hX6V3UlV4ub+kK7lPeP9BuVnT5A6PHkc7B68ArFlos5m+RPo557OJ21xbTUi8IsNXrxnsxzgLFfb9nDe5kXPcvsNByF3LWj3n24bFuIVGuCy1C5vIaSomt7d5twEQRDCvGSwCJu3TZY0GiFZrZiH/UzPw09dspr9khte0hD6yvWw1l84tZxfZDEnDrZFlCgqaSMHBk4FodWQWbNkBCRIbmJWfhR3Un2YwIzYBQrEyPfUp6oc7NRpJGnZcHq/ad+aFEhTOaoyRdWKoct8HLN9aWBQ0jG8zvC90EFNkNwzMPTpKEvXFA8jIdy+tS8QZyqfddJDO0RV6GAzopSzjmmz++Q/wfHl2w7FbH5uiCiVrJ3i6vVxs02Zivd3LSXxPMJXTHcYzFT2iSgrFe0xWVVdnljR0aGOxnvGwKxG2lwjZ+ucXU9PqOG9navGJMFX+WtU0fqTMOGNTmR4/ngBCWL65VF1lPuCrMbfYZN55B5blZ6gfhJZG5cKpQYsCQvWhiozUIAfEDO3N+YKKUlz913fnIcLSG2szCC2CZgfwIIppzbgKgF4PQSA6EVC06BRQGTEgoK7P2aTLkr6ZGrTptk4ldVE1Ru2RzqLbOWdltWv6mjqbjLuub6aONpNuBRC0e6UStbe6T6vXtb3ZjXh5HBv++x3o2rWjfx3E4SPGsfs4ubK7Q4+tHV6BJFp6Om3SdalRr0WnJrkaNDFoV0Mr3Gpr4b1tckyaIpn6Nw8Wnqul06JLJ7Xkdrbzq9ZpUyZRF4NO9bSGq1CkRT29ZgxoHCwC4JonUetGhxQoAgA=") format("woff2");
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+@font-face {
+  font-family: 'GrtskLoadingSun';
+  src: url("data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAAV0AA4AAAAACxAAAAUaAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAoGYD9TVEFUMgBaLyQKhQSFJTCEOAE2AiQDgWgLgQgABCAFgzEHgSgbsQkgHoVxs9PpNPHlTGyPRQkiws3/2UugNIGKPwcqolRcn5gkX9SUIHf3H0lbRFFbCUBCQUCfOJXBE8dSPxLs7ylLoEWeoLIXxVVCE/6nRafNRg1aBWIDw1nZJip7ngy8oPVNIQAAaGpQTsCBSx2lhoE2cUSZJC8yABxAWLgCA2eok2peu5v3f57QvuAJQADkF3UP4AWC4EIBUQRICNmxdOtKAT6lUkdAUIFgFQEQtVqiiIZQ1tVpBO7MVqHjlaXUqN31P/DKkKPGTGHqD4Hz/+tuAhiA+dWoVU2AMAohCrgOJcJSsKHaF+cIrvsSHgYsAM+DOAAANwAG9cAoh9bs2w+APpXbaehOt+ly6RGOMI+OsaKMGXeQZxxT+g0xB0WsiSGGbZBOa5biXh5iNMziISPjmP2zaoihpswJAzCuFGelG2P266+bR7+KMjT7OuOoO27AYRpQreo0NXPPK1TegOZHR5sfv4p1wxO96zWxbbXTDTGHTYwhDJmu1zqUVpU6nVqRNhdIqRysTA+M5YupW2deah59eWz/JbckXP1DMnr01RcPDZi45czHA18Efrpy02WbvF1Ls5fWPssf6xMt3T7janfVHuq/bOml5b7axFrf0sZa31yFL8FX41t5mb+2cdZaxR7tZf6yS7/zNTZk6arlwiy8Pjx3H7GuJ2N3z9rT7z7mibvXj6OlrO056tS7jyb7Wd9ZU7mms9vQXJJbXtnbdZS9zr9pXkxcQhrZY03U0WdYf57ws3vxidHVWfV6R/LW6qoUpYU5+yrr6rIWf9K5OEuskV1XmxUcXxjvbx+QL73kivUXVpX/NpzpP9P5Uknl95/pf/LJX0rTP+nw5dq8q6+JM3svVKvjT47OqVmcnbfwzJicQ7XqicPXrklcA57EAggCnEMdgPNA7wtbTk3Ac/jw7OVVg+Aiu4P83trBn/wql8u/EsJrcob8qG5U52vt2tnqUXWMVa1dYNuSkXGoZGYenhTYsUACEwtLBbr6u7hGyuUYFaQOKUG1JvnUGJEyHoyrZlWru+2DnTc98IUDqQer/99vj6Edjpt+KE3Ppdi2HZwx+ELP5oj+XySBeF3uFEtKeRQbS0bntvCA9Mv1cqs8JE/IW8pLqlrVaqFt85Qd+vM/oPzyS+567kdHTHeoGw4WOFpXTa/Z3MnF1Z7cy++SKePyqjKUU96WScnmfQ53Tk93jixbt7mWi5VRjCpCdebZkX/+4vFM1yUuACYpz+P46/A89Xtspbk8tnz88SEIIHBdXYk+FVrxq0vTvgB4MzF9TFzF8CxB/2sLNS8QhAJAQPvCYUJvBYFdAOCvzI1fmMhh6IZFW0hIuMjyFjk2bV4oWioJaj/aClCnhVmOJCgWcwJLi3yYx5DaHwoqURFEKFFjvpiuehjRgYecrk7X1MGEEKAhejDCYm2VSVFCVxE1CuzoqtdEB/Nd3dVZEoJZ6FEGAYMPLSLZ5tfmrVvWfOWgv2/b+i821OT+NRTJlb+n8hj5sxvSVvo2Y+3Ym5cvZvOuCZpsttUWa7TbYMZSq6y3Qp9t1uu1zArbrDVjs1xZcshjKTegzZBO5ZkAB2+62RarbLCet9fWZtx2zhpjGm1I8E6X2myXCUNWWWqrlRQA/H+rPFh7HdBIkChJshSp0qTLkClLthy5Sa9DvgKFihQrUapMuQoB9Ro0atKsRas27Tp06tKtR68+/QYMGjJsxKgx4yZEihItRqw488y3wELhQgkDAA==") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+}
+
+.loading
+  font-family: GrtskLoadingSun
+  font-size: pxToRem(214)
+  line-height: (159 / 214)
+  font-weight: 100
+  +tablet()
+    font-size: pxToRem(184)
+    line-height: (136 / 184)
+  +mobile()
+    font-size: pxToRem(72)
+    line-height: (53 / 72)
+
+.loadingText
+  width: pxToRem(213)
+  height: pxToRem(15)
+  margin-bottom: pxToRem(20)
+
 .home
   min-height: 100%
   position: relative

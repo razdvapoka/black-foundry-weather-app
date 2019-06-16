@@ -5,7 +5,8 @@ import CryptoJS from 'crypto-js'
 import queryString from 'query-string'
 import Header from '../../components/header'
 import Bottom from '../../components/bottom'
-import { DAY_OF_WEEK_MAP } from '../../consts'
+import LoadingText from '../../components/loading-text'
+import { DAY_OF_WEEK_MAP, LOADING_INTERVAL, LOADING_STEP } from '../../consts'
 import { tempToStr, cc, withClass } from '../../utils'
 import {
   XXS,
@@ -174,6 +175,64 @@ const Forecast = ({
   </Column>
 )
 
+class Loading extends Component {
+  render () {
+    return (
+      <div className={cc(styles.home, 'default')}>
+        <div className={styles.loadingText}>
+          <LoadingText />
+        </div>
+        <h1 className={styles.loading}>
+          <span id='loading-1'>W</span>
+          <span id='loading-2'>t</span>
+          <span id='loading-3'>h</span>
+          <span id='loading-4'>r</span>
+        </h1>
+      </div>
+    )
+  }
+
+  updateWidth = (el, width, direction) => {
+    const char = document.getElementById(el)
+    char.style.fontVariationSettings = `'wdth' ${width}`
+    this.frames[el] = window.requestAnimationFrame(() => {
+      this.updateWidth(
+        el,
+        width + direction * LOADING_STEP,
+        (width < 1000 && direction === +1) || (width < 100 && direction === -1)
+          ? +1
+          : -1
+      )
+    })
+  }
+
+  componentDidMount () {
+    this.frames = {}
+    this.timeouts = {}
+
+    this.updateWidth('loading-1', 100, +1)
+    this.timeouts['loading-2'] = window.setTimeout(
+      () => this.updateWidth('loading-2', 100, +1),
+      LOADING_INTERVAL
+    )
+    this.timeouts['loading-3'] = window.setTimeout(
+      () => this.updateWidth('loading-3', 100, +1),
+      LOADING_INTERVAL * 2
+    )
+    this.timeouts['loading-4'] = window.setTimeout(
+      () => this.updateWidth('loading-4', 100, +1),
+      LOADING_INTERVAL * 3
+    )
+  }
+
+  componentWillUnmount () {
+    Object.values(this.frames).forEach(window.cancelAnimationFrame)
+    Object.values(this.timeouts).forEach(window.clearTimeout)
+    this.frames = {}
+    this.timeouts = {}
+  }
+}
+
 class Home extends Component {
   static defaultProps = {
     persistWeather: false
@@ -182,7 +241,8 @@ class Home extends Component {
   state = {
     weather: null,
     isFahrenheitOn: false,
-    isFilterOn: false
+    isFilterOn: false,
+    isLoading: true
   }
 
   toggleFahrenheit = () => {
@@ -201,10 +261,13 @@ class Home extends Component {
     const {
       weather,
       isFilterOn,
-      isFahrenheitOn
+      isFahrenheitOn,
+      isLoading
     } = this.state
 
-    return weather ? (
+    return isLoading ? (
+      <Loading />
+    ) : (
       <div className={cc(styles.home, 'default')}>
         <div className='top-line' />
         <Helmet>
@@ -245,10 +308,6 @@ class Home extends Component {
           </div>
         </div>
       </div>
-    ) : (
-      <div className={cc(styles.home, 'default')}>
-        <h1>loading...</h1>
-      </div>
     )
   }
 
@@ -259,8 +318,9 @@ class Home extends Component {
         weather: JSON.parse(window.localStorage.getItem('weather'))
       })
     } else {
+      this.setState({ isLoading: true })
       getWeather().then((weather) => {
-        this.setState({ weather })
+        this.setState({ weather, isLoading: false })
         if (persistWeather) {
           window.localStorage.setItem('weather', JSON.stringify(weather))
         }

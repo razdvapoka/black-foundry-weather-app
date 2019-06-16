@@ -32,3 +32,6 @@ export const DAY_OF_WEEK_MAP = {
   'Sat': 'Saturday',
   'Sun': 'Sunday'
 }
+
+export const LOADING_STEP = 10
+export const LOADING_INTERVAL = 100
