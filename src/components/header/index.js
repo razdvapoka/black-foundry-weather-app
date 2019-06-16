@@ -2,6 +2,7 @@ import { Component } from 'preact'
 import styles from './style.styl'
 import { MONTH, DAY_OF_WEEK } from '../../consts'
 import Switch from '../switch'
+import Sun from '../icons/sun'
 import { tempToStr } from '../../utils'
 import {
   XS,
@@ -41,7 +42,11 @@ class Header extends Component {
             <XS className={styles.firstRow}>{dayOfWeek}</XS>
             <XS className={styles.secondRowMobile}>{dateString}</XS>
             <XXL className={styles.secondRow}>{dateString}</XXL>
-            <Gigantic className={styles.thirdRow}>☀️</Gigantic>
+            <Gigantic className={styles.thirdRow}>
+              <div className={styles.iconBox}>
+                <Sun />
+              </div>
+            </Gigantic>
           </div>
         </div>
         <div className={styles.switches}>
