@@ -2,6 +2,7 @@ import { Component } from 'preact'
 import styles from './style.styl'
 import { MONTH, DAY_OF_WEEK } from '../../consts'
 import Switch from '../switch'
+import Menu from 'async!../../components/menu'
 import Sun from '../icons/sun'
 import { tempToStr } from '../../utils'
 import {
@@ -11,6 +12,16 @@ import {
 } from '../../components/text'
 
 class Header extends Component {
+  state = {
+    isMenuOpen: false
+  }
+
+  toggleMenu = () => {
+    this.setState(({ isMenuOpen }) => ({
+      isMenuOpen: !isMenuOpen
+    }))
+  }
+
   render () {
     const {
       city,
@@ -22,6 +33,8 @@ class Header extends Component {
       toggleFilter
     } = this.props
 
+    const { isMenuOpen } = this.state
+
     const date = new Date()
     const dayOfWeek = DAY_OF_WEEK[date.getDay()]
     const dateString = date.getDate() + ' ' + MONTH[date.getMonth()]
@@ -32,8 +45,21 @@ class Header extends Component {
         <div className={styles.info}>
           <div className={styles.temperature}>
             <XS className={styles.firstRow}>{condition}</XS>
-            <XS className={styles.secondRowMobile}>{city}</XS>
-            <XXL className={styles.secondRow}>{city}</XXL>
+            <div className={styles.secondRowBox}>
+              <XS
+                className={styles.secondRowMobile}
+                onClick={this.toggleMenu}
+              >
+                {city}
+              </XS>
+              <XXL
+                className={styles.secondRow}
+                onClick={this.toggleMenu}
+              >
+                {city}
+              </XXL>
+              {isMenuOpen && <Menu />}
+            </div>
             <Gigantic className={styles.thirdRow}>
               {temperatureString}
             </Gigantic>

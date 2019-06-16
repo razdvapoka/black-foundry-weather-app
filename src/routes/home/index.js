@@ -38,17 +38,18 @@ const getLocation = async (ip) => {
   return `${city},${country}`
 }
 
-const getWeather = async () => {
-  const ip = await getIp()
-  const location = await getLocation(ip)
-
+const getWeatherByLocation = async (location) => {
   const baseUrl = 'https://weather-ydn-yql.media.yahoo.com/forecastrss'
   const method = 'GET'
   const appId = 'fM5u8250'
   const consumerKey = 'dj0yJmk9WHFwOEQyZklNdjZJJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTgx'
   const consumerSecret = 'd6236be43a56c37db50411b3e06a27b725df52f5'
   const concat = '&'
-  const query = { 'location': location, 'u': 'c', 'format': 'json' }
+  const query = {
+    'location': location,
+    'u': 'c',
+    'format': 'json'
+  }
   const oauth = {
     'oauth_consumer_key': consumerKey,
     'oauth_nonce': Math.random().toString(36).substring(2),
@@ -89,6 +90,18 @@ const getWeather = async () => {
 
   const weather = await weatherResponse.json()
   return weather
+}
+
+const getWeather = async () => {
+  const ip = await getIp()
+  const location = await getLocation(ip)
+  const weather = await getWeatherByLocation(location)
+  if (weather.location.city) {
+    return { weather }
+  } else {
+    const defaultWeather = await getWeatherByLocation('Paris, France')
+    return { weather: defaultWeather, isDefault: true }
+  }
 }
 
 const getCurrentTime = () =>
@@ -249,7 +262,8 @@ class Home extends Component {
     weather: null,
     isFahrenheitOn: false,
     isFilterOn: false,
-    isLoading: true
+    isLoading: true,
+    isDefault: false
   }
 
   toggleFahrenheit = () => {
@@ -321,12 +335,13 @@ class Home extends Component {
     const { persistWeather } = this.props
     if (persistWeather && window.localStorage.getItem('weather')) {
       this.setState({
-        weather: JSON.parse(window.localStorage.getItem('weather'))
+        weather: JSON.parse(window.localStorage.getItem('weather')),
+        isLoading: false
       })
     } else {
       this.setState({ isLoading: true })
-      Promise.all([getWeather(), loadVariableFont()]).then(([ weather ]) => {
-        this.setState({ weather, isLoading: false })
+      Promise.all([getWeather(), loadVariableFont()]).then(([ { weather, isDefault } ]) => {
+        this.setState({ weather, isDefault, isLoading: false })
         if (persistWeather) {
           window.localStorage.setItem('weather', JSON.stringify(weather))
         }
