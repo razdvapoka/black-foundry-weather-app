@@ -6,6 +6,7 @@ import {
 import Sun from './components/icons/sun'
 import NotDef from './components/icons/NotDef'
 import Cloudy from './components/icons/Cloudy'
+import Snow from './components/icons/Snow'
 
 export const MONTH = [
   'January',
@@ -82,6 +83,17 @@ const CLOUDY = {
   )
 }
 
+const SNOW = {
+  className: 'snow',
+  icon: Snow,
+  title: (
+    <Gargantuan as='h1'>
+      <span className='ll'>L</span>ET <span className='i'>I</span><span className='ll'>T</span><br />
+      <span className='sn'>SN</span><span className='o'>O</span><span className='sn'>W</span>
+    </Gargantuan>
+  )
+}
+
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
@@ -96,10 +108,10 @@ export const THEMES = {
   '10': 'freezing rain',
   '11': 'showers',
   '12': 'rain',
-  '13': 'snow flurries',
+  '13': SNOW,
   '14': 'light snow showers',
   '15': 'blowing snow',
-  '16': 'snow',
+  '16': SNOW,
   '17': 'hail',
   '18': 'sleet',
   '19': 'dust',
@@ -124,11 +136,11 @@ export const THEMES = {
   '38': 'scattered thunderstorms',
   '39': 'scattered showers (day)',
   '40': 'heavy rain',
-  '41': 'scattered snow showers (day)',
-  '42': 'heavy snow',
-  '43': 'blizzard',
+  '41': SNOW,
+  '42': SNOW,
+  '43': 'heavy snow',
   '44': 'not available',
   '45': 'scattered showers (night)',
-  '46': 'scattered snow showers (night)',
+  '46': SNOW,
   '47': 'scattered thundershowers'
 }

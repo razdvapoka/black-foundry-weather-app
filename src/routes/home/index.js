@@ -281,7 +281,7 @@ class Loading extends Component {
 
 class Home extends Component {
   static defaultProps = {
-    persistWeather: false
+    persistWeather: true
   }
 
   state = {
@@ -343,7 +343,7 @@ class Home extends Component {
           <div className={styles.slogan}>
             {title}
           </div>
-          <div className={styles.forecast}>
+          <div className={cc(styles.forecast, 'forecast')}>
             <div className={styles.row}>
               <Announcement />
               <Forecast

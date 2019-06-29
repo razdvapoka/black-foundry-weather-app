@@ -1,0 +1,65 @@
+@import '../consts.styl'
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.snow
+  background-color: white
+  color: $BLUE
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(249)
+    line-height: (227 / 249)
+    grtskZettaExtraLight()
+    +tablet()
+      font-size: pxToRem(216)
+      line-height: (185 / 216)
+    +mobile()
+      font-size: pxToRem(114)
+      line-height: (103 / 114)
+    .ll
+      grtskMegaExtraLight()
+      +tablet()
+        grtskTeraExtraLight()
+      +mobile()
+        grtskPetaExtraLight()
+    .sn
+      grtskMegaBold()
+      +tablet()
+        grtskTeraBold()
+      +mobile()
+        grtskZettaBold()
+    .o
+      grtskZettaBold()
+      +mobile()
+        grtskTeraBold()
+
+  .top-line
+    background: linear-gradient(270deg, #C42BF2, #611AF9, #000AFF)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: $BLUE
+    +tablet()
+      &:after
+        background-color: $BLUE
+
+  .bottom
+    color: white
+
+  .col-content
+    border-top: 1px solid rgba(23, 23, 23, 0.2)
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) $BLUE
+
+  .switch-slider:before
+    background-color: $BLUE
+
+  .try-button
+    border: pxToRem(1) solid $BLUE
+
+  .forecast
+      color: $BLACK
