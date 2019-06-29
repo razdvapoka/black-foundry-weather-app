@@ -1,14 +1,13 @@
 import styles from './style.styl'
-import { Helmet } from 'react-helmet'
 import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
-import queryString from 'query-string'
 import Header from '../../components/header'
 import Bottom from '../../components/bottom'
 import LoadingText from '../../components/loading-text'
 import FontFaceObserver from 'fontfaceobserver'
-import { DAY_OF_WEEK_MAP, LOADING_INTERVAL, LOADING_STEP } from '../../consts'
 import { tempToStr, cc, withClass } from '../../utils'
+import queryString from 'query-string'
+
 import {
   XXS,
   XS,
@@ -16,9 +15,16 @@ import {
   M,
   L,
   XL,
-  XXL,
-  Gargantuan
+  XXL
 } from '../../components/text'
+
+import {
+  NOT_AVAILABLE,
+  DAY_OF_WEEK_MAP,
+  LOADING_INTERVAL,
+  LOADING_STEP,
+  THEMES
+} from '../../consts'
 
 const loadVariableFont = () => {
   const variableFontsSupported = window.CSS.supports('font-variation-settings', 'normal')
@@ -97,11 +103,15 @@ const getWeather = async (givenLocation) => {
   const ip = await getIp()
   const location = await (givenLocation || getLocation(ip))
   const weather = await getWeatherByLocation(location)
-  if (weather.location.city) {
-    return { weather }
-  } else {
+  const isDefault = (
+    !weather.location.city ||
+    weather.current_observation.condition.code === NOT_AVAILABLE
+  )
+  if (isDefault) {
     const defaultWeather = await getWeatherByLocation('Paris, France')
     return { weather: defaultWeather, isDefault: true }
+  } else {
+    return { weather }
   }
 }
 
@@ -116,7 +126,7 @@ const formatTime = (timeString) =>
   timeString.replace(/ (am|pm)$/, '')
 
 const Column = withClass(styles.col)('div')
-const ColumnContent = withClass(styles.colContent)('div')
+const ColumnContent = withClass(cc(styles.colContent, 'col-content'))('div')
 const ColumnCaption = withClass(styles.colCaption)(L)
 
 const Promo = (props) => (
@@ -195,6 +205,11 @@ const Forecast = ({
     </ColumnContent>
   </Column>
 )
+
+const getTheme = (weatherConditionCode, isDefault) => (
+  isDefault || typeof THEMES[weatherConditionCode] === 'string'
+) ? THEMES['30']
+  : THEMES[weatherConditionCode]
 
 class Loading extends Component {
   render () {
@@ -294,53 +309,61 @@ class Home extends Component {
       weather,
       isFilterOn,
       isFahrenheitOn,
-      isLoading
+      isLoading,
+      isDefault
     } = this.state
 
-    return isLoading ? (
-      <Loading />
-    ) : (
-      <div className={cc(styles.home, 'default')}>
-        <div className='top-line' />
-        <Helmet>
-          <title>My Title</title>
-        </Helmet>
-        <Header
-          city={weather.location.city}
-          condition={weather.current_observation.condition.text}
-          temperature={weather.current_observation.condition.temperature}
-          toggleFilter={this.toggleFilter}
-          toggleFahrenheit={this.toggleFahrenheit}
-          isFilterOn={isFilterOn}
-          isFahrenheitOn={isFahrenheitOn}
-          loadWeather={this.loadWeather}
-        />
-        <div className={styles.slogan}>
-          <Gargantuan as='h1'>
-            have<br />
-            a nice<br />
-            day
-          </Gargantuan>
-        </div>
-        <div className={styles.forecast}>
-          <div className={styles.row}>
-            <Announcement />
-            <Forecast
-              weather={weather}
-              isFahrenheitOn={isFahrenheitOn}
-            />
+
+    if (isLoading) {
+      return <Loading />
+    } else {
+      const query = queryString.parse(document.location.search)
+      const theme = query.theme || weather.current_observation.condition.code
+      const {
+        className,
+        title,
+        icon
+      } = getTheme(theme, isDefault)
+      return (
+        <div className={cc(
+          styles.home,
+          className
+        )}>
+          <div className='top-line' />
+          <Header
+            icon={icon}
+            city={weather.location.city}
+            condition={weather.current_observation.condition.text}
+            temperature={weather.current_observation.condition.temperature}
+            toggleFilter={this.toggleFilter}
+            toggleFahrenheit={this.toggleFahrenheit}
+            isFilterOn={isFilterOn}
+            isFahrenheitOn={isFahrenheitOn}
+            loadWeather={this.loadWeather}
+          />
+          <div className={styles.slogan}>
+            {title}
+          </div>
+          <div className={styles.forecast}>
+            <div className={styles.row}>
+              <Announcement />
+              <Forecast
+                weather={weather}
+                isFahrenheitOn={isFahrenheitOn}
+              />
+            </div>
+          </div>
+          <Promo className={styles.tabletPromo} />
+          <Promo className={styles.mobilePromo} />
+          <div className='bottomBox'>
+            <div className='bottom'>
+              <Bottom id='d' className={styles.bottom} />
+              <Bottom id='m' rectHeight={90} className={styles.bottomMobile} />
+            </div>
           </div>
         </div>
-        <Promo className={styles.tabletPromo} />
-        <Promo className={styles.mobilePromo} />
-        <div className='bottomBox'>
-          <div className='bottom'>
-            <Bottom id='d' className={styles.bottom} />
-            <Bottom id='m' rectHeight={90} className={styles.bottomMobile} />
-          </div>
-        </div>
-      </div>
-    )
+      )
+    }
   }
 
   loadWeather = (location) => {
@@ -353,6 +376,7 @@ class Home extends Component {
     } else {
       this.setState({ isLoading: true })
       Promise.all([getWeather(location), loadVariableFont()]).then(([ { weather, isDefault } ]) => {
+        console.log(weather)
         this.setState({ weather, isDefault, isLoading: false })
         if (persistWeather) {
           window.localStorage.setItem('weather', JSON.stringify(weather))

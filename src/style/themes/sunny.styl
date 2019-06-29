@@ -1,0 +1,51 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.sunny
+  background-color: #FFFF00
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(276)
+    line-height: (276 / 270)
+    letter-spacing: tracking(-40)
+    grtskExa()
+    text-align: left
+    +tablet()
+      font-size: pxToRem(229)
+      line-height: (225 / 229)
+    +mobile()
+      font-size: pxToRem(120)
+      line-height: (125 / 120)
+      grtskZetta()
+
+  .gargantuanAlt
+    font-size: pxToRem(276)
+    line-height: (276 / 270)
+    letter-spacing: tracking(-40)
+    grtskMegaMedium()
+    text-align: left
+    +tablet()
+      font-size: pxToRem(229)
+      line-height: (225 / 229)
+    +mobile()
+      font-size: pxToRem(120)
+      line-height: (125 / 120)
+
+  .top-line
+    background: linear-gradient(270deg, #F2C7FF, #FFFFE8)
+    animation: topline-animation 10s ease infinite
+    background-size: 200% 200%
+
+  .bottomBox
+    background-color: #E17EFF
+    +tablet()
+      &:after
+        background-color: #E17EFF
+
+  .bottom
+    color: #171717
+
+  .col-content
+    border-top: 1px solid rgba(23, 23, 23, 0.2)

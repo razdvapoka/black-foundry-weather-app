@@ -3,7 +3,6 @@ import styles from './style.styl'
 import { MONTH, DAY_OF_WEEK } from '../../consts'
 import Switch from '../switch'
 import Menu from 'async!../../components/menu'
-import Sun from '../icons/sun'
 import { tempToStr } from '../../utils'
 import {
   XS,
@@ -24,6 +23,7 @@ class Header extends Component {
 
   render () {
     const {
+      icon: Icon,
       city,
       temperature,
       condition,
@@ -76,7 +76,7 @@ class Header extends Component {
             <XXL className={styles.secondRow}>{dateString}</XXL>
             <Gigantic className={styles.thirdRow}>
               <div className={styles.iconBox}>
-                <Sun />
+                <Icon />
               </div>
             </Gigantic>
           </div>
