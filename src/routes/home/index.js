@@ -281,7 +281,7 @@ class Loading extends Component {
 
 class Home extends Component {
   static defaultProps = {
-    persistWeather: true
+    persistWeather: false
   }
 
   state = {
