@@ -134,7 +134,7 @@ const Promo = (props) => (
     <div>
       <XXS className={styles.designedBy}>Designed by Black[Foundry]</XXS>
       <XL className={styles.setIn}>Set in Grtsk</XL>
-      <S as='a' className={styles.try}>
+      <S as='a' className={cc(styles.try, 'try-button')}>
         Try Font
       </S>
     </div>
@@ -312,7 +312,6 @@ class Home extends Component {
       isLoading,
       isDefault
     } = this.state
-
 
     if (isLoading) {
       return <Loading />

@@ -1,6 +1,11 @@
-import { Gargantuan, GargantuanAlt } from './components/text'
+import {
+  Gargantuan,
+  GargantuanAlt,
+  GargantuanAlt2
+} from './components/text'
 import Sun from './components/icons/sun'
 import NotDef from './components/icons/NotDef'
+import Cloudy from './components/icons/Cloudy'
 
 export const MONTH = [
   'January',
@@ -59,11 +64,24 @@ const DEFAULT = {
   title: (
     <Gargantuan as='h1'>
       have<br />
-    a nice<br />
-    day
+      a nice<br />
+      day
     </Gargantuan>
   )
 }
+
+const CLOUDY = {
+  className: 'cloudy',
+  icon: Cloudy,
+  title: (
+    <Gargantuan as='h1'>
+      Head&nbsp;
+      i<GargantuanAlt as='span'>n</GargantuanAlt> the&nbsp;<br />
+      <GargantuanAlt2 as='span'>C</GargantuanAlt2>lou<GargantuanAlt2 as='span'>d</GargantuanAlt2>s
+    </Gargantuan>
+  )
+}
+
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
@@ -91,7 +109,7 @@ export const THEMES = {
   '23': 'blustery',
   '24': 'windy',
   '25': 'cold',
-  '26': 'cloudy',
+  '26': CLOUDY,
   '27': 'mostly cloudy (night)',
   '28': 'mostly cloudy (day)',
   '29': 'partly cloudy (night)',

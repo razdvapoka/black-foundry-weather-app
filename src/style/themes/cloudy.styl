@@ -1,0 +1,54 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.cloudy
+  background-color: #434250
+  color: #C49FFF
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(264)
+    line-height: (231 / 264)
+    letter-spacing: tracking(-30)
+    grtskZettaMedium()
+    +tablet()
+      font-size: pxToRem(200)
+      line-height: (175 / 200)
+    +mobile()
+      font-size: pxToRem(118)
+      line-height: (103 / 118)
+
+  .gargantuanAlt
+    grtskGiga()
+
+  .gargantuanAlt2
+    grtskMegaMedium()
+    +mobile()
+      grtskZettaMedium()
+
+  .top-line
+    background: linear-gradient(270deg, #FFFFE8, #9DFFE1, #E28974)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: #9ED2E5
+    +tablet()
+      &:after
+        background-color: #9ED2E5
+
+  .bottom
+    color: #C49FFF
+
+  .col-content
+    border-top: 1px solid #C49FFF
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) #C49FFF
+
+  .switch-slider:before
+    background-color: #FFFFE8
+
+  .try-button
+    border: pxToRem(1) solid #C49FFF

@@ -1,6 +1,6 @@
 import styles from './style.styl'
 import { XS } from '../text'
-import { withClass } from '../../utils'
+import { cc, withClass } from '../../utils'
 
 const SwitchBox = withClass(styles.switch)('div')
 
@@ -19,7 +19,7 @@ const Switch = ({
         value={isOn}
         onChange={toggle}
       />
-      <span className={styles.switchSlider} />
+      <span className={cc(styles.switchSlider, 'switch-slider')} />
     </div>
   </SwitchBox>
 )
