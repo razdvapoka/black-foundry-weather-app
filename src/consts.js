@@ -42,6 +42,28 @@ export const LOADING_INTERVAL = 100
 
 export const NOT_AVAILABLE = 44
 
+const SUNNY = {
+  className: 'sunny',
+  icon: Sun,
+  title: (
+    <Gargantuan as='h1'>
+      Brighten<br />
+      <GargantuanAlt>Up</GargantuanAlt>
+    </Gargantuan>
+  )
+}
+
+const DEFAULT = {
+  className: 'default',
+  icon: NotDef,
+  title: (
+    <Gargantuan as='h1'>
+      have<br />
+    a nice<br />
+    day
+    </Gargantuan>
+  )
+}
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
@@ -73,32 +95,13 @@ export const THEMES = {
   '27': 'mostly cloudy (night)',
   '28': 'mostly cloudy (day)',
   '29': 'partly cloudy (night)',
-  '30': {
-    className: 'default',
-    icon: NotDef,
-    title: (
-      <Gargantuan as='h1'>
-        have<br />
-        a nice<br />
-        day
-      </Gargantuan>
-    )
-  },
+  '30': DEFAULT,
   '31': 'clear (night)',
-  '32': {
-    className: 'sunny',
-    icon: Sun,
-    title: (
-      <Gargantuan as='h1'>
-        Brighten<br />
-        <GargantuanAlt>Up</GargantuanAlt>
-      </Gargantuan>
-    )
-  },
+  '32': SUNNY,
   '33': 'fair (night)',
-  '34': 'fair (day)',
+  '34': SUNNY,
   '35': 'mixed rain and hail',
-  '36': 'hot',
+  '36': SUNNY,
   '37': 'isolated thunderstorms',
   '38': 'scattered thunderstorms',
   '39': 'scattered showers (day)',
