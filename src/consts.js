@@ -75,8 +75,8 @@ const CLOUDY = {
   icon: Cloudy,
   title: (
     <Gargantuan as='h1'>
-      Head&nbsp;
-      i<GargantuanAlt as='span'>n</GargantuanAlt> the&nbsp;<br />
+      Head
+      i<GargantuanAlt as='span'>n</GargantuanAlt> the<br />
       <GargantuanAlt2 as='span'>C</GargantuanAlt2>lou<GargantuanAlt2 as='span'>d</GargantuanAlt2>s
     </Gargantuan>
   )
