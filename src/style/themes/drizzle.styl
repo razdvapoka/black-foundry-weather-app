@@ -1,0 +1,57 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.drizzle
+  background-color: #E0F9FF
+  color: #00A7FF
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(232)
+    line-height: (210 / 232)
+    letter-spacing: tracking(-10)
+    grtskZettaMediumItalic()
+    .drizzle-second
+      font-size: pxToRem(214)
+      line-height: (194 / 214)
+      letter-spacing: tracking(-40)
+      grtskMegaThin()
+    +tablet()
+      font-size: pxToRem(232)
+      line-height: (210 / 232)
+      .drizzle-second
+        grtskTeraThinBkslnt()
+    +mobile()
+      font-size: pxToRem(124)
+      line-height: (113 / 124)
+      .drizzle-second
+        font-size: pxToRem(124)
+        line-height: (113 / 124)
+        grtskExaThinBkslnt()
+
+  .top-line
+    background: linear-gradient(0deg, #FFEC05, #FF9300, #4A9DFF)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: #00A7FF
+    +tablet()
+      &:after
+        background-color: #00A7FF
+
+  .bottom
+    color: #FF9300
+
+  .col-content
+    border-top: 1px solid rgba(0, 167, 255, 0.45)
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) #00A7FF
+
+  .switch-slider:before
+    background-color: #00A7FF
+
+  .try-button
+    border: pxToRem(1) solid #00A7FF

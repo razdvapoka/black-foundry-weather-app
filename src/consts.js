@@ -13,6 +13,7 @@ import Haze from './components/icons/Haze'
 import Night from './components/icons/Night'
 import Windy from './components/icons/Wind'
 import Mixed from './components/icons/MixedRainSnow'
+import Drizzle from './components/icons/Drizzle'
 
 export const MONTH = [
   'January',
@@ -185,6 +186,17 @@ const MIXED_SNOW_AND_SLEET = {
   )
 }
 
+const DRIZZLE = {
+  className: 'drizzle',
+  icon: Drizzle,
+  title: (
+    <Gargantuan as='h1'>
+      Drizzle<br />
+      <span className='drizzle-second'>Drizzle</span>
+    </Gargantuan>
+  )
+}
+
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
@@ -194,8 +206,8 @@ export const THEMES = {
   '5': MIXED_RAIN_AND_SNOW,
   '6': MIXED_RAIN_AND_SLEET,
   '7': MIXED_SNOW_AND_SLEET,
-  '8': 'freezing drizzle',
-  '9': 'drizzle',
+  '8': DRIZZLE,
+  '9': DRIZZLE,
   '10': RAIN,
   '11': RAIN,
   '12': RAIN,

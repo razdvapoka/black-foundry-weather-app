@@ -328,7 +328,7 @@ class Home extends Component {
       const hours = (new Date()).getHours()
       const sunriseHours = toHours(sunrise)
       const sunsetHours = toHours(sunset)
-      const isNight = hours >= sunsetHours || hours <= sunriseHours
+      const isNight = !query.theme && (hours >= sunsetHours || hours <= sunriseHours)
       const {
         className,
         title,
