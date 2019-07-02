@@ -1,0 +1,60 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.windy
+  background-color: white
+  color: #171717
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(234)
+    line-height: (213 / 234)
+    grtskZettaLight()
+    .windy-with
+      grtskTeraLight()
+    .windy-the
+      grtskMegaLight()
+    +tablet()
+      font-size: pxToRem(168)
+      line-height: (153 / 168)
+      .windy-with
+        grtskZettaLight()
+      .windy-wind
+        grtskMegaLight()
+    +mobile()
+      grtskExaLight()
+      font-size: pxToRem(112)
+      line-height: (102 / 112)
+      .windy-with
+        grtskTeraLight()
+      .windy-the
+        grtskTeraLight()
+      .windy-wind
+        grtskExaLight()
+
+  .top-line
+    background: linear-gradient(0deg, #5FA0FA, #FFEC05, #F24C4C)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: #D93D3D
+    +tablet()
+      &:after
+        background-color: #D93D3D
+
+  .bottom
+    color: #00A7FF
+
+  .col-content
+    border-top: 1px solid rgba(23,23,23,0.2)
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) #171717
+
+  .switch-slider:before
+    background-color: #171717
+
+  .try-button
+    border: pxToRem(1) solid #171717

@@ -11,6 +11,7 @@ import PartlyCloudy from './components/icons/PartlyCloudy'
 import Rain from './components/icons/Rain'
 import Haze from './components/icons/Haze'
 import Night from './components/icons/Night'
+import Windy from './components/icons/Wind'
 
 export const MONTH = [
   'January',
@@ -143,6 +144,16 @@ const NIGHT = {
   )
 }
 
+const WINDY = {
+  className: 'windy',
+  icon: Windy,
+  title: (
+    <Gargantuan as='h1'>
+      Blow <span className='windy-with'>with</span> <span className='windy-the'>the</span> <span className='windy-wind'>wind</span>
+    </Gargantuan>
+  )
+}
+
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
@@ -167,8 +178,8 @@ export const THEMES = {
   '20': 'foggy',
   '21': HAZE,
   '22': 'smoky',
-  '23': 'blustery',
-  '24': 'windy',
+  '23': WINDY,
+  '24': WINDY,
   '25': 'cold',
   '26': CLOUDY,
   '27': NIGHT,
