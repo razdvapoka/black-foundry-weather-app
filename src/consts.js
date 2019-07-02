@@ -12,6 +12,7 @@ import Rain from './components/icons/Rain'
 import Haze from './components/icons/Haze'
 import Night from './components/icons/Night'
 import Windy from './components/icons/Wind'
+import Mixed from './components/icons/MixedRainSnow'
 
 export const MONTH = [
   'January',
@@ -154,15 +155,45 @@ const WINDY = {
   )
 }
 
+const MIXED_RAIN_AND_SNOW = {
+  className: 'mixed-rain-and-snow',
+  icon: Mixed,
+  title: (
+    <Gargantuan as='h1'>
+      <span className='mixed-come'>Come</span><br />Rain {'&'} Snow
+    </Gargantuan>
+  )
+}
+
+const MIXED_RAIN_AND_SLEET = {
+  className: 'mixed-rain-and-snow',
+  icon: Mixed,
+  title: (
+    <Gargantuan as='h1'>
+      <span className='mixed-come'>Come</span><br />Rain {'&'} Sleet
+    </Gargantuan>
+  )
+}
+
+const MIXED_SNOW_AND_SLEET = {
+  className: 'mixed-rain-and-snow',
+  icon: Mixed,
+  title: (
+    <Gargantuan as='h1'>
+      <span className='mixed-come'>Come</span><br />Snow {'&'} Sleet
+    </Gargantuan>
+  )
+}
+
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
   '2': 'hurricane',
   '3': 'severe thunderstorms',
   '4': 'thunderstorms',
-  '5': 'mixed rain and snow',
-  '6': 'mixed rain and sleet',
-  '7': 'mixed snow and sleet',
+  '5': MIXED_RAIN_AND_SNOW,
+  '6': MIXED_RAIN_AND_SLEET,
+  '7': MIXED_SNOW_AND_SLEET,
   '8': 'freezing drizzle',
   '9': 'drizzle',
   '10': RAIN,

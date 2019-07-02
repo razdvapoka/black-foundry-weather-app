@@ -1,0 +1,58 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.mixed-rain-and-snow
+  background-color: #FFFBF4
+  color: #171717
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(250)
+    line-height: (186 / 250)
+    letter-spacing: tracking(-40)
+    grtskZettaMedium()
+    .mixed-come
+      color: #FFFBF4
+      line-height: (250 / 250)
+      text-shadow:
+        pxToRem(-2) pxToRem(-2) 0 #171717,
+        pxToRem(2) pxToRem(-2) 0 #171717,
+        pxToRem(-2) pxToRem(2) 0 #171717,
+        pxToRem(2) pxToRem(2) 0 #171717
+      grtskGiga()
+    +tablet()
+      font-size: pxToRem(178)
+      line-height: (157 / 178)
+    +mobile()
+      font-size: pxToRem(135)
+      line-height: (120 / 135)
+      .mixed-come
+        grtskZettaMedium()
+        line-height: (157 / 135)
+
+  .top-line
+    background: linear-gradient(0deg, #C42BF2, #AD0057, #000AFF)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: #171717
+    +tablet()
+      &:after
+        background-color: #171717
+
+  .bottom
+    color: #E17EFF
+
+  .col-content
+    border-top: 1px solid rgba(23,23,23,0.2)
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) #171717
+
+  .switch-slider:before
+    background-color: #171717
+
+  .try-button
+    border: pxToRem(1) solid #171717
