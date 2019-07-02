@@ -9,6 +9,7 @@ import Cloudy from './components/icons/Cloudy'
 import Snow from './components/icons/Snow'
 import PartlyCloudy from './components/icons/PartlyCloudy'
 import Rain from './components/icons/Rain'
+import Haze from './components/icons/Haze'
 
 export const MONTH = [
   'January',
@@ -119,6 +120,18 @@ const RAIN = {
   )
 }
 
+const HAZE = {
+  className: 'haze',
+  icon: Haze,
+  title: (
+    <Gargantuan as='h1'>
+      STAY<br />
+      WITHIN<br />
+      HAZE
+    </Gargantuan>
+  )
+}
+
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
@@ -141,7 +154,7 @@ export const THEMES = {
   '18': 'sleet',
   '19': 'dust',
   '20': 'foggy',
-  '21': 'haze',
+  '21': HAZE,
   '22': 'smoky',
   '23': 'blustery',
   '24': 'windy',
