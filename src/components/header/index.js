@@ -9,6 +9,7 @@ import {
   XXL,
   Gigantic
 } from '../../components/text'
+import Arrow from '../../components/icons/Arrow'
 
 class Header extends Component {
   state = {
@@ -19,6 +20,11 @@ class Header extends Component {
     this.setState(({ isMenuOpen }) => ({
       isMenuOpen: !isMenuOpen
     }))
+  }
+
+  handleCityClick = (e) => {
+    e.stopPropagation()
+    this.toggleMenu()
   }
 
   render () {
@@ -49,15 +55,25 @@ class Header extends Component {
             <div className={styles.secondRowBox}>
               <XS
                 className={styles.secondRowMobile}
-                onClick={this.toggleMenu}
+                onMouseDown={this.handleCityClick}
               >
-                {city}
+                <p className={styles.city}>
+                  {city}
+                  <div className={isMenuOpen ? styles.arrowReversed : styles.arrow}>
+                    <Arrow width='100%' height='100%' />
+                  </div>
+                </p>
               </XS>
               <XXL
                 className={styles.secondRow}
-                onClick={this.toggleMenu}
+                onMouseDown={this.handleCityClick}
               >
-                {city}
+                <p className={styles.city}>
+                  {city}
+                  <div className={isMenuOpen ? styles.arrowReversed : styles.arrow}>
+                    <Arrow width='100%' height='100%' />
+                  </div>
+                </p>
               </XXL>
               {isMenuOpen && (
                 <Menu
