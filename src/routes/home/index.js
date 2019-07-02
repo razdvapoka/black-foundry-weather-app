@@ -212,7 +212,9 @@ const getTheme = (weatherConditionCode, isDefault, isNight) => {
   return isNight
     ? THEMES['27']
     : (
-      isDefault || typeof THEMES[weatherConditionCode] === 'string'
+      isDefault ||
+      !THEMES[weatherConditionCode] ||
+      typeof THEMES[weatherConditionCode] === 'string'
     ) ? THEMES['44']
       : THEMES[weatherConditionCode]
 }

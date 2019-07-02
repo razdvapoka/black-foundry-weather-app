@@ -1,3 +1,5 @@
+/* eslint no-irregular-whitespace: 0 */
+
 import {
   Gargantuan,
   GargantuanAlt,
@@ -14,6 +16,8 @@ import Night from './components/icons/Night'
 import Windy from './components/icons/Wind'
 import Mixed from './components/icons/MixedRainSnow'
 import Drizzle from './components/icons/Drizzle'
+import Storms from './components/icons/Thunderstorms'
+import Tornado from './components/icons/Tornado'
 
 export const MONTH = [
   'January',
@@ -197,12 +201,28 @@ const DRIZZLE = {
   )
 }
 
+const THUNDERSTORMS = {
+  className: 'thunderstorms',
+  icon: Storms,
+  title: (
+    <Gargantuan as='h1'>
+      After storms<br />
+      comes a calm
+    </Gargantuan>
+  )
+}
+
+const TORNADO = {
+  ...THUNDERSTORMS,
+  icon: Tornado
+}
+
 export const THEMES = {
-  '0': 'tornado',
-  '1': 'tropical storm',
-  '2': 'hurricane',
-  '3': 'severe thunderstorms',
-  '4': 'thunderstorms',
+  '0': TORNADO,
+  '1': TORNADO,
+  '2': TORNADO,
+  '3': THUNDERSTORMS,
+  '4': THUNDERSTORMS,
   '5': MIXED_RAIN_AND_SNOW,
   '6': MIXED_RAIN_AND_SLEET,
   '7': MIXED_SNOW_AND_SLEET,
@@ -235,15 +255,15 @@ export const THEMES = {
   '34': SUNNY,
   '35': 'mixed rain and hail',
   '36': SUNNY,
-  '37': 'isolated thunderstorms',
-  '38': 'scattered thunderstorms',
-  '39': 'scattered showers (day)',
+  '37': THUNDERSTORMS,
+  '38': THUNDERSTORMS,
+  '39': THUNDERSTORMS,
   '40': RAIN,
   '41': SNOW,
   '42': SNOW,
   '43': 'heavy snow',
   '44': DEFAULT,
-  '45': 'scattered showers (night)',
+  '45': THUNDERSTORMS,
   '46': SNOW,
-  '47': 'scattered thundershowers'
+  '47': THUNDERSTORMS
 }
