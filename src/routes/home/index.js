@@ -206,10 +206,16 @@ const Forecast = ({
   </Column>
 )
 
-const getTheme = (weatherConditionCode, isDefault) => (
-  isDefault || typeof THEMES[weatherConditionCode] === 'string'
-) ? THEMES['30']
-  : THEMES[weatherConditionCode]
+const toHours = str => parseInt(str.split(':')[0]) + (str.indexOf('pm') === -1 ? 0 : 12)
+
+const getTheme = (weatherConditionCode, isDefault, isNight) => {
+  return isNight
+    ? THEMES['27']
+    : (
+      isDefault || typeof THEMES[weatherConditionCode] === 'string'
+    ) ? THEMES['44']
+      : THEMES[weatherConditionCode]
+}
 
 class Loading extends Component {
   render () {
@@ -318,11 +324,16 @@ class Home extends Component {
     } else {
       const query = queryString.parse(document.location.search)
       const theme = query.theme || weather.current_observation.condition.code
+      const { sunset, sunrise } = weather.current_observation.astronomy
+      const hours = (new Date()).getHours()
+      const sunriseHours = toHours(sunrise)
+      const sunsetHours = toHours(sunset)
+      const isNight = hours >= sunsetHours || hours <= sunriseHours
       const {
         className,
         title,
         icon
-      } = getTheme(theme, isDefault)
+      } = getTheme(theme, isDefault, isNight)
       return (
         <div className={cc(
           styles.home,
@@ -375,7 +386,6 @@ class Home extends Component {
     } else {
       this.setState({ isLoading: true })
       Promise.all([getWeather(location), loadVariableFont()]).then(([ { weather, isDefault } ]) => {
-        console.log(weather)
         this.setState({ weather, isDefault, isLoading: false })
         if (persistWeather) {
           window.localStorage.setItem('weather', JSON.stringify(weather))

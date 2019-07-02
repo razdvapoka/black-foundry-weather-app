@@ -10,6 +10,7 @@ import Snow from './components/icons/Snow'
 import PartlyCloudy from './components/icons/PartlyCloudy'
 import Rain from './components/icons/Rain'
 import Haze from './components/icons/Haze'
+import Night from './components/icons/Night'
 
 export const MONTH = [
   'January',
@@ -132,6 +133,16 @@ const HAZE = {
   )
 }
 
+const NIGHT = {
+  className: 'night',
+  icon: Night,
+  title: (
+    <Gargantuan as='h1'>
+      Good Night
+    </Gargantuan>
+  )
+}
+
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
@@ -160,13 +171,13 @@ export const THEMES = {
   '24': 'windy',
   '25': 'cold',
   '26': CLOUDY,
-  '27': PARTLY_CLOUDY,
+  '27': NIGHT,
   '28': PARTLY_CLOUDY,
-  '29': PARTLY_CLOUDY,
+  '29': NIGHT,
   '30': PARTLY_CLOUDY,
-  '31': 'clear (night)',
+  '31': NIGHT,
   '32': SUNNY,
-  '33': 'fair (night)',
+  '33': NIGHT,
   '34': SUNNY,
   '35': 'mixed rain and hail',
   '36': SUNNY,

@@ -83,6 +83,7 @@ class Header extends Component {
         </div>
         <div className={styles.switches}>
           <Switch
+            className='c-f-switch'
             label='°C / °F'
             isOn={isFahrenheitOn}
             toggle={toggleFahrenheit}
