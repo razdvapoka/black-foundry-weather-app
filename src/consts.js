@@ -7,6 +7,7 @@ import Sun from './components/icons/sun'
 import NotDef from './components/icons/NotDef'
 import Cloudy from './components/icons/Cloudy'
 import Snow from './components/icons/Snow'
+import PartlyCloudy from './components/icons/PartlyCloudy'
 
 export const MONTH = [
   'January',
@@ -94,6 +95,18 @@ const SNOW = {
   )
 }
 
+const PARTLY_CLOUDY = {
+  className: 'partly-cloudy',
+  icon: PartlyCloudy,
+  title: (
+    <Gargantuan as='h1'>
+      On<br />
+      &nbsp;Cloud<br />
+      &nbsp;&nbsp;Nine
+    </Gargantuan>
+  )
+}
+
 export const THEMES = {
   '0': 'tornado',
   '1': 'tropical storm',
@@ -122,10 +135,10 @@ export const THEMES = {
   '24': 'windy',
   '25': 'cold',
   '26': CLOUDY,
-  '27': 'mostly cloudy (night)',
-  '28': 'mostly cloudy (day)',
-  '29': 'partly cloudy (night)',
-  '30': DEFAULT,
+  '27': PARTLY_CLOUDY,
+  '28': PARTLY_CLOUDY,
+  '29': PARTLY_CLOUDY,
+  '30': PARTLY_CLOUDY,
   '31': 'clear (night)',
   '32': SUNNY,
   '33': 'fair (night)',
@@ -139,7 +152,7 @@ export const THEMES = {
   '41': SNOW,
   '42': SNOW,
   '43': 'heavy snow',
-  '44': 'not available',
+  '44': DEFAULT,
   '45': 'scattered showers (night)',
   '46': SNOW,
   '47': 'scattered thundershowers'

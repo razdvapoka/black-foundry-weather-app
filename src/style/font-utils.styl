@@ -40,6 +40,14 @@ grtskGiga()
     font-family: GrtskGiga, Helvetica, sans-serif
     font-weight: 500
 
+grtskGigaMediumBkslnt()
+	+variable()
+		font-family: GrtskVariable, Helvetica, sans-serif
+		font-variation-settings: 'wdth' 760, 'wght' 590, 'slnt' -15
+	+noVariable()
+		font-family: GrtskGigaBkslnt, Helvetica, sans-serif
+		font-weight: 500
+
 grtskTeraExtraLight()
   +variable()
     font-family: GrtskVariable, Helvetica, sans-serif
@@ -127,3 +135,11 @@ grtskExa()
   +noVariable()
     font-family: GrtskExa, Helvetica, sans-serif
     font-weight: 500
+
+grtskExaRegularBkslnt()
+  +variable()
+    font-family: GrtskVariable, Helvetica, sans-serif
+    font-variation-settings: 'wdth' 200, 'wght' 400, 'slnt' -15
+  +noVariable()
+    font-family: GrtskExaBkslnt, Helvetica, sans-serif
+    font-weight: 400
