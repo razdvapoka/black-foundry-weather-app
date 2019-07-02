@@ -131,7 +131,7 @@ const ColumnCaption = withClass(styles.colCaption)(L)
 
 const Promo = (props) => (
   <ColumnContent {...props}>
-    <div>
+    <div className='set-in-grtsk'>
       <XXS className={styles.designedBy}>Designed by Black[Foundry]</XXS>
       <XL className={styles.setIn}>Set in Grtsk</XL>
       <S as='a' className={cc(styles.try, 'try-button')}>
