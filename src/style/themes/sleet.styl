@@ -1,0 +1,56 @@
+@import '../consts.styl'
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.sleet
+  background-color: white
+  color: $BLUE
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(270)
+    line-height: (200 / 270)
+    grtskZettaBoldItalic()
+    letter-spacing: tracking(-40)
+    .sleet-nor-snow
+      grtskZettaBoldBkslnt()
+    +tablet()
+      font-size: pxToRem(174)
+      line-height: (136 / 174)
+      margin: 0 pxToRem(-20)
+    +mobile()
+      font-size: pxToRem(95)
+      line-height: (80 / 95)
+      margin: 0
+      br
+        display: none
+
+  .top-line
+    background: linear-gradient(270deg, #C42BF2, #611AF9, #000AFF)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: $BLUE
+    +tablet()
+      &:after
+        background-color: $BLUE
+
+  .bottom
+    color: white
+
+  .col-content
+    border-top: 1px solid rgba(23, 23, 23, 0.2)
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) $BLUE
+
+  .switch-slider:before
+    background-color: $BLUE
+
+  .try-button
+    border: pxToRem(1) solid $BLUE
+
+  .forecast
+      color: $BLACK

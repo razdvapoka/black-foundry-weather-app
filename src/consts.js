@@ -174,6 +174,17 @@ const FOGGY = {
   )
 }
 
+const SLEET = {
+  className: 'sleet',
+  icon: Mixed,
+  title: (
+    <Gargantuan as='h1'>
+      NEITHER RAIN<br />
+      <span className='sleet-nor-snow'>NOR SNOW</span>
+    </Gargantuan>
+  )
+}
+
 const NIGHT = {
   className: 'night',
   icon: Night,
@@ -270,7 +281,7 @@ export const THEMES = {
   '15': 'blowing snow',
   '16': SNOW,
   '17': HAIL,
-  '18': 'sleet',
+  '18': SLEET,
   '19': 'dust',
   '20': FOGGY,
   '21': HAZE,
