@@ -1,0 +1,49 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.hail
+  background-color: #4A4A4A
+  color: #B1B1B1
+
+  // text styles
+  .gargantuan
+    color: #B172DE
+    font-size: pxToRem(187)
+    line-height: (170 / 187)
+    letter-spacing: tracking(-40)
+    grtskMegaThin()
+    +tablet()
+      grtskTeraThin()
+      font-size: pxToRem(173)
+      line-height: (159 / 173)
+    +mobile()
+      grtskExaThin()
+      font-size: pxToRem(102)
+      line-height: (93 / 102)
+
+  .top-line
+    background: linear-gradient(270deg, #C42BF2, #F2C7FF, #0000FF)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: #B172DE
+    +tablet()
+      &:after
+        background-color: #B172DE
+
+  .bottom
+    color: #48D8C7
+
+  .col-content
+    border-top: 1px solid #B1B1B1
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) #B1B1B1
+
+  .switch-slider:before
+    background-color: #B172DE
+
+  .try-button
+    border: pxToRem(1) solid #B1B1B1

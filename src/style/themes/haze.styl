@@ -3,47 +3,78 @@
 @import '../font-utils.styl'
 
 .haze
-  background-color: #4A4A4A
-  color: #B1B1B1
+  background-color: #8F8E98
+  color: #FAFAFA
 
   // text styles
   .gargantuan
-    color: #B172DE
-    font-size: pxToRem(187)
-    line-height: (170 / 187)
-    letter-spacing: tracking(-40)
-    grtskMegaThin()
+    font-size: pxToRem(289)
+    line-height: (264 / 289)
+    letter-spacing: tracking(-10)
+    grtskGigaBoldBkslnt()
+    .haze-hazy-1
+      display: block
+      color: #D6D6D6
+      transform: translateX(pxToRem(165)) translateZ(1px)
+    .haze-hazy-2
+      display: block
+      color: #8F8E98
+      transform: translateX(pxToRem(-165)) translateY(pxToRem(-60))
+      text-shadow:
+        pxToRem(-2) pxToRem(-2) 0 #D6D6D6,
+        pxToRem(2) pxToRem(-2) 0 #D6D6D6,
+        pxToRem(-2) pxToRem(2) 0 #D6D6D6,
+        pxToRem(2) pxToRem(2) 0 #D6D6D6
     +tablet()
-      grtskTeraThin()
-      font-size: pxToRem(173)
-      line-height: (159 / 173)
+      grtskPetaBoldBkslnt()
+      font-size: pxToRem(220)
+      line-height: (201 / 220)
+      .haze-hazy-1
+        transform: translateX(pxToRem(67)) translateZ(1px)
+      .haze-hazy-2
+        transform: translateX(pxToRem(-67)) translateY(pxToRem(-40))
+        letter-spacing: tracking(0)
     +mobile()
-      grtskExaThin()
-      font-size: pxToRem(102)
-      line-height: (93 / 102)
+      grtskZettaSemiboldBkslnt()
+      font-size: pxToRem(141)
+      line-height: (129 / 141)
+      .haze-hazy-1
+        transform: translateX(pxToRem(27)) translateZ(1px)
+      .haze-hazy-2
+        transform: translateX(pxToRem(-27)) translateY(pxToRem(-25))
+        letter-spacing: tracking(40)
 
   .top-line
-    background: linear-gradient(270deg, #C42BF2, #F2C7FF, #0000FF)
+    background: linear-gradient(270deg, #FFD5F8, #BEF7E6, #FFFF05)
     animation: topline-animation 10s ease infinite
     background-size: 300% 300%
 
   .bottomBox
-    background-color: #B172DE
-    +tablet()
-      &:after
-        background-color: #B172DE
+    background-color: #BEF0FF
+    +mobile()
+      background-color: #FFD5F8
+    &:after
+      +tablet()
+        background-color: #BEF0FF
+      +mobile()
+        background-color: #FFD5F8
 
   .bottom
-    color: #48D8C7
+    color: #FFD5F8
+    +mobile()
+      color: #BEF0FF
 
   .col-content
-    border-top: 1px solid #B1B1B1
+    border-top: 1px solid #FAFAFA
 
   .switch-slider
-    box-shadow: 0 0 0 pxToRem(2) #B1B1B1
+    box-shadow: 0 0 0 pxToRem(2) #FAFAFA
 
   .switch-slider:before
-    background-color: #B172DE
+    background-color: #BEF0FF
+
+  .c-f-switch .switch-slider:before
+    background-color: #FFD5F8
 
   .try-button
-    border: pxToRem(1) solid #B1B1B1
+    border: pxToRem(1) solid #FAFAFA
