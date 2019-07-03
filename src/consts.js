@@ -18,6 +18,7 @@ import Drizzle from './components/icons/Drizzle'
 import Storms from './components/icons/Thunderstorms'
 import Tornado from './components/icons/Tornado'
 import Haze from './components/icons/Haze'
+import Foggy from './components/icons/Foggy'
 
 export const MONTH = [
   'January',
@@ -151,6 +152,28 @@ const HAZE = {
   )
 }
 
+const SMOKY = {
+  className: 'smoky',
+  icon: Foggy,
+  title: (
+    <Gargantuan as='h1'>
+      HOLY<br />
+      SMOKE
+    </Gargantuan>
+  )
+}
+
+const FOGGY = {
+  className: 'foggy',
+  icon: Foggy,
+  title: (
+    <Gargantuan as='h1'>
+      Fogged<br />
+      Over
+    </Gargantuan>
+  )
+}
+
 const NIGHT = {
   className: 'night',
   icon: Night,
@@ -249,9 +272,9 @@ export const THEMES = {
   '17': HAIL,
   '18': 'sleet',
   '19': 'dust',
-  '20': 'foggy',
+  '20': FOGGY,
   '21': HAZE,
-  '22': 'smoky',
+  '22': SMOKY,
   '23': WINDY,
   '24': WINDY,
   '25': 'cold',

@@ -1,0 +1,48 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.smoky
+  background-color: #29355F
+  color: #AFAFAF
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(261)
+    line-height: (215 / 261)
+    letter-spacing: tracking(-50)
+    grtskGigaBold()
+    +tablet()
+      grtskExaBold()
+      font-size: pxToRem(251)
+      line-height: (207 / 251)
+    +mobile()
+      grtskZettaBold()
+      font-size: pxToRem(129)
+      line-height: (107 / 129)
+
+  .top-line
+    background: linear-gradient(270deg, #BEF7E6, #FFEC05, #F24C4C)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: #9EBFE5
+    &:after
+      +tablet()
+        background-color: #9EBFE5
+
+  .bottom
+    color: #BEF7E6
+
+  .col-content
+    border-top: 1px solid rgba(175, 175, 175, 0.2)
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) #AFAFAF
+
+  .switch-slider:before
+    background-color: #AFAFAF
+
+  .try-button
+    border: pxToRem(1) solid #AFAFAF
