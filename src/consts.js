@@ -19,6 +19,8 @@ import Storms from './components/icons/Thunderstorms'
 import Tornado from './components/icons/Tornado'
 import Haze from './components/icons/Haze'
 import Foggy from './components/icons/Foggy'
+import Dust from './components/icons/Dust'
+import Bottom from './components/bottom'
 
 export const MONTH = [
   'January',
@@ -185,6 +187,22 @@ const SLEET = {
   )
 }
 
+const DUST = {
+  className: 'dust',
+  icon: Dust,
+  title: (
+    <Gargantuan as='h1'>
+      <div className='dust-mask-box'>
+        <Bottom id='dust-mask' className='dust-mask' />
+        <Bottom id='dust-mask-t' rectWidth={980} className='dust-mask-t' />
+        <Bottom id='dust-mask-m' rectHeight={90} rectWidth={380} className='dust-mask-m' />
+      </div>
+      Mak<span className='dust-euy'>e</span> <span className='dust-t'>T</span>he<br />
+      <span className='dust-d'>D</span><span className='dust-euy'>u</span>st Fl<span className='dust-euy'>y</span>
+    </Gargantuan>
+  )
+}
+
 const NIGHT = {
   className: 'night',
   icon: Night,
@@ -282,7 +300,7 @@ export const THEMES = {
   '16': SNOW,
   '17': HAIL,
   '18': SLEET,
-  '19': 'dust',
+  '19': DUST,
   '20': FOGGY,
   '21': HAZE,
   '22': SMOKY,

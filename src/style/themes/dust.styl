@@ -1,0 +1,96 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.dust
+  background-color: #D5D5D5
+  color: #0A1640
+
+  // text styles
+  .gargantuan
+    display: block
+    position: relative
+    font-size: pxToRem(289)
+    line-height: (250 / 289)
+    grtskZettaLight()
+    color: #D5D5D5
+    text-shadow:
+      pxToRem(-2) pxToRem(-2) 0 #0A1640,
+      pxToRem(2) pxToRem(-2) 0 #0A1640,
+      pxToRem(-2) pxToRem(2) 0 #0A1640,
+      pxToRem(2) pxToRem(2) 0 #0A1640
+    transform: translateZ(1px)
+    .dust-mask-box
+      position: absolute
+      width: 100vw - pxToRem(22)
+      height: pxToRem(50)
+      top: pxToRem(145)
+      left: 50%
+      transform: translateX(-50%)
+      z-index: -1
+      +tablet()
+        top: pxToRem(80)
+      +mobile()
+        top: pxToRem(35)
+        height: pxToRem(90)
+    .dust-mask
+    .dust-mask-t
+    .dust-mask-m
+       color: #FFFF05
+       background-color: transparent
+    .dust-mask
+       display: block
+       +tablet()
+         display: none
+    .dust-mask-t
+      display: none
+      +tablet()
+        display: block
+      +mobile()
+        display: none
+    .dust-mask-m
+      display: none
+      +mobile()
+        display: block
+    .dust-t, .dust-d
+      grtskMegaLight()
+    +tablet()
+      font-size: pxToRem(208)
+      line-height: (180 / 208)
+      .dust-t, .dust-d
+        grtskTeraLight()
+    +mobile()
+      font-size: pxToRem(84)
+      line-height: (80 / 84)
+      br
+        display: none
+      .dust-d
+        grtskZettaLight()
+      .dust-euy
+        grtskTeraLight()
+
+  .top-line
+    background: linear-gradient(270deg, #FFD5F8, #BEF7E6, #FFFF05)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: #FFFF05
+    &:after
+      +tablet()
+        background-color: #FFFF05
+
+  .bottom
+    color: #BEF0FF
+
+  .col-content
+    border-top: 1px solid rgba(10, 22, 64, 0.6)
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) #0A1640
+
+  .switch-slider:before
+    background-color: #0A1640
+
+  .try-button
+    border: pxToRem(1) solid #0A1640
