@@ -426,7 +426,6 @@ class Home extends Component {
       this.setState({ isLoading: true })
       Promise.all([getWeather(location), loadVariableFont()]).then(([ { weather, isDefault } ]) => {
         this.setState({ weather, isDefault, isLoading: false })
-        console.log(weather)
         if (persistWeather) {
           window.localStorage.setItem('weather', JSON.stringify(weather))
         }
