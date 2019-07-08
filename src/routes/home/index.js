@@ -141,14 +141,31 @@ const Promo = (props) => (
   </ColumnContent>
 )
 
-const Announcement = () => (
+const getDayPart = (sunrise, sunset) => {
+  const hours = (new Date()).getHours()
+  if (hours >= sunset + 1 && hours < sunrise - 1) {
+    return 'night'
+  } else if (hours >= sunrise - 1 && hours < sunrise + 1) {
+    return 'morining'
+  } else if (hours >= sunrise + 1 && hours < sunset - 1) {
+    return 'day'
+  } else {
+    return 'evening'
+  }
+}
+
+const Announcement = ({
+  description,
+  sunriseHours,
+  sunsetHours
+}) => (
   <Column>
-    <ColumnCaption>Good Evening!</ColumnCaption>
+    <ColumnCaption>{`Good ${getDayPart(sunriseHours, sunsetHours)}!`}</ColumnCaption>
     <ColumnContent>
       <M className={styles.fullText}>
-        Looks like it’s sunny and a little windy in Paris&nbsp;<br />
-        It will evolve to partly cloudy, with a <b>maximum temperature of 19°C&nbsp;</b><br />
-        Tomorrow will be mostly cloudy, with a maximum temperature of 20°C
+        {description.map((line, lineIndex) => (
+          <p key={lineIndex} dangerouslySetInnerHTML={{ __html: line }} />
+        ))}
       </M>
     </ColumnContent>
     <Promo className={styles.desktopPromo} />
@@ -217,6 +234,22 @@ const getTheme = (weatherConditionCode, isDefault, isNight) => {
       typeof THEMES[weatherConditionCode] === 'string'
     ) ? THEMES['44']
       : THEMES[weatherConditionCode]
+}
+
+const getDescription = (weather, isFahrenheitOn) => {
+  const city = weather.location.city
+  const text = weather.current_observation.condition.text.toLowerCase()
+  const currentCode = weather.current_observation.condition.code
+  const todayText = weather.forecasts[0].text.toLowerCase()
+  const todayHigh = tempToStr(weather.forecasts[0].high, isFahrenheitOn)
+  const todayCode = weather.forecasts[0].code
+  const tomorrowText = weather.forecasts[1].text.toLowerCase()
+  const tomorrowHigh = tempToStr(weather.forecasts[1].high, isFahrenheitOn)
+  return [
+    `Looks like it’s ${text} in ${city}`,
+    `It will ${currentCode === todayCode ? 'stay' : 'evolve to'} ${todayText}, with a <b>maximum temperature of ${todayHigh}</b>`,
+    `Tomorrow will be ${tomorrowText}, with a maximum temperature of ${tomorrowHigh}`
+  ]
 }
 
 class Loading extends Component {
@@ -358,7 +391,11 @@ class Home extends Component {
           </div>
           <div className={cc(styles.forecast, 'forecast')}>
             <div className={styles.row}>
-              <Announcement />
+              <Announcement
+                description={getDescription(weather, isFahrenheitOn)}
+                sunriseHours={sunriseHours}
+                sunsetHours={sunsetHours}
+              />
               <Forecast
                 weather={weather}
                 isFahrenheitOn={isFahrenheitOn}
@@ -389,6 +426,7 @@ class Home extends Component {
       this.setState({ isLoading: true })
       Promise.all([getWeather(location), loadVariableFont()]).then(([ { weather, isDefault } ]) => {
         this.setState({ weather, isDefault, isLoading: false })
+        console.log(weather)
         if (persistWeather) {
           window.localStorage.setItem('weather', JSON.stringify(weather))
         }
