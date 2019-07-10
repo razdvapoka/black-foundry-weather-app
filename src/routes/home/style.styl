@@ -127,8 +127,12 @@
   font-family: GrtskPetaBkslnt, Helvetica, sans-serif !important
 
 .fullText
-  br
-    display: none
+  +mobile()
+    p
+      display: inline
+    p:after
+      content: '. '
+      display: inline
 
 .bottom
   +mobile()
