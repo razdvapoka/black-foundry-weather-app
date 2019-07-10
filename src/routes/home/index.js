@@ -32,6 +32,23 @@ const loadVariableFont = () => {
   return variableFontsSupported ? font.load() : Promise.resolve()
 }
 
+// const STEP = 0.01
+// const INTERVAL = 300
+
+// const softPlay = audioElement => {
+//   audioElement.volume = 0
+//   audioElement.play()
+//   const softPlayStep = () => {
+//     if (audioElement.volume < 1) {
+//       const newVolume = Math.min(audioElement.volume + STEP, 1)
+//       audioElement.volume = newVolume
+//       console.log(audioElement.volume)
+//       window.setTimeout(softPlayStep, INTERVAL)
+//     }
+//   }
+//   softPlayStep()
+// }
+
 const getIp = async () => {
   const ipResponse = await window.fetch('https://api.ipify.org?format=json')
   const { ip } = await ipResponse.json()
@@ -367,9 +384,41 @@ class Home extends Component {
   }
 
   toggleFilter = () => {
-    this.setState(({ isFilterOn }) => ({
-      isFilterOn: !isFilterOn
-    }))
+    this.setState(({
+      isFilterOn,
+      audio
+    }) => {
+      if (isFilterOn) {
+        if (audio) {
+          audio.element.pause()
+        }
+        return {
+          isFilterOn: false
+        }
+      } else {
+        if (
+          audio &&
+          !audio.element.paused &&
+          audio.element.duration > 0
+        ) {
+          audio.element.play()
+        } else {
+          const context = new window.AudioContext()
+          const element = document.getElementById('audio')
+          const track = context.createMediaElementSource(element)
+          track.connect(context.destination)
+          element.play()
+          return {
+            isFilterOn: true,
+            audio: {
+              context,
+              element,
+              track
+            }
+          }
+        }
+      }
+    })
   }
 
   render () {
@@ -394,7 +443,8 @@ class Home extends Component {
       const {
         className,
         title,
-        icon
+        icon,
+        audio
       } = getTheme(theme, isDefault, isNight)
       return (
         <HomeBox className={className}>
@@ -434,6 +484,7 @@ class Home extends Component {
               <Bottom id='m' rectHeight={90} className={styles.bottomMobile} />
             </div>
           </div>
+          <audio id='audio' src={audio} type='audio/mpeg' loop />
         </HomeBox>
       )
     }

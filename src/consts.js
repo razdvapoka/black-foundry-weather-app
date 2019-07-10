@@ -22,6 +22,7 @@ import Haze from './components/icons/Haze'
 import Foggy from './components/icons/Foggy'
 import Dust from './components/icons/Dust'
 import Bottom from './components/bottom'
+import fairDayAudio from './assets/audio/fair-day.mp3'
 
 export const MONTH = [
   'January',
@@ -66,6 +67,7 @@ export const NOT_AVAILABLE = 44
 const SUNNY = {
   className: 'sunny',
   icon: Sun,
+  audio: fairDayAudio,
   title: (
     <Gargantuan as='h1'>
       Brighten<br />
