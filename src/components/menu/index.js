@@ -36,6 +36,7 @@ class Menu extends Component {
             <LookingGlass />
           </div>
           <input
+            id='menu-input'
             value={query}
             onInput={this.handleQueryChange}
             placeholder='Enter city'
@@ -74,12 +75,21 @@ class Menu extends Component {
     this.setState({ rowHeight })
   }
 
+  handleKeyDown = (e) => {
+    if (e.which === 27) {
+      this.props.toggleMenu()
+    }
+  }
+
   componentDidMount () {
+    window.addEventListener('keydown', this.handleKeyDown)
     window.addEventListener('resize', this.updateRowHeight)
     this.updateRowHeight()
+    window.requestAnimationFrame(() => document.getElementById('menu-input').focus())
   }
 
   componentWillUnmount () {
+    window.removeEventListener('keydown', this.handleKeyDown)
     window.removeEventListener('resize', this.updateRowHeight)
   }
 
