@@ -99,19 +99,32 @@ const getWeatherByLocation = async (location) => {
 }
 
 const getWeather = async (givenLocation) => {
-  // await new Promise(resolve => window.setTimeout(resolve, 10000))
   const ip = await getIp()
   const location = await (givenLocation || getLocation(ip))
   const weather = await getWeatherByLocation(location)
   const isDefault = (
     !weather.location.city ||
+    !weather.current_observation ||
+    !weather.current_observation.condition ||
+    weather.current_observation.condition.code == null ||
     weather.current_observation.condition.code === NOT_AVAILABLE
   )
   if (isDefault) {
     const defaultWeather = await getWeatherByLocation('Paris, France')
-    return { weather: defaultWeather, isDefault: true }
+    return {
+      weather: {
+        ...defaultWeather,
+        city: 'Paris'
+      },
+      isDefault: true
+    }
   } else {
-    return { weather }
+    return {
+      weather: {
+        ...weather,
+        city: location.split(',')[0]
+      }
+    }
   }
 }
 
@@ -164,7 +177,10 @@ const Announcement = ({
     <ColumnContent>
       <M className={styles.fullText}>
         {description.map((line, lineIndex) => (
-          <p key={lineIndex} dangerouslySetInnerHTML={{ __html: line }} />
+          <p
+            key={lineIndex}
+            dangerouslySetInnerHTML={{ __html: line }}
+          />
         ))}
       </M>
     </ColumnContent>
@@ -237,7 +253,7 @@ const getTheme = (weatherConditionCode, isDefault, isNight) => {
 }
 
 const getDescription = (weather, isFahrenheitOn) => {
-  const city = weather.location.city
+  const city = weather.city
   const text = weather.current_observation.condition.text.toLowerCase()
   const currentCode = weather.current_observation.condition.code
   const todayText = weather.forecasts[0].text.toLowerCase()
@@ -385,7 +401,7 @@ class Home extends Component {
           <div className='top-line' />
           <Header
             icon={icon}
-            city={weather.location.city}
+            city={weather.city}
             condition={weather.current_observation.condition.text}
             temperature={weather.current_observation.condition.temperature}
             toggleFilter={this.toggleFilter}
