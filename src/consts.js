@@ -9,6 +9,7 @@ import Sun from './components/icons/sun'
 import NotDef from './components/icons/NotDef'
 import Cloudy from './components/icons/Cloudy'
 import Snow from './components/icons/Snow'
+import BlowingSnow from './components/icons/BlowingSnow'
 import PartlyCloudy from './components/icons/PartlyCloudy'
 import Rain from './components/icons/Rain'
 import Night from './components/icons/Night'
@@ -106,6 +107,11 @@ const SNOW = {
       <span className='sn'>SN</span><span className='o'>O</span><span className='sn'>W</span>
     </Gargantuan>
   )
+}
+
+const BLOWING_SNOW = {
+  ...SNOW,
+  icon: BlowingSnow
 }
 
 const PARTLY_CLOUDY = {
@@ -233,6 +239,16 @@ const MIXED_RAIN_AND_SNOW = {
   )
 }
 
+const MIXED_RAIN_AND_HAIL = {
+  className: 'mixed-rain-and-snow',
+  icon: Mixed,
+  title: (
+    <Gargantuan as='h1'>
+      <span className='mixed-come'>Come</span><br />Rain {'&'} Hail
+    </Gargantuan>
+  )
+}
+
 const MIXED_RAIN_AND_SLEET = {
   className: 'mixed-rain-and-snow',
   icon: Mixed,
@@ -295,8 +311,8 @@ export const THEMES = {
   '11': RAIN,
   '12': RAIN,
   '13': SNOW,
-  '14': 'light snow showers',
-  '15': 'blowing snow',
+  '14': SNOW,
+  '15': BLOWING_SNOW,
   '16': SNOW,
   '17': HAIL,
   '18': SLEET,
@@ -316,7 +332,7 @@ export const THEMES = {
   '32': SUNNY,
   '33': NIGHT,
   '34': SUNNY,
-  '35': 'mixed rain and hail',
+  '35': MIXED_RAIN_AND_HAIL,
   '36': SUNNY,
   '37': THUNDERSTORMS,
   '38': THUNDERSTORMS,
@@ -324,7 +340,7 @@ export const THEMES = {
   '40': RAIN,
   '41': SNOW,
   '42': SNOW,
-  '43': 'heavy snow',
+  '43': SNOW,
   '44': DEFAULT,
   '45': THUNDERSTORMS,
   '46': SNOW,
