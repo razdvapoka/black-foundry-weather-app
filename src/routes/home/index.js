@@ -252,20 +252,31 @@ const getDescription = (weather, isFahrenheitOn) => {
   ]
 }
 
+const HomeBox = withClass(styles.home)('div')
+
 class Loading extends Component {
   render () {
     return (
-      <div className={cc(styles.home, 'default')}>
-        <div className={styles.loadingText}>
-          <LoadingText />
+      <HomeBox className='loading'>
+        <div className='top-line' />
+        <div className='loading-content'>
+          <h1 className={styles.loading}>
+            <span id='loading-1'>W</span>
+            <span id='loading-2'>t</span>
+            <span id='loading-3'>h</span>
+            <span id='loading-4'>r</span>
+          </h1>
+          <div className={styles.loadingText}>
+            <LoadingText />
+          </div>
         </div>
-        <h1 className={styles.loading}>
-          <span id='loading-1'>W</span>
-          <span id='loading-2'>t</span>
-          <span id='loading-3'>h</span>
-          <span id='loading-4'>r</span>
-        </h1>
-      </div>
+        <div className='bottomBox'>
+          <div className='bottom'>
+            <Bottom id='d' className={styles.bottom} />
+            <Bottom id='m' rectHeight={90} className={styles.bottomMobile} />
+          </div>
+        </div>
+      </HomeBox>
     )
   }
 
@@ -370,10 +381,7 @@ class Home extends Component {
         icon
       } = getTheme(theme, isDefault, isNight)
       return (
-        <div className={cc(
-          styles.home,
-          className
-        )}>
+        <HomeBox className={className}>
           <div className='top-line' />
           <Header
             icon={icon}
@@ -410,7 +418,7 @@ class Home extends Component {
               <Bottom id='m' rectHeight={90} className={styles.bottomMobile} />
             </div>
           </div>
-        </div>
+        </HomeBox>
       )
     }
   }

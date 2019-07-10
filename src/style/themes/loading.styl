@@ -1,0 +1,29 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.loading
+  background-color: #FFFFE8
+  display: flex
+  align-items: center
+  justify-content: center
+
+  .loading-content
+    display: flex
+    flex-direction: column
+    align-items: center
+
+  .top-line
+    background: linear-gradient(270deg, #C42BF2, #AD0057, #000AFF)
+    animation: topline-animation 10s ease infinite
+    background-size: 300% 300%
+
+  .bottomBox
+    background-color: #171717
+    +tablet()
+      &:after
+        background-color: #171717
+
+  .bottom
+    color: #E17EFF
+
