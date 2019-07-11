@@ -16,7 +16,7 @@ const Switch = ({
       <input
         className={styles.switchInput}
         type='checkbox'
-        value={isOn}
+        checked={isOn}
         onChange={toggle}
       />
       <span className={cc(styles.switchSlider, 'switch-slider')} />

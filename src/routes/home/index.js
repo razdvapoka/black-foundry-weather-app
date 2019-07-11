@@ -5,8 +5,14 @@ import Header from '../../components/header'
 import Bottom from '../../components/bottom'
 import LoadingText from '../../components/loading-text'
 import FontFaceObserver from 'fontfaceobserver'
-import { tempToStr, cc, withClass } from '../../utils'
 import queryString from 'query-string'
+
+import {
+  tempToStr,
+  cc,
+  withClass,
+  easeInOutQuad
+} from '../../utils'
 
 import {
   XXS,
@@ -32,22 +38,13 @@ const loadVariableFont = () => {
   return variableFontsSupported ? font.load() : Promise.resolve()
 }
 
-// const STEP = 0.01
-// const INTERVAL = 300
-
-// const softPlay = audioElement => {
-//   audioElement.volume = 0
-//   audioElement.play()
-//   const softPlayStep = () => {
-//     if (audioElement.volume < 1) {
-//       const newVolume = Math.min(audioElement.volume + STEP, 1)
-//       audioElement.volume = newVolume
-//       console.log(audioElement.volume)
-//       window.setTimeout(softPlayStep, INTERVAL)
-//     }
-//   }
-//   softPlayStep()
-// }
+const FPS = 60
+const SOFT_PLAY_DURATION = 1
+const SOFT_PLAY_ITERATIONS = FPS * SOFT_PLAY_DURATION
+const SOFT_PLAY_START = 0
+const SOFT_PLAY_END = 1
+const SOFT_PLAY_DISTANCE = SOFT_PLAY_END - SOFT_PLAY_START
+const SOFT_PLAY_TIME_STEP = SOFT_PLAY_DURATION / SOFT_PLAY_ITERATIONS
 
 const getIp = async () => {
   const ipResponse = await window.fetch('https://api.ipify.org?format=json')
@@ -377,6 +374,9 @@ class Home extends Component {
     isDefault: false
   }
 
+  intervalHandle = null
+  timeElapsed = 0
+
   toggleFahrenheit = () => {
     this.setState(({ isFahrenheitOn }) => ({
       isFahrenheitOn: !isFahrenheitOn
@@ -385,14 +385,74 @@ class Home extends Component {
 
   toggleFilter = () => {
     this.setState(({ isFilterOn }) => {
-      const audio = document.getElementById('audio')
       if (isFilterOn) {
-        audio.pause()
+        this.softPause()
       } else {
-        audio.play()
+        this.softPlay()
       }
       return { isFilterOn: !isFilterOn }
     })
+  }
+
+  softStep = (
+    start,
+    end,
+    distance,
+    duration,
+    stopCallback
+  ) => {
+    this.timeElapsed += SOFT_PLAY_TIME_STEP
+    const direction = end - start >= 0 ? 1 : -1
+    const volume = easeInOutQuad(
+      this.timeElapsed,
+      start,
+      direction * distance,
+      duration
+    )
+    const audio = document.getElementById('audio')
+    if (direction > 0 ? volume >= end : volume <= end) {
+      window.clearInterval(this.intervalHandle)
+      audio.volume = end
+      stopCallback && stopCallback()
+    } else {
+      audio.volume = volume
+    }
+  }
+
+  softPlay = () => {
+    this.timeElapsed = 0
+    window.clearInterval(this.intervalHandle)
+    const audio = document.getElementById('audio')
+    audio.volume = 0
+    audio.play()
+    this.intervalHandle = window.setInterval(
+      () => this.softStep(
+        SOFT_PLAY_START,
+        SOFT_PLAY_END,
+        SOFT_PLAY_DISTANCE,
+        SOFT_PLAY_DURATION
+      ),
+      1000 / FPS
+    )
+  }
+
+  softPause = (callback) => {
+    this.timeElapsed = 0
+    window.clearInterval(this.intervalHandle)
+    const audio = document.getElementById('audio')
+    this.intervalHandle = window.setInterval(
+      () => this.softStep(
+        audio.volume,
+        SOFT_PLAY_START,
+        SOFT_PLAY_DISTANCE,
+        SOFT_PLAY_DURATION,
+        () => {
+          audio.pause()
+          callback && callback()
+        }
+      ),
+      1000 / FPS
+    )
   }
 
   render () {
@@ -469,16 +529,40 @@ class Home extends Component {
     if (persistWeather && window.localStorage.getItem('weather')) {
       this.setState({
         weather: JSON.parse(window.localStorage.getItem('weather')),
-        isLoading: false
+        isLoading: false,
+        isFilterOn: false
       })
     } else {
-      this.setState({ isLoading: true })
-      Promise.all([getWeather(location), loadVariableFont()]).then(([ { weather, isDefault } ]) => {
-        this.setState({ weather, isDefault, isLoading: false })
-        if (persistWeather) {
-          window.localStorage.setItem('weather', JSON.stringify(weather))
-        }
-      })
+      const startLoading = () => {
+        this.setState({ isLoading: true })
+        return Promise.all([
+          getWeather(location),
+          loadVariableFont()
+        ]).then(([ { weather, isDefault } ]) => {
+          this.setState({
+            weather,
+            isDefault,
+            isLoading: false,
+            isFilterOn: false
+          })
+          if (persistWeather) {
+            window.localStorage
+              .setItem(
+                'weather',
+                JSON.stringify(weather)
+              )
+          }
+        })
+      }
+
+      if (document.getElementById('audio')) {
+        this.softPause(() => {
+          startLoading()
+          document.getElementById('audio').currentTime = 0
+        })
+      } else {
+        startLoading()
+      }
     }
   }
 
