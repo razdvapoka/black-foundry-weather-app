@@ -384,44 +384,14 @@ class Home extends Component {
   }
 
   toggleFilter = () => {
-    this.setState(({
-      isFilterOn,
-      audio
-    }) => {
+    this.setState(({ isFilterOn }) => {
+      const audio = document.getElementById('audio')
       if (isFilterOn) {
-        if (audio) {
-          audio.element.pause()
-        }
-        return {
-          isFilterOn: false
-        }
+        audio.pause()
       } else {
-        if (
-          audio &&
-          audio.element.paused &&
-          audio.element.duration > 0
-        ) {
-          audio.element.play()
-          return {
-            isFilterOn: true
-          }
-        } else {
-          const AudioContext = window.AudioContext || window.webkitAudioContext
-          const context = new AudioContext()
-          const element = document.getElementById('audio')
-          const track = context.createMediaElementSource(element)
-          track.connect(context.destination)
-          element.play()
-          return {
-            isFilterOn: true,
-            audio: {
-              context,
-              element,
-              track
-            }
-          }
-        }
+        audio.play()
       }
+      return { isFilterOn: !isFilterOn }
     })
   }
 
