@@ -398,12 +398,16 @@ class Home extends Component {
       } else {
         if (
           audio &&
-          !audio.element.paused &&
+          audio.element.paused &&
           audio.element.duration > 0
         ) {
           audio.element.play()
+          return {
+            isFilterOn: true
+          }
         } else {
-          const context = new window.AudioContext()
+          const AudioContext = window.AudioContext || window.webkitAudioContext
+          const context = new AudioContext()
           const element = document.getElementById('audio')
           const track = context.createMediaElementSource(element)
           track.connect(context.destination)
