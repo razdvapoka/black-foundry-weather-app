@@ -2,6 +2,7 @@ import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
 import FontFaceObserver from 'fontfaceobserver'
 import queryString from 'query-string'
+import anime from 'animejs'
 
 import {
   NOT_AVAILABLE,
@@ -373,6 +374,7 @@ class Home extends Component {
   }
 
   intervalHandle = null
+  animation = null
   timeElapsed = 0
 
   toggleFahrenheit = () => {
@@ -381,12 +383,59 @@ class Home extends Component {
     }))
   }
 
+  startAnimation = () => {
+    const { theme } = this.state
+    if (this.animation) {
+      this.animation.pause()
+    }
+    const animation = theme.animations[0].D
+    const mainLoop = {
+      targets: 'h1',
+      fontVariationSettings: [
+        animation.loop.start,
+        animation.loop.end
+      ],
+      direction: 'alternate',
+      loop: true,
+      duration: animation.loop.duration,
+      easing: animation.loop.easing
+    }
+    this.animation = anime({
+      targets: 'h1',
+      fontVariationSettings: animation.loop.start,
+      duration: animation.originToStart.duration,
+      easing: animation.originToStart.easing,
+      complete: () => {
+        this.animation = anime(mainLoop)
+      }
+    })
+  }
+
+  stopAnimation = () => {
+    const { theme } = this.state
+    if (this.animation) {
+      this.animation.pause()
+      const animation = theme.animations[0].D
+      anime({
+        targets: 'h1',
+        fontVariationSettings: animation.origin,
+        duration: animation.loopToOrigin.duration,
+        easing: animation.loopToOrigin.easing
+      })
+    }
+  }
+
   toggleFilter = () => {
-    this.setState(({ isFilterOn }) => {
+    this.setState(({
+      isFilterOn,
+      theme
+    }) => {
       if (isFilterOn) {
         this.softPauseAudio()
+        this.stopAnimation()
       } else {
         this.softPlayAudio()
+        this.startAnimation()
       }
       return { isFilterOn: !isFilterOn }
     })

@@ -79,13 +79,34 @@ const SUNNY = {
 const DEFAULT = {
   className: 'default',
   icon: NotDef,
+  audio: fairDayAudio,
   title: (
     <Gargantuan as='h1'>
       have<br />
       a nice<br />
       day
     </Gargantuan>
-  )
+  ),
+  animations: [ {
+    D: {
+      target: 'h1',
+      origin: `'wdth' 760, 'wght' 590, 'slnt' 0`,
+      originToStart: {
+        duration: 1000,
+        easing: 'easeInOutQuad'
+      },
+      loop: {
+        start: `'wdth' 760, 'wght' 100, 'slnt' 15`,
+        end: `'wdth' 760, 'wght' 100, 'slnt' -15`,
+        duration: 1000,
+        easing: 'easeInOutQuad'
+      },
+      loopToOrigin: {
+        duration: 300,
+        easing: 'easeInOutQuad'
+      }
+    }
+  } ]
 }
 
 const CLOUDY = {
