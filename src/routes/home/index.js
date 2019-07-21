@@ -1,19 +1,15 @@
-import styles from './style.styl'
 import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
-import Header from '../../components/header'
-import Bottom from '../../components/bottom'
-import LoadingText from '../../components/loading-text'
 import FontFaceObserver from 'fontfaceobserver'
 import queryString from 'query-string'
 
 import {
-  tempToStr,
-  cc,
-  withClass,
-  easeInOutQuad
-} from '../../utils'
-
+  NOT_AVAILABLE,
+  DAY_OF_WEEK_MAP,
+  LOADING_INTERVAL,
+  LOADING_STEP,
+  THEMES
+} from '../../consts'
 import {
   XXS,
   XS,
@@ -23,14 +19,16 @@ import {
   XL,
   XXL
 } from '../../components/text'
-
 import {
-  NOT_AVAILABLE,
-  DAY_OF_WEEK_MAP,
-  LOADING_INTERVAL,
-  LOADING_STEP,
-  THEMES
-} from '../../consts'
+  tempToStr,
+  cc,
+  withClass,
+  easeInOutQuad
+} from '../../utils'
+import Bottom from '../../components/bottom'
+import Header from '../../components/header'
+import LoadingText from '../../components/loading-text'
+import styles from './style.styl'
 
 const loadVariableFont = () => {
   const variableFontsSupported = window.CSS.supports('font-variation-settings', 'normal')
@@ -371,7 +369,7 @@ class Home extends Component {
     isFahrenheitOn: false,
     isFilterOn: false,
     isLoading: true,
-    isDefault: false
+    theme: null
   }
 
   intervalHandle = null
@@ -386,15 +384,18 @@ class Home extends Component {
   toggleFilter = () => {
     this.setState(({ isFilterOn }) => {
       if (isFilterOn) {
-        this.softPause()
+        this.softPauseAudio()
       } else {
-        this.softPlay()
+        this.softPlayAudio()
       }
       return { isFilterOn: !isFilterOn }
     })
   }
 
-  softStep = (
+  startSloganAnimation = () => {
+  }
+
+  softPlayAudioStep = (
     start,
     end,
     distance,
@@ -419,41 +420,42 @@ class Home extends Component {
     }
   }
 
-  softPlay = () => {
+  softPlayAudio = () => new Promise((resolve) => {
     this.timeElapsed = 0
     window.clearInterval(this.intervalHandle)
     const audio = document.getElementById('audio')
     audio.volume = 0
     audio.play()
     this.intervalHandle = window.setInterval(
-      () => this.softStep(
+      () => this.softPlayAudioStep(
         SOFT_PLAY_START,
         SOFT_PLAY_END,
         SOFT_PLAY_DISTANCE,
-        SOFT_PLAY_DURATION
+        SOFT_PLAY_DURATION,
+        resolve
       ),
       1000 / FPS
     )
-  }
+  })
 
-  softPause = (callback) => {
+  softPauseAudio = () => new Promise((resolve) => {
     this.timeElapsed = 0
     window.clearInterval(this.intervalHandle)
     const audio = document.getElementById('audio')
     this.intervalHandle = window.setInterval(
-      () => this.softStep(
+      () => this.softPlayAudioStep(
         audio.volume,
         SOFT_PLAY_START,
         SOFT_PLAY_DISTANCE,
         SOFT_PLAY_DURATION,
         () => {
           audio.pause()
-          callback && callback()
+          resolve()
         }
       ),
       1000 / FPS
     )
-  }
+  })
 
   render () {
     const {
@@ -461,25 +463,20 @@ class Home extends Component {
       isFilterOn,
       isFahrenheitOn,
       isLoading,
-      isDefault
+      theme,
+      sunriseHours,
+      sunsetHours
     } = this.state
 
     if (isLoading) {
       return <Loading />
     } else {
-      const query = queryString.parse(document.location.search)
-      const theme = query.theme || weather.current_observation.condition.code
-      const { sunset, sunrise } = weather.current_observation.astronomy
-      const hours = (new Date()).getHours()
-      const sunriseHours = toHours(sunrise)
-      const sunsetHours = toHours(sunset)
-      const isNight = !query.theme && (hours >= sunsetHours || hours <= sunriseHours)
       const {
         className,
         title,
         icon,
         audio
-      } = getTheme(theme, isDefault, isNight)
+      } = theme
       return (
         <HomeBox className={className}>
           <div className='top-line' />
@@ -524,44 +521,68 @@ class Home extends Component {
     }
   }
 
+  getWeatherData = (weather, isDefault) => {
+    const query = queryString.parse(document.location.search)
+    const themeCode = query.theme || weather.current_observation.condition.code
+    const { sunset, sunrise } = weather.current_observation.astronomy
+    const hours = (new Date()).getHours()
+    const sunriseHours = toHours(sunrise)
+    const sunsetHours = toHours(sunset)
+    const isNight = !query.theme && (hours >= sunsetHours || hours <= sunriseHours)
+    const theme = getTheme(themeCode, isDefault, isNight)
+    return {
+      theme,
+      sunriseHours,
+      sunsetHours,
+      isNight
+    }
+  }
+
+  startLoadingWeather = (location) => {
+    const { persistWeather } = this.props
+    this.setState({ isLoading: true })
+    return Promise.all([
+      getWeather(location),
+      loadVariableFont()
+    ]).then(([ { weather, isDefault } ]) => {
+      this.setState({
+        weather,
+        ...this.getWeatherData(weather, isDefault),
+        isLoading: false,
+        isFilterOn: false
+      })
+      if (persistWeather) {
+        window.localStorage
+          .setItem(
+            'weather',
+            JSON.stringify({
+              ...weather,
+              isDefault
+            })
+          )
+      }
+    })
+  }
+
   loadWeather = (location) => {
     const { persistWeather } = this.props
     if (persistWeather && window.localStorage.getItem('weather')) {
+      const weather = JSON.parse(window.localStorage.getItem('weather'))
       this.setState({
-        weather: JSON.parse(window.localStorage.getItem('weather')),
+        weather,
+        ...this.getWeatherData(weather, weather.isDefault),
         isLoading: false,
         isFilterOn: false
       })
     } else {
-      const startLoading = () => {
-        this.setState({ isLoading: true })
-        return Promise.all([
-          getWeather(location),
-          loadVariableFont()
-        ]).then(([ { weather, isDefault } ]) => {
-          this.setState({
-            weather,
-            isDefault,
-            isLoading: false,
-            isFilterOn: false
-          })
-          if (persistWeather) {
-            window.localStorage
-              .setItem(
-                'weather',
-                JSON.stringify(weather)
-              )
-          }
-        })
-      }
-
-      if (document.getElementById('audio')) {
-        this.softPause(() => {
-          startLoading()
-          document.getElementById('audio').currentTime = 0
+      const audio = document.getElementById('audio')
+      if (audio) {
+        this.softPauseAudio().then(() => {
+          this.startLoadingWeather(location)
+          audio.currentTime = 0
         })
       } else {
-        startLoading()
+        this.startLoadingWeather(location)
       }
     }
   }
