@@ -398,6 +398,10 @@ class Home extends Component {
       duration: animation.loop.duration,
       easing: animation.loop.easing
     }
+    // fixes weird safari bug
+    Array.from(document.querySelectorAll(animation.target)).forEach(target => {
+      target.style.fontVariationSettings = animation.origin
+    })
     this.animations.push(anime({
       targets: animation.target,
       fontVariationSettings: animation.loop.start,
