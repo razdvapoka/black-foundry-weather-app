@@ -355,6 +355,9 @@ class Loading extends Component {
   componentWillUnmount () {
     Object.values(this.frames).forEach(window.cancelAnimationFrame)
     Object.values(this.timeouts).forEach(window.clearTimeout)
+    if (this.animation) {
+      this.animation.pause()
+    }
     this.frames = {}
     this.timeouts = {}
   }
@@ -374,7 +377,7 @@ class Home extends Component {
   }
 
   intervalHandle = null
-  animation = null
+  animations = []
   timeElapsed = 0
 
   toggleFahrenheit = () => {
@@ -383,14 +386,9 @@ class Home extends Component {
     }))
   }
 
-  startAnimation = () => {
-    const { theme } = this.state
-    if (this.animation) {
-      this.animation.pause()
-    }
-    const animation = theme.animations[0].D
+  startAnimation = (animation) => {
     const mainLoop = {
-      targets: 'h1',
+      targets: animation.target,
       fontVariationSettings: [
         animation.loop.start,
         animation.loop.end
@@ -400,30 +398,42 @@ class Home extends Component {
       duration: animation.loop.duration,
       easing: animation.loop.easing
     }
-    this.animation = anime({
-      targets: 'h1',
+    this.animations.push(anime({
+      targets: animation.target,
       fontVariationSettings: animation.loop.start,
       duration: animation.originToStart.duration,
       easing: animation.originToStart.easing,
       complete: () => {
-        this.animation = anime(mainLoop)
+        this.animations.push(anime(mainLoop))
       }
-    })
+    }))
   }
 
-  stopAnimation = () => {
+  startAnimations = () => {
     const { theme } = this.state
-    if (this.animation) {
-      this.animation.pause()
-      const animation = theme.animations[0].D
-      anime({
-        targets: 'h1',
-        fontVariationSettings: animation.origin,
-        duration: animation.loopToOrigin.duration,
-        easing: animation.loopToOrigin.easing
-      })
-    }
+    this.animations.forEach(a => a.pause())
+    this.animations = []
+    const animationKey = window.innerWidth > 1024 ? 'D' : 'T'
+    const animations = theme.animations[animationKey] || theme.animations['D']
+    animations.forEach(this.startAnimation)
   }
+
+  stopAnimations = () => new Promise(resolve => {
+    const { theme } = this.state
+    if (this.animations.length > 0) {
+      this.animations.forEach(a => a.pause())
+      this.animations = []
+      const animationKey = window.innerWidth > 1024 ? 'D' : 'T'
+      const animations = theme.animations[animationKey] || theme.animations['D']
+      animations.forEach(a => anime({
+        targets: a.target,
+        fontVariationSettings: a.origin,
+        duration: a.loopToOrigin.duration,
+        easing: a.loopToOrigin.easing,
+        complete: resolve
+      }))
+    }
+  })
 
   toggleFilter = () => {
     this.setState(({
@@ -432,10 +442,10 @@ class Home extends Component {
     }) => {
       if (isFilterOn) {
         this.softPauseAudio()
-        this.stopAnimation()
+        this.stopAnimations()
       } else {
         this.softPlayAudio()
-        this.startAnimation()
+        this.startAnimations()
       }
       return { isFilterOn: !isFilterOn }
     })
@@ -626,7 +636,10 @@ class Home extends Component {
     } else {
       const audio = document.getElementById('audio')
       if (audio) {
-        this.softPauseAudio().then(() => {
+        Promise.all([
+          this.softPauseAudio(),
+          this.stopAnimations()
+        ]).then(() => {
           this.startLoadingWeather(location)
           audio.currentTime = 0
         })

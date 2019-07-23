@@ -24,6 +24,11 @@ import Dust from './components/icons/Dust'
 import Bottom from './components/bottom'
 import fairDayAudio from './assets/audio/fair-day.mp3'
 
+import {
+  DEFAULT_ANIMATIONS,
+  SUNNY_ANIMATIONS
+} from './animations'
+
 export const MONTH = [
   'January',
   'February',
@@ -68,10 +73,11 @@ const SUNNY = {
   className: 'sunny',
   icon: Sun,
   audio: fairDayAudio,
+  animations: SUNNY_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       Brighten<br />
-      <GargantuanAlt>Up</GargantuanAlt>
+      <GargantuanAlt className='sunny-up'>Up</GargantuanAlt>
     </Gargantuan>
   )
 }
@@ -87,26 +93,7 @@ const DEFAULT = {
       day
     </Gargantuan>
   ),
-  animations: [ {
-    D: {
-      target: 'h1',
-      origin: `'wdth' 760, 'wght' 590, 'slnt' 0`,
-      originToStart: {
-        duration: 1000,
-        easing: 'easeInOutQuad'
-      },
-      loop: {
-        start: `'wdth' 760, 'wght' 100, 'slnt' 15`,
-        end: `'wdth' 760, 'wght' 100, 'slnt' -15`,
-        duration: 1000,
-        easing: 'easeInOutQuad'
-      },
-      loopToOrigin: {
-        duration: 300,
-        easing: 'easeInOutQuad'
-      }
-    }
-  } ]
+  animations: DEFAULT_ANIMATIONS
 }
 
 const CLOUDY = {
