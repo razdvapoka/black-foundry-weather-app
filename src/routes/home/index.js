@@ -415,11 +415,13 @@ class Home extends Component {
 
   startAnimations = () => {
     const { theme } = this.state
-    this.animations.forEach(a => a.pause())
-    this.animations = []
-    const animationKey = window.innerWidth > 1024 ? 'D' : 'T'
-    const animations = theme.animations[animationKey] || theme.animations['D']
-    animations.forEach(this.startAnimation)
+    if (theme.animations) {
+      this.animations.forEach(a => a.pause())
+      this.animations = []
+      const animationKey = window.innerWidth > 1024 ? 'D' : 'T'
+      const animations = theme.animations[animationKey] || theme.animations['D']
+      animations.forEach(this.startAnimation)
+    }
   }
 
   stopAnimations = () => new Promise(resolve => {
@@ -505,19 +507,21 @@ class Home extends Component {
     this.timeElapsed = 0
     window.clearInterval(this.intervalHandle)
     const audio = document.getElementById('audio')
-    this.intervalHandle = window.setInterval(
-      () => this.softPlayAudioStep(
-        audio.volume,
-        SOFT_PLAY_START,
-        SOFT_PLAY_DISTANCE,
-        SOFT_PLAY_DURATION,
-        () => {
-          audio.pause()
-          resolve()
-        }
-      ),
-      1000 / FPS
-    )
+    if (audio && audio.src) {
+      this.intervalHandle = window.setInterval(
+        () => this.softPlayAudioStep(
+          audio.volume,
+          SOFT_PLAY_START,
+          SOFT_PLAY_DISTANCE,
+          SOFT_PLAY_DURATION,
+          () => {
+            audio.pause()
+            resolve()
+          }
+        ),
+        1000 / FPS
+      )
+    }
   })
 
   render () {
@@ -639,7 +643,7 @@ class Home extends Component {
       })
     } else {
       const audio = document.getElementById('audio')
-      if (audio) {
+      if (audio && audio.src) {
         Promise.all([
           this.softPauseAudio(),
           this.stopAnimations()
