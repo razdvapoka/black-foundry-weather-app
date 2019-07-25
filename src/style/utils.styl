@@ -21,3 +21,23 @@ tracking(value)
   display: flex
   align-items: center
   justify-content: center
+
+menuStyle(
+  bgColor,
+  inputColor,
+  inputBgColor,
+  itemsColor,
+  borderColor,
+  shadowColor = rgba(23, 23, 23, 0.1)
+)
+  .menu
+    background-color: bgColor
+    border: pxToRem(1) solid borderColor
+    box-shadow: pxToRem(25) pxToRem(25) 0 shadowColor
+
+    .input
+      background-color: inputBgColor
+      color: inputColor
+
+    .menuCitiesBox
+      color: itemsColor

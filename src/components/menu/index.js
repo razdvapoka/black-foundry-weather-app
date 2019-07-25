@@ -4,6 +4,7 @@ import { Component } from 'preact'
 import VirtualList from 'preact-virtual-list'
 import LookingGlass from '../icons/LookingGlass'
 import onClickOutside from 'react-onclickoutside'
+import { cc } from '../../utils'
 
 class Menu extends Component {
   state = {
@@ -30,10 +31,10 @@ class Menu extends Component {
     } = this.state
 
     return (
-      <div className={styles.menu}>
-        <div className={styles.menuInput}>
+      <div className={cc(styles.menu, 'menu')}>
+        <div className={cc(styles.menuInput, 'input')}>
           <div className={styles.menuInputIcon}>
-            <LookingGlass />
+            <LookingGlass width='100%' height='100%' />
           </div>
           <input
             id='menu-input'
@@ -45,7 +46,7 @@ class Menu extends Component {
         </div>
         {rowHeight && (
           <VirtualList
-            className={styles.menuCitiesBox}
+            className={cc(styles.menuCitiesBox, 'menuCitiesBox')}
             data={filteredCities}
             renderRow={row => (
               <div
