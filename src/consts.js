@@ -23,10 +23,12 @@ import Foggy from './components/icons/Foggy'
 import Dust from './components/icons/Dust'
 import Bottom from './components/bottom'
 import fairDayAudio from './assets/audio/fair-day.mp3'
+import cloudyAudio from './assets/audio/cloudy.mp3'
 
 import {
   DEFAULT_ANIMATIONS,
-  SUNNY_ANIMATIONS
+  SUNNY_ANIMATIONS,
+  PARTLY_CLOUDY_ANIMATIONS
 } from './animations'
 
 export const MONTH = [
@@ -127,6 +129,8 @@ const BLOWING_SNOW = {
 const PARTLY_CLOUDY = {
   className: 'partly-cloudy',
   icon: PartlyCloudy,
+  animations: PARTLY_CLOUDY_ANIMATIONS,
+  audio: cloudyAudio,
   title: (
     <Gargantuan as='h1'>
       On<br />

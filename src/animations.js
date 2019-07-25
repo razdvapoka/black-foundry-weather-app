@@ -74,3 +74,24 @@ export const SUNNY_ANIMATIONS = {
     }
   } ]
 }
+
+export const PARTLY_CLOUDY_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 760, 'wght' 590, 'slnt' -15`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 760, 'wght' 590, 'slnt' -15`,
+      end: `'wdth' 100, 'wght' 100, 'slnt' -15`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}

@@ -558,7 +558,7 @@ class Home extends Component {
             isFahrenheitOn={isFahrenheitOn}
             loadWeather={this.loadWeather}
           />
-          <div className={styles.slogan}>
+          <div className={cc(styles.slogan, 'slogan')}>
             {title}
           </div>
           <div className={cc(styles.forecast, 'forecast')}>

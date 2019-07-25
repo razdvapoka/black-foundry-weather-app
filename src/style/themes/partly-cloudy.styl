@@ -6,20 +6,26 @@
   background-color: #8895AF
   color: white
 
+  .slogan
+    justify-content: flex-start
+
   // text styles
   .gargantuan
     font-size: pxToRem(206)
     line-height: (180 / 206)
     letter-spacing: tracking(-60)
     text-align: left
+    margin-left: pxToRem(430)
     grtskGigaMediumBkslnt()
     +tablet()
       font-size: pxToRem(183)
       line-height: (160 / 183)
+      margin-left: pxToRem(16)
     +mobile()
       grtskExaRegularBkslnt()
       font-size: pxToRem(115)
       line-height: (101 / 115)
+      margin-left: pxToRem(31)
 
   .top-line
     background: linear-gradient(270deg, #FFFFE8, #C29EE6, #9ED2E5)
