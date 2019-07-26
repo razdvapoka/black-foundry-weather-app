@@ -38,6 +38,22 @@ menuStyle(
     .input
       background-color: inputBgColor
       color: inputColor
+      input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: inputColor;
+        opacity: 1;
+      }
+      input::-moz-placeholder { /* Firefox 19+ */
+        color: inputColor;
+        opacity: 1;
+      }
+      input:-ms-input-placeholder { /* IE 10+ */
+        color: inputColor;
+        opacity: 1;
+      }
+      input:-moz-placeholder { /* Firefox 18- */
+        color: inputColor;
+        opacity: 1;
+      }
 
     .menuCitiesBox
       color: itemsColor

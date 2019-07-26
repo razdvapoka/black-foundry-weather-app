@@ -59,13 +59,10 @@
   .try-button
     border: pxToRem(1) solid $BLACK
 
-  .menu
-    background-color: #FFFF00
-    border: pxToRem(1) solid #171717
-
-    .input
-      background-color: #171717
-      color: #FFFF00
-
-    .menuCitiesBox
-      color: #121212
+  menuStyle(
+    bgColor: #FFFF00,
+    inputColor: #FFFF00,
+    inputBgColor: #171717,
+    itemsColor: #121212,
+    borderColor: #171717,
+  )

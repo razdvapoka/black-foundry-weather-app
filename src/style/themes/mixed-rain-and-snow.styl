@@ -57,13 +57,10 @@
   .try-button
     border: pxToRem(1) solid #171717
 
-  .menu
-    background-color: #FFFBF4
-    border: pxToRem(1) solid #171717
-
-    .input
-      background-color: #171717
-      color: #FFFBF4
-
-    .menuCitiesBox
-      color: #121212
+  menuStyle(
+    bgColor: #FFFBF4,
+    inputColor: #FFFBF4,
+    inputBgColor: #171717,
+    itemsColor: #121212,
+    borderColor: #171717,
+  )
