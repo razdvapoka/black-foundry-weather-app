@@ -95,3 +95,42 @@ export const PARTLY_CLOUDY_ANIMATIONS = {
     }
   } ]
 }
+
+export const RAIN_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 1000, 'wght' 100, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 1000, 'wght' 100, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 1000, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: 'h1',
+    origin: `'wdth' 530, 'wght' 100, 'slnt' 0`,
+    originToStart: {
+      duration: 100,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 530, 'wght' 100, 'slnt' 0`,
+      end: `'wdth' 530, 'wght' 1000, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}

@@ -24,8 +24,10 @@ import Dust from './components/icons/Dust'
 import Bottom from './components/bottom'
 import fairDayAudio from './assets/audio/fair-day.mp3'
 import cloudyAudio from './assets/audio/cloudy.mp3'
+import rainAudio from './assets/audio/rain.mp3'
 
 import {
+  RAIN_ANIMATIONS,
   DEFAULT_ANIMATIONS,
   SUNNY_ANIMATIONS,
   PARTLY_CLOUDY_ANIMATIONS
@@ -143,6 +145,8 @@ const PARTLY_CLOUDY = {
 const RAIN = {
   className: 'rain',
   icon: Rain,
+  audio: rainAudio,
+  animations: RAIN_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       Right<br />
