@@ -1,10 +1,6 @@
 /* eslint no-irregular-whitespace: 0 */
 
-import {
-  Gargantuan,
-  GargantuanAlt,
-  GargantuanAlt2
-} from './components/text'
+import { Gargantuan } from './components/text'
 import Sun from './components/icons/sun'
 import NotDef from './components/icons/NotDef'
 import Cloudy from './components/icons/Cloudy'
@@ -37,6 +33,7 @@ import blowingSnowAudio from './assets/audio/blowing-snow.mp3'
 import mixedAudio from './assets/audio/mixed.mp3'
 
 import {
+  DRIZZLE_ANIMATIONS,
   CLOUDY_ANIMATIONS,
   STORM_ANIMATIONS,
   RAIN_ANIMATIONS,
@@ -94,7 +91,7 @@ const SUNNY = {
   title: (
     <Gargantuan as='h1'>
       Brighten<br />
-      <GargantuanAlt className='sunny-up'>Up</GargantuanAlt>
+      <span className='sunny-up'>Up</span>
     </Gargantuan>
   )
 }
@@ -328,6 +325,7 @@ const DRIZZLE = {
   className: 'drizzle',
   icon: Drizzle,
   audio: drizzleAudio,
+  animations: DRIZZLE_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       Drizzle<br />
