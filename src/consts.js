@@ -27,6 +27,14 @@ import fairDayAudio from './assets/audio/fair-day.mp3'
 import cloudyAudio from './assets/audio/cloudy.mp3'
 import rainAudio from './assets/audio/rain.mp3'
 import stormAudio from './assets/audio/storm.mp3'
+import nightAudio from './assets/audio/night.mp3'
+import hazeAudio from './assets/audio/haze.mp3'
+import windAudio from './assets/audio/wind.mp3'
+import drizzleAudio from './assets/audio/drizzle.mp3'
+import tornadoAudio from './assets/audio/tornado.mp3'
+import snowAudio from './assets/audio/snow.mp3'
+import blowingSnowAudio from './assets/audio/blowing-snow.mp3'
+import mixedAudio from './assets/audio/mixed.mp3'
 
 import {
   STORM_ANIMATIONS,
@@ -107,6 +115,7 @@ const DEFAULT = {
 const CLOUDY = {
   className: 'cloudy',
   icon: Cloudy,
+  audio: cloudyAudio,
   title: (
     <Gargantuan as='h1'>
       Head
@@ -119,6 +128,7 @@ const CLOUDY = {
 const SNOW = {
   className: 'snow',
   icon: Snow,
+  audio: snowAudio,
   title: (
     <Gargantuan as='h1'>
       <span className='ll'>L</span>ET <span className='i'>I</span><span className='ll'>T</span><br />
@@ -129,6 +139,7 @@ const SNOW = {
 
 const BLOWING_SNOW = {
   ...SNOW,
+  audio: blowingSnowAudio,
   icon: BlowingSnow
 }
 
@@ -187,6 +198,7 @@ const HAIL = {
 const HAZE = {
   className: 'haze',
   icon: Haze,
+  audio: hazeAudio,
   title: (
     <Gargantuan as='h1'>
       <span className='haze-hazy-1'>Hazy</span>
@@ -247,6 +259,7 @@ const DUST = {
 const NIGHT = {
   className: 'night',
   icon: Night,
+  audio: nightAudio,
   title: (
     <Gargantuan as='h1'>
       Good Night
@@ -257,6 +270,7 @@ const NIGHT = {
 const WINDY = {
   className: 'windy',
   icon: Windy,
+  audio: windAudio,
   title: (
     <Gargantuan as='h1'>
       Blow <span className='windy-with'>with</span> <span className='windy-the'>the</span> <span className='windy-wind'>wind</span>
@@ -267,6 +281,7 @@ const WINDY = {
 const MIXED_RAIN_AND_SNOW = {
   className: 'mixed-rain-and-snow',
   icon: Mixed,
+  audio: mixedAudio,
   title: (
     <Gargantuan as='h1'>
       <span className='mixed-come'>Come</span><br />Rain {'&'} Snow
@@ -277,6 +292,7 @@ const MIXED_RAIN_AND_SNOW = {
 const MIXED_RAIN_AND_HAIL = {
   className: 'mixed-rain-and-snow',
   icon: Mixed,
+  audio: mixedAudio,
   title: (
     <Gargantuan as='h1'>
       <span className='mixed-come'>Come</span><br />Rain {'&'} Hail
@@ -287,6 +303,7 @@ const MIXED_RAIN_AND_HAIL = {
 const MIXED_RAIN_AND_SLEET = {
   className: 'mixed-rain-and-snow',
   icon: Mixed,
+  audio: mixedAudio,
   title: (
     <Gargantuan as='h1'>
       <span className='mixed-come'>Come</span><br />Rain {'&'} Sleet
@@ -297,6 +314,7 @@ const MIXED_RAIN_AND_SLEET = {
 const MIXED_SNOW_AND_SLEET = {
   className: 'mixed-rain-and-snow',
   icon: Mixed,
+  audio: mixedAudio,
   title: (
     <Gargantuan as='h1'>
       <span className='mixed-come'>Come</span><br />Snow {'&'} Sleet
@@ -307,6 +325,7 @@ const MIXED_SNOW_AND_SLEET = {
 const DRIZZLE = {
   className: 'drizzle',
   icon: Drizzle,
+  audio: drizzleAudio,
   title: (
     <Gargantuan as='h1'>
       Drizzle<br />
@@ -330,6 +349,7 @@ const THUNDERSTORMS = {
 
 const TORNADO = {
   ...THUNDERSTORMS,
+  audio: tornadoAudio,
   icon: Tornado
 }
 
