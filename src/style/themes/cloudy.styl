@@ -6,6 +6,14 @@
   background-color: #434250
   color: #C49FFF
 
+  .slogan
+    +tablet()
+      margin-left: pxToRem(-80)
+      margin-right: pxToRem(-80)
+    +mobile()
+      margin-left: 0
+      margin-right: 0
+
   // text styles
   .gargantuan
     font-size: pxToRem(264)
@@ -19,10 +27,10 @@
       font-size: pxToRem(118)
       line-height: (103 / 118)
 
-  .gargantuanAlt
+  .cloudy-wide
     grtskGiga()
 
-  .gargantuanAlt2
+  .cloudy-wider
     grtskMegaMedium()
     +mobile()
       grtskZettaMedium()

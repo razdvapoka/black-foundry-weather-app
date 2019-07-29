@@ -37,6 +37,7 @@ import blowingSnowAudio from './assets/audio/blowing-snow.mp3'
 import mixedAudio from './assets/audio/mixed.mp3'
 
 import {
+  CLOUDY_ANIMATIONS,
   STORM_ANIMATIONS,
   RAIN_ANIMATIONS,
   COLD_ANIMATIONS,
@@ -116,11 +117,12 @@ const CLOUDY = {
   className: 'cloudy',
   icon: Cloudy,
   audio: cloudyAudio,
+  animations: CLOUDY_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
-      Head
-      i<GargantuanAlt as='span'>n</GargantuanAlt> the<br />
-      <GargantuanAlt2 as='span'>C</GargantuanAlt2>lou<GargantuanAlt2 as='span'>d</GargantuanAlt2>s
+      He<span className='cloudy-grow'>a</span>d
+      i<span className='cloudy-wide'>n</span> th<span className='cloudy-grow'>e</span><br />
+      <span className='cloudy-wider'>C</span>l<span className='cloudy-grow'>o</span>u<span className='cloudy-wider'>d</span><span className='cloudy-grow'>s</span>
     </Gargantuan>
   )
 }

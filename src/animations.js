@@ -194,3 +194,110 @@ export const COLD_ANIMATIONS = {
     }
   } ]
 }
+
+export const CLOUDY_ANIMATIONS = {
+  D: [ {
+    target: 'h1 .cloudy-wide',
+    origin: `'wdth' 760, 'wght' 590, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 760, 'wght' 590, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 590, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .cloudy-wider',
+    origin: `'wdth' 1000, 'wght' 590, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 1000, 'wght' 590, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 590, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .cloudy-grow',
+    origin: `'wdth' 100, 'wght' 590, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 590, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 590, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: 'h1 .cloudy-wide',
+    origin: `'wdth' 760, 'wght' 590, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 760, 'wght' 590, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 590, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .cloudy-wider',
+    origin: `'wdth' 1000, 'wght' 590, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 1000, 'wght' 590, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 590, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .cloudy-grow',
+    origin: `'wdth' 100, 'wght' 590, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 590, 'slnt' 0`,
+      end: `'wdth' 900, 'wght' 590, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}
