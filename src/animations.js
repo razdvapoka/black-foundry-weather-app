@@ -585,3 +585,42 @@ export const SNOW_ANIMATIONS = {
     }
   } ]
 }
+
+export const HAZE_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 760, 'wght' 1000, 'slnt' -15`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 760, 'wght' 1000, 'slnt' -15`,
+      end: `'wdth' 760, 'wght' 190, 'slnt' -15`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: 'h1',
+    origin: `'wdth' 300, 'wght' 1000, 'slnt' -15`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 300, 'wght' 1000, 'slnt' -15`,
+      end: `'wdth' 300, 'wght' 190, 'slnt' -15`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}

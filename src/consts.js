@@ -33,6 +33,7 @@ import blowingSnowAudio from './assets/audio/blowing-snow.mp3'
 import mixedAudio from './assets/audio/mixed.mp3'
 
 import {
+  HAZE_ANIMATIONS,
   SNOW_ANIMATIONS,
   DRIZZLE_ANIMATIONS,
   CLOUDY_ANIMATIONS,
@@ -200,6 +201,7 @@ const HAZE = {
   className: 'haze',
   icon: Haze,
   audio: hazeAudio,
+  animations: HAZE_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       <span className='haze-hazy-1'>Hazy</span>
