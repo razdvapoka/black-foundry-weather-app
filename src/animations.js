@@ -374,3 +374,214 @@ export const DRIZZLE_ANIMATIONS = {
     }
   } ]
 }
+
+export const SNOW_ANIMATIONS = {
+  D: [ {
+    target: 'h1 .et',
+    origin: `'wdth' 100, 'wght' 190, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 190, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 400, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .ll',
+    origin: `'wdth' 1000, 'wght' 190, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 1000, 'wght' 190, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 400, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .i',
+    origin: `'wdth' 300, 'wght' 190, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 300, 'wght' 190, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 400, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .tt',
+    origin: `'wdth' 1000, 'wght' 190, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 1000, 'wght' 190, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 400, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .ss, h1 .w',
+    origin: `'wdth' 1000, 'wght' 1000, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 1000, 'wght' 1000, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 1000, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .o',
+    origin: `'wdth' 100, 'wght' 1000, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 1000, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 1000, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: 'h1 .et',
+    origin: `'wdth' 100, 'wght' 190, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 190, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 400, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .ll',
+    origin: `'wdth' 530, 'wght' 190, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 530, 'wght' 190, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 400, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .i',
+    origin: `'wdth' 100, 'wght' 190, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 190, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 400, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .tt',
+    origin: `'wdth' 530, 'wght' 190, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 530, 'wght' 190, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 400, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  },
+  {
+    target: 'h1 .ss, h1 .w',
+    origin: `'wdth' 530, 'wght' 1000, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 530, 'wght' 1000, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 1000, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  },
+  {
+    target: 'h1 .o',
+    origin: `'wdth' 100, 'wght' 1000, 'slnt' 0`,
+    originToStart: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 1000, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 1000, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}

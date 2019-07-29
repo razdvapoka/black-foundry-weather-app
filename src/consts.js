@@ -33,6 +33,7 @@ import blowingSnowAudio from './assets/audio/blowing-snow.mp3'
 import mixedAudio from './assets/audio/mixed.mp3'
 
 import {
+  SNOW_ANIMATIONS,
   DRIZZLE_ANIMATIONS,
   CLOUDY_ANIMATIONS,
   STORM_ANIMATIONS,
@@ -128,10 +129,11 @@ const SNOW = {
   className: 'snow',
   icon: Snow,
   audio: snowAudio,
+  animations: SNOW_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
-      <span className='ll'>L</span>ET <span className='i'>I</span><span className='ll'>T</span><br />
-      <span className='sn'>SN</span><span className='o'>O</span><span className='sn'>W</span>
+      <span className='ll'>L</span><span className='et'>ET</span> <span className='i'>I</span><span className='tt'>T</span><br />
+      <span className='sn'><span className='ss'>S</span>N</span><span className='o'>O</span><span className='sn'><span className='w'>W</span></span>
     </Gargantuan>
   )
 }
