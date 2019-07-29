@@ -21,13 +21,17 @@ import Tornado from './components/icons/Tornado'
 import Haze from './components/icons/Haze'
 import Foggy from './components/icons/Foggy'
 import Dust from './components/icons/Dust'
+import Cold from './components/icons/Cold'
 import Bottom from './components/bottom'
 import fairDayAudio from './assets/audio/fair-day.mp3'
 import cloudyAudio from './assets/audio/cloudy.mp3'
 import rainAudio from './assets/audio/rain.mp3'
+import stormAudio from './assets/audio/storm.mp3'
 
 import {
+  STORM_ANIMATIONS,
   RAIN_ANIMATIONS,
+  COLD_ANIMATIONS,
   DEFAULT_ANIMATIONS,
   SUNNY_ANIMATIONS,
   PARTLY_CLOUDY_ANIMATIONS
@@ -151,6 +155,19 @@ const RAIN = {
     <Gargantuan as='h1'>
       Right<br />
       <span className='rain-a'>a</span>s rai<span className='rain-a'>n</span>
+    </Gargantuan>
+  )
+}
+
+const COLD = {
+  className: 'cold',
+  icon: Cold,
+  audio: rainAudio,
+  animations: COLD_ANIMATIONS,
+  title: (
+    <Gargantuan as='h1'>
+      Cold<br />
+      Turkey
     </Gargantuan>
   )
 }
@@ -301,6 +318,8 @@ const DRIZZLE = {
 const THUNDERSTORMS = {
   className: 'thunderstorms',
   icon: Storms,
+  animations: STORM_ANIMATIONS,
+  audio: stormAudio,
   title: (
     <Gargantuan as='h1'>
       After storms<br />
@@ -340,7 +359,7 @@ export const THEMES = {
   '22': SMOKY,
   '23': WINDY,
   '24': WINDY,
-  '25': 'cold',
+  '25': COLD,
   '26': CLOUDY,
   '27': NIGHT,
   '28': PARTLY_CLOUDY,

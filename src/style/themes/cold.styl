@@ -1,0 +1,59 @@
+@import '../utils.styl'
+@import '../media.styl'
+@import '../font-utils.styl'
+
+.cold
+  background-color: #0000FF
+  color: #E8E7E7
+
+  // text styles
+  .gargantuan
+    font-size: pxToRem(279)
+    line-height: (252 / 279)
+    letter-spacing: tracking(-40)
+    grtskTeraThin()
+    +tablet()
+      grtskExaThin()
+      font-size: pxToRem(258)
+      line-height: (233 / 258)
+    +mobile()
+      grtskZettaThin()
+      font-size: pxToRem(165)
+      line-height: (149 / 165)
+
+  .top-line
+    background: linear-gradient(270deg, #FFFF05, #FF1010)
+    animation: topline-animation 10s ease infinite
+    background-size: 200% 200%
+
+  .bottomBox
+    background-color: #FFFF05
+    +tablet()
+      &:after
+        background-color: #FFFF05
+
+  .bottom
+    color: #FF1A1A
+
+  .col-content
+    border-top: 1px solid rgba(255,255,232,0.5)
+
+  .switch-slider
+    box-shadow: 0 0 0 pxToRem(2) #F2F2F2
+
+  .switch-slider:before
+    background-color: #FFEC05
+
+  .try-button
+    border: pxToRem(1) solid #B1B1B1
+
+  .set-in-grtsk
+    color: #B1B1B1
+
+  menuStyle(
+    bgColor: #0000FF,
+    inputColor: #FFFFFF,
+    inputBgColor: #0000FF,
+    itemsColor: #FFFFFF,
+    borderColor: #FFFFFF
+  )
