@@ -1,5 +1,4 @@
 /* eslint no-irregular-whitespace: 0 */
-
 import { Gargantuan } from './components/text'
 import Sun from './components/icons/sun'
 import NotDef from './components/icons/NotDef'
@@ -259,15 +258,17 @@ const DUST = {
   icon: Dust,
   animations: DUST_ANIMATIONS,
   title: (
-    <Gargantuan as='h1'>
+    <div>
       <div className='dust-mask-box'>
         <Bottom id='dust-mask' className='dust-mask' />
         <Bottom id='dust-mask-t' rectWidth={980} className='dust-mask-t' />
         <Bottom id='dust-mask-m' rectHeight={90} rectWidth={380} className='dust-mask-m' />
       </div>
-      Mak<span className='dust-euy'>e</span> <span className='dust-t'>T</span>he<br />
-      <span className='dust-d'>D</span><span className='dust-euy'>u</span>st Fl<span className='dust-euy'>y</span>
-    </Gargantuan>
+      <Gargantuan as='h1'>
+        Mak<span className='dust-euy'>e</span> <span className='dust-t'>T</span>he<br />
+        <span className='dust-d'>D</span><span className='dust-euy'>u</span>st Fl<span className='dust-euy'>y</span>
+      </Gargantuan>
+    </div>
   )
 }
 

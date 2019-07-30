@@ -6,20 +6,9 @@
   background-color: #D5D5D5
   color: #0A1640
 
-  // text styles
-  .gargantuan
-    display: block
+  .slogan
     position: relative
-    font-size: pxToRem(289)
-    line-height: (250 / 289)
-    grtskZettaLight()
-    color: #D5D5D5
-    text-shadow:
-      pxToRem(-2) pxToRem(-2) 0 #0A1640,
-      pxToRem(2) pxToRem(-2) 0 #0A1640,
-      pxToRem(-2) pxToRem(2) 0 #0A1640,
-      pxToRem(2) pxToRem(2) 0 #0A1640
-    transform: translateZ(1px)
+
     .dust-mask-box
       position: absolute
       width: 100vw - pxToRem(22)
@@ -27,7 +16,6 @@
       top: pxToRem(145)
       left: 50%
       transform: translateX(-50%)
-      z-index: -1
       +tablet()
         top: pxToRem(80)
       +mobile()
@@ -52,8 +40,24 @@
       display: none
       +mobile()
         display: block
+
+  // text styles
+  .gargantuan
+    display: block
+    position: relative
+    font-size: pxToRem(289)
+    line-height: (250 / 289)
+    grtskZettaLight()
+    color: #D5D5D5
+    text-shadow:
+      pxToRem(-2) pxToRem(-2) 0 #0A1640,
+      pxToRem(2) pxToRem(-2) 0 #0A1640,
+      pxToRem(-2) pxToRem(2) 0 #0A1640,
+      pxToRem(2) pxToRem(2) 0 #0A1640
     .dust-t, .dust-d
       grtskMegaLight()
+    .dust-euy
+      padding-bottom: pxToRem(10)
     +tablet()
       font-size: pxToRem(208)
       line-height: (180 / 208)
