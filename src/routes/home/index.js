@@ -374,7 +374,7 @@ class Home extends Component {
     isFahrenheitOn: false,
     isFilterOn: false,
     isLoading: true,
-    isCookiesPopupOpen: true,
+    isCookiesPopupOpen: !window.localStorage.getItem('areCookiesOk'),
     theme: null
   }
 
@@ -383,6 +383,7 @@ class Home extends Component {
   timeElapsed = 0
 
   closeCookiesPopup = () => {
+    window.localStorage.setItem('areCookiesOk', true)
     this.setState({ isCookiesPopupOpen: false })
   }
 
