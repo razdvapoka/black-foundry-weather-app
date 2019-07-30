@@ -438,6 +438,8 @@ class Home extends Component {
         easing: a.loopToOrigin.easing,
         complete: resolve
       }))
+    } else {
+      resolve()
     }
   })
 
@@ -521,6 +523,8 @@ class Home extends Component {
         ),
         1000 / FPS
       )
+    } else {
+      resolve()
     }
   })
 
