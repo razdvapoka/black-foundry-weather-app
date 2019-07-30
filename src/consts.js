@@ -33,6 +33,13 @@ import blowingSnowAudio from './assets/audio/blowing-snow.mp3'
 import mixedAudio from './assets/audio/mixed.mp3'
 
 import {
+  DUST_ANIMATIONS,
+  SLEET_ANIMATIONS,
+  FOGGY_ANIMATIONS,
+  SMOKY_ANIMATIONS,
+  WINDY_ANIMATIONS,
+  NIGHT_ANIMATIONS,
+  HAIL_ANIMATIONS,
   HAZE_ANIMATIONS,
   SNOW_ANIMATIONS,
   DRIZZLE_ANIMATIONS,
@@ -188,6 +195,7 @@ const COLD = {
 const HAIL = {
   className: 'hail',
   icon: Rain,
+  animations: HAIL_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       STAY<br />
@@ -213,6 +221,7 @@ const HAZE = {
 const SMOKY = {
   className: 'smoky',
   icon: Foggy,
+  animations: SMOKY_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       HOLY<br />
@@ -224,6 +233,7 @@ const SMOKY = {
 const FOGGY = {
   className: 'foggy',
   icon: Foggy,
+  animations: FOGGY_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       Fogged<br />
@@ -235,6 +245,7 @@ const FOGGY = {
 const SLEET = {
   className: 'sleet',
   icon: Mixed,
+  animations: SLEET_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       NEITHER RAIN<br />
@@ -246,6 +257,7 @@ const SLEET = {
 const DUST = {
   className: 'dust',
   icon: Dust,
+  animations: DUST_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       <div className='dust-mask-box'>
@@ -263,6 +275,7 @@ const NIGHT = {
   className: 'night',
   icon: Night,
   audio: nightAudio,
+  animations: NIGHT_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       Good Night
@@ -274,9 +287,10 @@ const WINDY = {
   className: 'windy',
   icon: Windy,
   audio: windAudio,
+  animations: WINDY_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
-      Blow <span className='windy-with'>with</span> <span className='windy-the'>the</span> <span className='windy-wind'>wind</span>
+      <span className='windy-blow'>Blow</span> <span className='windy-with'>with</span><br /><span className='windy-the'>the</span><br className='windy-tbr' /> <span className='windy-wind'>wind</span>
     </Gargantuan>
   )
 }

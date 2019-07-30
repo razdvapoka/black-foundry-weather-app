@@ -624,3 +624,397 @@ export const HAZE_ANIMATIONS = {
     }
   } ]
 }
+
+export const HAIL_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 1000, 'wght' 100, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 1000, 'wght' 700, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 100, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: 'h1',
+    origin: `'wdth' 530, 'wght' 100, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 530, 'wght' 700, 'slnt' 0`,
+      end: `'wdth' 530, 'wght' 100, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}
+
+export const NIGHT_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 100, 'wght' 500, 'slnt' 15`,
+    originToStart: {
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 500, 'slnt' -15`,
+      end: `'wdth' 100, 'wght' 500, 'slnt' 15`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}
+
+export const WINDY_ANIMATIONS = {
+  D: [ {
+    target: '.windy-blow',
+    origin: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1500,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 530, 'wght' 300, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: '.windy-with',
+    origin: `'wdth' 530, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1500,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      end: `'wdth' 530, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: '.windy-the',
+    origin: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1500,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: '.windy-wind',
+    origin: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1500,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: '.windy-blow',
+    origin: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1500,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 530, 'wght' 300, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  },
+    /*
+  {
+    target: '.windy-with',
+    origin: `'wdth' 530, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1500,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      end: `'wdth' 530, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }
+  */
+  {
+    target: '.windy-the',
+    origin: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1500,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: '.windy-wind',
+    origin: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 2500,
+      easing: 'easeInOutSine'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}
+
+export const SMOKY_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 760, 'wght' 700, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 760, 'wght' 100, 'slnt' 15`,
+      end: `'wdth' 760, 'wght' 100, 'slnt' -15`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: 'h1',
+    origin: `'wdth' 200, 'wght' 700, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 200, 'wght' 100, 'slnt' 15`,
+      end: `'wdth' 200, 'wght' 100, 'slnt' -15`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}
+
+export const FOGGY_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 760, 'wght' 700, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 760, 'wght' 100, 'slnt' 0`,
+      end: `'wdth' 760, 'wght' 700, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: 'h1',
+    origin: `'wdth' 200, 'wght' 700, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 200, 'wght' 100, 'slnt' 0`,
+      end: `'wdth' 200, 'wght' 700, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}
+
+export const SLEET_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 100, 'wght' 700, 'slnt' 15`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 700, 'slnt' -15`,
+      end: `'wdth' 100, 'wght' 700, 'slnt' 15`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .sleet-nor-snow',
+    origin: `'wdth' 100, 'wght' 700, 'slnt' -15`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 700, 'slnt' 15`,
+      end: `'wdth' 100, 'wght' 700, 'slnt' -15`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}
+
+export const DUST_ANIMATIONS = {
+  D: [ {
+    target: 'h1',
+    origin: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 100, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .dust-t, h1 .dust-d',
+    origin: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 100, 'slnt' 0`,
+      end: `'wdth' 1000, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ],
+  T: [ {
+    target: 'h1',
+    origin: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 100, 'slnt' 0`,
+      end: `'wdth' 100, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  }, {
+    target: 'h1 .dust-t, h1 .dust-d',
+    origin: `'wdth' 530, 'wght' 300, 'slnt' 0`,
+    originToStart: {
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    },
+    loop: {
+      start: `'wdth' 100, 'wght' 100, 'slnt' 0`,
+      end: `'wdth' 530, 'wght' 300, 'slnt' 0`,
+      duration: 2000,
+      easing: 'easeInOutSine'
+    },
+    loopToOrigin: {
+      duration: 300,
+      easing: 'easeInOutQuad'
+    }
+  } ]
+}
