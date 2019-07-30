@@ -1,0 +1,46 @@
+@import '../../style/consts.styl'
+@import '../../style/media.styl'
+@import '../../style/font-utils.styl'
+
+.cookiesPopup
+  position: fixed
+  left: 0
+  bottom: 0
+  width: 100%
+  height: pxToRem(85)
+  padding: 0 pxToRem(20)
+  display: flex
+  align-items: center
+  justify-content: space-between
+  z-index: 10
+  font-size: pxToRem(24)
+  line-height: (27 / 24)
+  grtskPeta()
+  +tablet()
+    font-size: pxToRem(19)
+    line-height: (23 / 19)
+  +mobile()
+    font-size: pxToRem(14)
+    line-height: (17 / 14)
+    flex-direction: column-reverse
+    align-items: stretch
+    justify-content: flex-start
+    height: auto
+    padding-bottom: pxToRem(20)
+  button
+    border: none
+    font-size: pxToRem(19)
+    line-height: (23 / 19)
+    grtskMegaRegular()
+    width: pxToRem(240)
+    height: pxToRem(50)
+    margin-left: pxToRem(50)
+    +tablet()
+      width: pxToRem(200)
+    +mobile()
+      font-size: pxToRem(14)
+      line-height: (17 / 14)
+      margin-left: 0
+      width: 100vw
+      margin: 0 pxToRem(-20) pxToRem(20)
+      height: pxToRem(40)

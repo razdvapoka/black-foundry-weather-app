@@ -28,6 +28,7 @@ import {
 } from '../../utils'
 import Bottom from '../../components/bottom'
 import Header from '../../components/header'
+import CookiesPopup from '../../components/cookies-popup'
 import LoadingText from '../../components/loading-text'
 import styles from './style.styl'
 
@@ -373,12 +374,17 @@ class Home extends Component {
     isFahrenheitOn: false,
     isFilterOn: false,
     isLoading: true,
+    isCookiesPopupOpen: true,
     theme: null
   }
 
   intervalHandle = null
   animations = []
   timeElapsed = 0
+
+  closeCookiesPopup = () => {
+    this.setState({ isCookiesPopupOpen: false })
+  }
 
   toggleFahrenheit = () => {
     this.setState(({ isFahrenheitOn }) => ({
@@ -536,7 +542,8 @@ class Home extends Component {
       isLoading,
       theme,
       sunriseHours,
-      sunsetHours
+      sunsetHours,
+      isCookiesPopupOpen
     } = this.state
 
     if (isLoading) {
@@ -550,6 +557,7 @@ class Home extends Component {
       } = theme
       return (
         <HomeBox className={className}>
+          {isCookiesPopupOpen && <CookiesPopup close={this.closeCookiesPopup} />}
           <div className='top-line' />
           <Header
             icon={icon}
