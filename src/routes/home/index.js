@@ -374,7 +374,7 @@ class Home extends Component {
     isFahrenheitOn: false,
     isFilterOn: false,
     isLoading: true,
-    isCookiesPopupOpen: !window.localStorage.getItem('areCookiesOk'),
+    isCookiesPopupOpen: false
     theme: null
   }
 
@@ -672,6 +672,9 @@ class Home extends Component {
 
   componentDidMount () {
     this.loadWeather()
+    this.setState({
+      isCookiesPopupOpen: !window.localStorage.getItem('areCookiesOk')
+    })
   }
 }
 
