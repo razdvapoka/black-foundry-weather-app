@@ -374,7 +374,7 @@ class Home extends Component {
     isFahrenheitOn: false,
     isFilterOn: false,
     isLoading: true,
-    isCookiesPopupOpen: false
+    isCookiesPopupOpen: false,
     theme: null
   }
 
