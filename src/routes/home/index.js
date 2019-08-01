@@ -443,7 +443,12 @@ class Home extends Component {
         fontVariationSettings: a.origin,
         duration: a.loopToOrigin.duration,
         easing: a.loopToOrigin.easing,
-        complete: resolve
+        complete: () => {
+          Array.from(document.querySelectorAll(a.target)).forEach(target => {
+            target.style.fontVariationSettings = ''
+          })
+          resolve()
+        }
       }))
     } else {
       resolve()
