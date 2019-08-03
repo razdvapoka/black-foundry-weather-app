@@ -34,9 +34,9 @@ class Header extends Component {
       temperature,
       condition,
       isFahrenheitOn,
-      isFilterOn,
+      isMusicOn,
       toggleFahrenheit,
-      toggleFilter,
+      toggleMusic,
       loadWeather
     } = this.props
 
@@ -106,9 +106,9 @@ class Header extends Component {
           />
           <Switch
             className={styles.filterSwitch}
-            label='Filter'
-            isOn={isFilterOn}
-            toggle={toggleFilter}
+            label='Music'
+            isOn={isMusicOn}
+            toggle={toggleMusic}
           />
         </div>
       </header>

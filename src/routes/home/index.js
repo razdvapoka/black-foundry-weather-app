@@ -375,7 +375,7 @@ class Home extends Component {
   state = {
     weather: null,
     isFahrenheitOn: false,
-    isFilterOn: false,
+    isMusicOn: false,
     isLoading: true,
     isCookiesPopupOpen: false,
     theme: null
@@ -458,23 +458,18 @@ class Home extends Component {
     }
   })
 
-  toggleFilter = () => {
+  toggleMusic = () => {
     this.setState(({
-      isFilterOn,
+      isMusicOn,
       theme
     }) => {
-      if (isFilterOn) {
+      if (isMusicOn) {
         this.softPauseAudio()
-        this.stopAnimations()
       } else {
         this.softPlayAudio()
-        this.startAnimations()
       }
-      return { isFilterOn: !isFilterOn }
+      return { isMusicOn: !isMusicOn }
     })
-  }
-
-  startSloganAnimation = () => {
   }
 
   softPlayAudioStep = (
@@ -546,7 +541,7 @@ class Home extends Component {
   render () {
     const {
       weather,
-      isFilterOn,
+      isMusicOn,
       isFahrenheitOn,
       isLoading,
       theme,
@@ -573,9 +568,9 @@ class Home extends Component {
             city={weather.city}
             condition={weather.current_observation.condition.text}
             temperature={weather.current_observation.condition.temperature}
-            toggleFilter={this.toggleFilter}
+            toggleMusic={this.toggleMusic}
             toggleFahrenheit={this.toggleFahrenheit}
-            isFilterOn={isFilterOn}
+            isMusicOn={isMusicOn}
             isFahrenheitOn={isFahrenheitOn}
             loadWeather={this.loadWeather}
           />
@@ -637,8 +632,9 @@ class Home extends Component {
         weather,
         ...this.getWeatherData(weather, isDefault),
         isLoading: false,
-        isFilterOn: false
+        isMusicOn: false
       })
+      window.setTimeout(this.startAnimations, 200)
       if (persistWeather) {
         window.localStorage
           .setItem(
@@ -660,21 +656,17 @@ class Home extends Component {
         weather,
         ...this.getWeatherData(weather, weather.isDefault),
         isLoading: false,
-        isFilterOn: false
+        isMusicOn: false
       })
     } else {
       const audio = document.getElementById('audio')
-      if (audio && audio.src) {
-        Promise.all([
-          this.softPauseAudio(),
-          this.stopAnimations()
-        ]).then(() => {
-          this.startLoadingWeather(location)
-          audio.currentTime = 0
-        })
-      } else {
+      Promise.all([
+        this.softPauseAudio(),
+        this.stopAnimations()
+      ]).then(() => {
         this.startLoadingWeather(location)
-      }
+        audio.currentTime = 0
+      })
     }
   }
 
