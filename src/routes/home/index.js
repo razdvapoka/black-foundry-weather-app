@@ -149,8 +149,11 @@ const getCurrentTime = () =>
     minute: 'numeric'
   })
 
-const formatTime = (timeString) =>
-  timeString.replace(/ (am|pm)$/, '')
+const formatTime = (timeString) => {
+  const isPm = timeString.indexOf('pm') !== -1
+  const [ hours, minutes ] = timeString.replace(/ (am|pm)/, '').split(':')
+  return `${isPm ? parseInt(hours) + 12 : hours}:${minutes}`
+}
 
 const Column = withClass(styles.col)('div')
 const ColumnContent = withClass(cc(styles.colContent, 'col-content'))('div')
