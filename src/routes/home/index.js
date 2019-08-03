@@ -164,7 +164,13 @@ const Promo = (props) => (
     <div className='set-in-grtsk'>
       <XXS className={styles.designedBy}>Designed by Black[Foundry]</XXS>
       <XL className={styles.setIn}>Set in Grtsk</XL>
-      <S as='a' className={cc(styles.try, 'try-button')}>
+      <S
+        as='a'
+        href='https://black-foundry.com/fonts/grtsk'
+        target='_blank'
+        rel='noopener noreferrer'
+        className={cc(styles.try, 'try-button')}
+      >
         Try Font
       </S>
     </div>
