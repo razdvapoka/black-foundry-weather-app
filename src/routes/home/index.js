@@ -623,9 +623,10 @@ class Home extends Component {
     const sunriseHours = toHours(sunrise)
     const sunsetHours = toHours(sunset)
     const isNight =
-      (NIGHT_THEME_CODES.indexOf(query.theme) !== -1) ||
-      (hours >= sunsetHours || hours <= sunriseHours) ||
-      (NIGHT_THEME_CODES.indexOf(themeCode) !== -1)
+      (NIGHT_THEME_CODES.indexOf(query.theme) !== -1) || (!query.theme && (
+        (hours >= sunsetHours || hours <= sunriseHours) ||
+        (NIGHT_THEME_CODES.indexOf(themeCode) !== -1)
+      ))
     const theme = getTheme(themeCode, isDefault, isNight)
     return {
       theme,
