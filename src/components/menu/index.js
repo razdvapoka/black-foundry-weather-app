@@ -19,7 +19,7 @@ class Menu extends Component {
       query,
       filteredCities: cities.filter(
         city => city.toLowerCase().indexOf(query.toLowerCase()) !== -1
-      )
+      ).sort()
     })
   }
 
