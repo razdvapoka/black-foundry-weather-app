@@ -296,6 +296,33 @@ const getDescription = (weather, isFahrenheitOn) => {
 
 const HomeBox = withClass(styles.home)('div')
 
+const BottomSection = () => (
+  <div className='bottomBox'>
+    <div className='bottom'>
+      <Bottom id='d' className={styles.bottom} />
+      <Bottom id='m' rectHeight={90} className={styles.bottomMobile} />
+    </div>
+  </div>
+)
+
+const Credits = () => (
+  <XS as='div' className={styles.credits}>
+    <span className={styles.creditsTitle}>©wthr.live</span>
+    <span>Design: Ilya Naumoff</span>
+    <span>
+      Development:{' '}
+      <a
+        href='https://sergeyzakharov.dev'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        Sergey Zakharov
+      </a>
+    </span>
+    <span>Sound: Francois Vey</span>
+  </XS>
+)
+
 class Loading extends Component {
   render () {
     return (
@@ -603,12 +630,8 @@ class Home extends Component {
           </div>
           <Promo className={styles.tabletPromo} />
           <Promo className={styles.mobilePromo} />
-          <div className='bottomBox'>
-            <div className='bottom'>
-              <Bottom id='d' className={styles.bottom} />
-              <Bottom id='m' rectHeight={90} className={styles.bottomMobile} />
-            </div>
-          </div>
+          <Credits />
+          <BottomSection />
           <audio id='audio' src={audio} type='audio/mpeg' loop />
         </HomeBox>
       )
