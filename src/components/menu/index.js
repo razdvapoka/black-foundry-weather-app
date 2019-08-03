@@ -18,7 +18,7 @@ class Menu extends Component {
     this.setState({
       query,
       filteredCities: cities.filter(
-        city => city.toLowerCase().startsWith(query.toLowerCase())
+        city => city.toLowerCase().indexOf(query.toLowerCase()) !== -1
       )
     })
   }
