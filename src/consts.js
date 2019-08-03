@@ -422,3 +422,6 @@ export const THEMES = {
   '46': SNOW,
   '47': THUNDERSTORMS
 }
+
+export const NIGHT_THEME_CODES = [ '27', '29', '31', '33' ]
+export const DEFAULT_THEME_CODE = '44'

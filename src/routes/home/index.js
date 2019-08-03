@@ -1,14 +1,16 @@
 import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
 import FontFaceObserver from 'fontfaceobserver'
-import queryString from 'query-string'
 import anime from 'animejs'
+import queryString from 'query-string'
 
 import {
-  NOT_AVAILABLE,
   DAY_OF_WEEK_MAP,
+  DEFAULT_THEME_CODE,
   LOADING_INTERVAL,
   LOADING_STEP,
+  NIGHT_THEME_CODES,
+  NOT_AVAILABLE,
   THEMES
 } from '../../consts'
 import {
@@ -27,8 +29,8 @@ import {
   easeInOutQuad
 } from '../../utils'
 import Bottom from '../../components/bottom'
-import Header from '../../components/header'
 import CookiesPopup from '../../components/cookies-popup'
+import Header from '../../components/header'
 import LoadingText from '../../components/loading-text'
 import styles from './style.styl'
 
@@ -177,9 +179,9 @@ const Promo = (props) => (
   </ColumnContent>
 )
 
-const getDayPart = (sunrise, sunset) => {
+const getDayPart = (sunrise, sunset, isNight) => {
   const hours = (new Date()).getHours()
-  if (hours >= sunset + 1 && hours < sunrise - 1) {
+  if (isNight) {
     return 'night'
   } else if (hours >= sunrise - 1 && hours < sunrise + 1) {
     return 'morining'
@@ -193,10 +195,11 @@ const getDayPart = (sunrise, sunset) => {
 const Announcement = ({
   description,
   sunriseHours,
-  sunsetHours
+  sunsetHours,
+  isNight
 }) => (
   <Column>
-    <ColumnCaption>{`Good ${getDayPart(sunriseHours, sunsetHours)}!`}</ColumnCaption>
+    <ColumnCaption>{`Good ${getDayPart(sunriseHours, sunsetHours, isNight)}!`}</ColumnCaption>
     <ColumnContent>
       <M className={styles.fullText}>
         {description.map((line, lineIndex) => (
@@ -266,12 +269,12 @@ const toHours = str => parseInt(str.split(':')[0]) + (str.indexOf('pm') === -1 ?
 
 const getTheme = (weatherConditionCode, isDefault, isNight) => {
   return isNight
-    ? THEMES['27']
+    ? THEMES[NIGHT_THEME_CODES[0]]
     : (
       isDefault ||
       !THEMES[weatherConditionCode] ||
       typeof THEMES[weatherConditionCode] === 'string'
-    ) ? THEMES['44']
+    ) ? THEMES[DEFAULT_THEME_CODE]
       : THEMES[weatherConditionCode]
 }
 
@@ -553,7 +556,8 @@ class Home extends Component {
       theme,
       sunriseHours,
       sunsetHours,
-      isCookiesPopupOpen
+      isCookiesPopupOpen,
+      isNight
     } = this.state
 
     if (isLoading) {
@@ -589,6 +593,7 @@ class Home extends Component {
                 description={getDescription(weather, isFahrenheitOn)}
                 sunriseHours={sunriseHours}
                 sunsetHours={sunsetHours}
+                isNight={isNight}
               />
               <Forecast
                 weather={weather}
@@ -617,7 +622,10 @@ class Home extends Component {
     const hours = (new Date()).getHours()
     const sunriseHours = toHours(sunrise)
     const sunsetHours = toHours(sunset)
-    const isNight = !query.theme && (hours >= sunsetHours || hours <= sunriseHours)
+    const isNight =
+      (NIGHT_THEME_CODES.indexOf(query.theme) !== -1) ||
+      (hours >= sunsetHours || hours <= sunriseHours) ||
+      (NIGHT_THEME_CODES.indexOf(themeCode) !== -1)
     const theme = getTheme(themeCode, isDefault, isNight)
     return {
       theme,
@@ -665,13 +673,15 @@ class Home extends Component {
         isMusicOn: false
       })
     } else {
-      const audio = document.getElementById('audio')
       Promise.all([
         this.softPauseAudio(),
         this.stopAnimations()
       ]).then(() => {
         this.startLoadingWeather(location)
-        audio.currentTime = 0
+        const audio = document.getElementById('audio')
+        if (audio) {
+          audio.currentTime = 0
+        }
       })
     }
   }
