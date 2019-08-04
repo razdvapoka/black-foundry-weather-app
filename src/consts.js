@@ -37,7 +37,6 @@ import {
   FOGGY_ANIMATIONS,
   SMOKY_ANIMATIONS,
   WINDY_ANIMATIONS,
-  NIGHT_ANIMATIONS,
   HAIL_ANIMATIONS,
   HAZE_ANIMATIONS,
   SNOW_ANIMATIONS,
@@ -276,7 +275,6 @@ const NIGHT = {
   className: 'night',
   icon: Night,
   audio: nightAudio,
-  animations: NIGHT_ANIMATIONS,
   title: (
     <Gargantuan as='h1'>
       Good Night

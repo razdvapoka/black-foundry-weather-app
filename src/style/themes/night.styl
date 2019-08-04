@@ -2,6 +2,15 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes anim {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' -15
+  }
+}
+
 .night
   background-color: #020A26
   color: #8E5D00
@@ -12,6 +21,8 @@
     line-height: (361 / 416)
     letter-spacing: tracking(-30)
     grtskZettaMediumItalic()
+    animation: anim 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+    will-change: font-variation-settings;
     +tablet()
       font-size: pxToRem(296)
       line-height: (257 / 296)

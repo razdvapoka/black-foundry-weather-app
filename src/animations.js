@@ -664,27 +664,6 @@ export const HAIL_ANIMATIONS = {
   } ]
 }
 
-export const NIGHT_ANIMATIONS = {
-  D: [ {
-    target: 'h1',
-    origin: `'wdth' 100, 'wght' 500, 'slnt' 15`,
-    originToStart: {
-      duration: 2000,
-      easing: 'easeInOutSine'
-    },
-    loop: {
-      start: `'wdth' 100, 'wght' 500, 'slnt' -15`,
-      end: `'wdth' 100, 'wght' 500, 'slnt' 15`,
-      duration: 2000,
-      easing: 'easeInOutSine'
-    },
-    loopToOrigin: {
-      duration: 300,
-      easing: 'easeInOutQuad'
-    }
-  } ]
-}
-
 export const WINDY_ANIMATIONS = {
   D: [ {
     target: '.windy-blow',
