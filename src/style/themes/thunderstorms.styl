@@ -2,6 +2,15 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animStorm {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' -15
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+  }
+}
+
 .thunderstorms
   background-color: #171717
   color: #C1A57F
@@ -12,6 +21,7 @@
     line-height: (224 / 258)
     letter-spacing: tracking(-30)
     grtskZettaMediumItalic()
+    animation: animStorm 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +tablet()
       font-size: pxToRem(177)
       line-height: (153 / 177)
@@ -20,6 +30,7 @@
       font-size: pxToRem(99)
       line-height: (86 / 99)
       letter-spacing: tracking(-20)
+      animation: none
 
   .top-line
     background: linear-gradient(270deg, #FFFF05, #FF1010)

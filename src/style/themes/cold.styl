@@ -2,6 +2,24 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animCold {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 100, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 530, 'wght' 700, 'slnt' 0
+  }
+}
+
+@keyframes animColdT {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 700, 'slnt' 0
+  }
+}
+
 .cold
   background-color: #0000FF
   color: #E8E7E7
@@ -12,14 +30,17 @@
     line-height: (252 / 279)
     letter-spacing: tracking(-40)
     grtskTeraThin()
+    animation: animCold 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +tablet()
       grtskExaThin()
       font-size: pxToRem(258)
       line-height: (233 / 258)
+      animation: animColdT 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +mobile()
       grtskZettaThin()
       font-size: pxToRem(165)
       line-height: (149 / 165)
+      animation: none
 
   .top-line
     background: linear-gradient(270deg, #FFFF05, #FF1010)

@@ -1,7 +1,6 @@
 import { Component } from 'preact'
 import CryptoJS from 'crypto-js'
 import FontFaceObserver from 'fontfaceobserver'
-import anime from 'animejs'
 import queryString from 'query-string'
 
 import {
@@ -418,7 +417,6 @@ class Home extends Component {
   }
 
   intervalHandle = null
-  animations = []
   timeElapsed = 0
 
   closeCookiesPopup = () => {
@@ -431,68 +429,6 @@ class Home extends Component {
       isFahrenheitOn: !isFahrenheitOn
     }))
   }
-
-  startAnimation = (animation) => {
-    const mainLoop = {
-      targets: animation.target,
-      fontVariationSettings: [
-        animation.loop.start,
-        animation.loop.end
-      ],
-      direction: 'alternate',
-      loop: true,
-      duration: animation.loop.duration,
-      easing: animation.loop.easing
-    }
-    // fixes weird safari bug
-    Array.from(document.querySelectorAll(animation.target)).forEach(target => {
-      target.style.fontVariationSettings = animation.origin
-    })
-    this.animations.push(anime({
-      targets: animation.target,
-      fontVariationSettings: animation.loop.start,
-      duration: animation.originToStart.duration,
-      easing: animation.originToStart.easing,
-      complete: () => {
-        this.animations.push(anime(mainLoop))
-      }
-    }))
-  }
-
-  startAnimations = () => {
-    const { theme } = this.state
-    if (theme.animations) {
-      this.animations.forEach(a => a.pause())
-      this.animations = []
-      const animationKey = window.innerWidth > 1024 ? 'D' : 'T'
-      const animations = theme.animations[animationKey] || theme.animations['D']
-      animations.forEach(this.startAnimation)
-    }
-  }
-
-  stopAnimations = () => new Promise(resolve => {
-    const { theme } = this.state
-    if (this.animations.length > 0) {
-      this.animations.forEach(a => a.pause())
-      this.animations = []
-      const animationKey = window.innerWidth > 1024 ? 'D' : 'T'
-      const animations = theme.animations[animationKey] || theme.animations['D']
-      animations.forEach(a => anime({
-        targets: a.target,
-        fontVariationSettings: a.origin,
-        duration: a.loopToOrigin.duration,
-        easing: a.loopToOrigin.easing,
-        complete: () => {
-          Array.from(document.querySelectorAll(a.target)).forEach(target => {
-            target.style.fontVariationSettings = ''
-          })
-          resolve()
-        }
-      }))
-    } else {
-      resolve()
-    }
-  })
 
   toggleMusic = () => {
     this.setState(({
@@ -672,7 +608,6 @@ class Home extends Component {
         isLoading: false,
         isMusicOn: false
       })
-      window.setTimeout(this.startAnimations, 200)
       if (persistWeather) {
         window.localStorage
           .setItem(
@@ -697,10 +632,7 @@ class Home extends Component {
         isMusicOn: false
       })
     } else {
-      Promise.all([
-        this.softPauseAudio(),
-        this.stopAnimations()
-      ]).then(() => {
+      this.softPauseAudio().then(() => {
         this.startLoadingWeather(location)
         const audio = document.getElementById('audio')
         if (audio) {

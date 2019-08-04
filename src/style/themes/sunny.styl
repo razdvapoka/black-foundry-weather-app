@@ -2,6 +2,24 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animSunny {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' 0
+  }
+}
+
+@keyframes animSunnyAlt {
+  from {
+    font-variation-settings: 'wdth' 1000, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 500, 'wght' 100, 'slnt' 0
+  }
+}
+
 .sunny
   background-color: #FFFF00
 
@@ -12,6 +30,7 @@
     letter-spacing: tracking(-40)
     grtskExa()
     text-align: left
+    animation: animSunny 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +tablet()
       font-size: pxToRem(229)
       line-height: (225 / 229)
@@ -19,6 +38,7 @@
       font-size: pxToRem(120)
       line-height: (125 / 120)
       grtskZettaMedium()
+      animation: none
 
   .sunny-up
     font-size: pxToRem(276)
@@ -26,12 +46,14 @@
     letter-spacing: tracking(-40)
     grtskMegaMedium()
     text-align: left
+    animation: animSunnyAlt 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +tablet()
       font-size: pxToRem(229)
       line-height: (225 / 229)
     +mobile()
       font-size: pxToRem(120)
       line-height: (125 / 120)
+      animation: none
 
   .top-line
     background: linear-gradient(270deg, #F2C7FF, #FFFFE8)

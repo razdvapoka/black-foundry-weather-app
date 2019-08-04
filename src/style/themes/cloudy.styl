@@ -2,6 +2,42 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animCloudyWide {
+  from {
+    font-variation-settings: 'wdth' 760, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 0
+  }
+}
+
+@keyframes animCloudyWider {
+  from {
+    font-variation-settings: 'wdth' 1000, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 0
+  }
+}
+
+@keyframes animCloudyGrow {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 1000, 'wght' 500, 'slnt' 0
+  }
+}
+
+@keyframes animCloudyGrowT {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 900, 'wght' 500, 'slnt' 0
+  }
+}
+
 .cloudy
   background-color: #434250
   color: #C49FFF
@@ -29,11 +65,23 @@
 
   .cloudy-wide
     grtskGiga()
+    animation: animCloudyWide 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+    +mobile()
+      animation: none
 
   .cloudy-wider
     grtskMegaMedium()
+    animation: animCloudyWider 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +mobile()
       grtskZettaMedium()
+      animation: none
+
+  .cloudy-grow
+    animation: animCloudyGrow 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+    +tablet()
+      animation: animCloudyGrowT 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+    +mobile()
+      animation: none
 
   .top-line
     background: linear-gradient(270deg, #FFFFE8, #9DFFE1, #E28974)

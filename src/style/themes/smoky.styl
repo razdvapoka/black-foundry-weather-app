@@ -2,6 +2,42 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animSmokyInit {
+  from {
+    font-variation-settings: 'wdth' 760, 'wght' 700, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' 15
+  }
+}
+
+@keyframes animSmokyLoop {
+  from {
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' -15
+  }
+}
+
+@keyframes animSmokyInitT {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 700, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' 15
+  }
+}
+
+@keyframes animSmokyLoopT {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' -15
+  }
+}
+
 .smoky
   background-color: #29355F
   color: #AFAFAF
@@ -12,14 +48,21 @@
     line-height: (215 / 261)
     letter-spacing: tracking(-50)
     grtskGigaBold()
+    animation:
+      animSmokyInit 1000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards,
+      animSmokyLoop 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 1000ms infinite alternate
     +tablet()
       grtskExaBold()
       font-size: pxToRem(251)
       line-height: (207 / 251)
+      animation:
+        animSmokyInitT 1000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards,
+        animSmokyLoopT 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 1000ms infinite alternate
     +mobile()
       grtskZettaBold()
       font-size: pxToRem(129)
       line-height: (107 / 129)
+      animation: none
 
   .top-line
     background: linear-gradient(270deg, #BEF7E6, #FFEC05, #F24C4C)

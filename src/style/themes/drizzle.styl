@@ -2,6 +2,42 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animDrizzle {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 1000, 'wght' 100, 'slnt' 0
+  }
+}
+
+@keyframes animDrizzleSecond {
+  from {
+    font-variation-settings: 'wdth' 1000, 'wght' 100, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+  }
+}
+
+@keyframes animDrizzleT {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 530, 'wght' 100, 'slnt' 0
+  }
+}
+
+@keyframes animDrizzleSecondT {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 100, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+  }
+}
+
 .drizzle
   background-color: #E0F9FF
   color: #00A7FF
@@ -12,23 +48,29 @@
     line-height: (210 / 232)
     letter-spacing: tracking(-10)
     grtskZettaMediumItalic()
+    animation: animDrizzle 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     .drizzle-second
       font-size: pxToRem(214)
       line-height: (194 / 214)
       letter-spacing: tracking(-40)
       grtskMegaThin()
+      animation: animDrizzleSecond 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +tablet()
       font-size: pxToRem(232)
       line-height: (210 / 232)
+      animation: animDrizzleT 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
       .drizzle-second
         grtskTeraThinBkslnt()
+        animation: animDrizzleSecondT 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +mobile()
       font-size: pxToRem(124)
       line-height: (113 / 124)
+      animation: none
       .drizzle-second
         font-size: pxToRem(124)
         line-height: (113 / 124)
         grtskExaThinBkslnt()
+        animation: none
 
   .top-line
     background: linear-gradient(270deg, #FFEC05, #FF9300, #4A9DFF)

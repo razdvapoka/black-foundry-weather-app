@@ -40,7 +40,6 @@
     "stylus-loader": "^3.0.2"
   },
   "dependencies": {
-    "animejs": "^3.0.1",
     "crypto-js": "^3.1.9-1",
     "defaults.css": "^1.2.0",
     "eslint_d": "^8.0.0",

@@ -2,6 +2,24 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animFoggy {
+  from {
+    font-variation-settings: 'wdth' 760, 'wght' 700, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' 0
+  }
+}
+
+@keyframes animFoggyT {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 700, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' 0
+  }
+}
+
 .foggy
   background-color: #5E4662
   color: #AFAFAF
@@ -12,16 +30,19 @@
     line-height: (227 / 263)
     letter-spacing: tracking(-40)
     grtskGigaBold()
+    animation: animFoggy 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
     +tablet()
       grtskExaBold()
       font-size: pxToRem(251)
       line-height: (220 / 251)
       letter-spacing: tracking(-30)
+      animation: animFoggyT 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
     +mobile()
       grtskZettaBold()
       font-size: pxToRem(129)
       line-height: (107 / 129)
       letter-spacing: tracking(-20)
+      animation: none
 
   .top-line
     background: linear-gradient(270deg, #BEF7E6, #FFEC05, #F24C4C)

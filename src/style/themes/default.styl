@@ -2,6 +2,42 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animDefaultInit {
+  from {
+    font-variation-settings: 'wdth' 760, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' 15
+  }
+}
+
+@keyframes animDefaultLoop {
+  from {
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' -15
+  }
+}
+
+@keyframes animDefaultInitT {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 530, 'wght' 100, 'slnt' 15
+  }
+}
+
+@keyframes animDefaultLoopT {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 100, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 530, 'wght' 100, 'slnt' -15
+  }
+}
+
 .default
   background-color: #FFFFE8
 
@@ -11,14 +47,21 @@
     line-height: (178 / 202)
     letter-spacing: tracking(-40)
     grtskGiga()
+    animation:
+      animDefaultInit 750ms cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards,
+      animDefaultLoop 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 750ms infinite alternate
     +tablet()
       font-size: pxToRem(185)
       line-height: (163 / 185)
       grtskTera()
+      animation:
+        animDefaultInitT 750ms cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards,
+        animDefaultLoopT 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 750ms infinite alternate
     +mobile()
       font-size: pxToRem(130)
       line-height: (115 / 130)
       grtskZettaMedium()
+      animation: none
 
   .top-line
     background: linear-gradient(270deg, #c42bf2, #ffff05, #aee6d5, #000aff)

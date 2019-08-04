@@ -2,6 +2,42 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
+@keyframes animWindyBlow {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 300, 'slnt' 0
+  }
+}
+
+@keyframes animWindyWith {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 530, 'wght' 300, 'slnt' 0
+  }
+}
+
+@keyframes animWindyThe {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 1000, 'wght' 300, 'slnt' 0
+  }
+}
+
+@keyframes animWindyWind {
+  from {
+    font-variation-settings: 'wdth' 1000, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 300, 'slnt' 0
+  }
+}
+
 .windy
   background-color: white
   color: #171717
@@ -11,12 +47,28 @@
     font-size: pxToRem(234)
     line-height: (213 / 234)
     grtskZettaLight()
+    .windy-blow
+      animation: animWindyBlow 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
+      +mobile()
+        animation: none
     .windy-tbr
       display: none
     .windy-with
       grtskTeraLight()
+      animation: animWindyWith 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
+      +mobile()
+        animation: none
     .windy-the
       grtskMegaLight()
+      animation: animWindyThe 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
+      +tablet()
+        animation: animWindyThe 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
+      +mobile()
+        animation: none
+    .windy-wind
+      animation: animWindyWind 2000ms cubic-bezier(0.455, 0.05, 0.55, 0.95) infinite alternate
+      +mobile()
+        animation: none
     +tablet()
       font-size: pxToRem(168)
       line-height: (153 / 168)

@@ -2,7 +2,7 @@
 @import '../media.styl'
 @import '../font-utils.styl'
 
-@keyframes anim {
+@keyframes animNight {
   from {
     font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
   }
@@ -21,7 +21,7 @@
     line-height: (361 / 416)
     letter-spacing: tracking(-30)
     grtskZettaMediumItalic()
-    animation: anim 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+    animation: animNight 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     will-change: font-variation-settings;
     +tablet()
       font-size: pxToRem(296)
@@ -29,6 +29,7 @@
     +mobile()
       font-size: pxToRem(160)
       line-height: (139 / 160)
+      animation: none
 
   .top-line
     background: linear-gradient(270deg, #AD005D, #CC7B0D)
