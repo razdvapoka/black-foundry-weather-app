@@ -163,8 +163,10 @@ const ColumnCaption = withClass(styles.colCaption)(L)
 const Promo = (props) => (
   <ColumnContent {...props}>
     <div className='set-in-grtsk'>
-      <XXS className={styles.designedBy}>Designed by Black[Foundry]</XXS>
-      <XL className={styles.setIn}>Set in Grtsk</XL>
+      <XL className={styles.designedBy}>
+        <span className={styles.designedByGrtsk}>Grtsk</span>{' '}
+        <span className={styles.designedByBF}>by Black[Foundry]</span>
+      </XL>
       <S
         as='a'
         href='https://black-foundry.com/fonts/grtsk'
@@ -307,7 +309,16 @@ const BottomSection = () => (
 const Credits = () => (
   <XS as='div' className={styles.credits}>
     <span className={styles.creditsTitle}>©wthr.live</span>
-    <span>Design: Ilya Naumoff</span>
+    <span>
+      Design:{' '}
+      <a
+        href='www.ilyanaumoff.com'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+      Ilya Naumoff
+    </a>
+    </span>
     <span>
       Development:{' '}
       <a
@@ -316,7 +327,15 @@ const Credits = () => (
         rel='noopener noreferrer'
       >
         Sergey Zakharov
-      </a>
+      </a>{' '}
+      and{' '}
+      <a
+        href='https://black-foundry.com'
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        Black[Foundry]
+      </a>{' '}
     </span>
     <span>Sound: Francois Vey</span>
   </XS>

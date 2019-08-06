@@ -113,13 +113,23 @@
   margin-top: pxToRem(40)
   +mobile()
     margin-top: pxToRem(20)
+  &Grtsk
+    grtskMegaSemiBold()
+  &BF
+    grtskZettaRegular()
 
 
 .try
-  display: inline-block
-  padding: pxToRem(12)
+  display: inline-flex
+  align-items: center
+  justify-content: center
   margin-top: pxToRem(20)
   cursor: pointer
+  transition: font-variation-settings 0.3s ease
+  width: pxToRem(152)
+  height: pxToRem(52)
+  &:hover
+    font-variation-settings: 'wdth' 300, 'wght' 400, 'slnt' 15;
 
 .setIn
   margin-top: pxToRem(7)
@@ -144,11 +154,11 @@
 
 .credits
   margin-top: pxToRem(50)
-  a
-    text-decoration: underline
   > span:not(:first-child):not(:last-child):after
     content: ', '
   +mobile()
+    font-size: pxToRem(12)
+    line-height: (14 / 12)
     > span
       display: block
     > span + span
