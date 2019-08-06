@@ -7,7 +7,7 @@
     font-variation-settings: 'wdth' 760, 'wght' 700, 'slnt' -15
   }
   to {
-    font-variation-settings: 'wdth' 760, 'wght' 200, 'slnt' -15
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' -15
   }
 }
 
@@ -16,7 +16,25 @@
     font-variation-settings: 'wdth' 300, 'wght' 700, 'slnt' -15
   }
   to {
-    font-variation-settings: 'wdth' 300, 'wght' 200, 'slnt' -15
+    font-variation-settings: 'wdth' 300, 'wght' 100, 'slnt' -15
+  }
+}
+
+@keyframes animHazeSecond {
+  from {
+    font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' -15
+  }
+  to {
+    font-variation-settings: 'wdth' 760, 'wght' 700, 'slnt' -15
+  }
+}
+
+@keyframes animHazeSecondT {
+  from {
+    font-variation-settings: 'wdth' 300, 'wght' 100, 'slnt' -15
+  }
+  to {
+    font-variation-settings: 'wdth' 300, 'wght' 700, 'slnt' -15
   }
 }
 
@@ -29,43 +47,43 @@
     font-size: pxToRem(289)
     line-height: (264 / 289)
     letter-spacing: tracking(-10)
-    grtskGigaBoldBkslnt()
-    animation: animHaze 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+    color: #D6D6D6
     .haze-hazy-1
       display: block
-      color: #D6D6D6
       transform: translateX(pxToRem(165))
+      animation: animHaze 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+      grtskGigaBoldBkslnt()
     .haze-hazy-2
       display: block
-      color: #8F8E98
       transform: translateX(pxToRem(-165)) translateY(pxToRem(-60))
       padding-left: pxToRem(20)
       margin-left: pxToRem(-20)
-      text-shadow:
-        pxToRem(-2) pxToRem(-2) 0 #D6D6D6,
-        pxToRem(2) pxToRem(-2) 0 #D6D6D6,
-        pxToRem(-2) pxToRem(2) 0 #D6D6D6,
-        pxToRem(2) pxToRem(2) 0 #D6D6D6
+      grtskGigaThinBkslnt()
+      animation: animHazeSecond 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +tablet()
-      grtskPetaBoldBkslnt()
-      animation: animHazeT 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
       font-size: pxToRem(220)
       line-height: (201 / 220)
       .haze-hazy-1
         transform: translateX(pxToRem(67))
+        grtskPetaBoldBkslnt()
+        animation: animHazeT 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
       .haze-hazy-2
         transform: translateX(pxToRem(-67)) translateY(pxToRem(-40))
         letter-spacing: tracking(0)
+        grtskPetaThinBkslnt()
+        animation: animHazeSecondT 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +mobile()
-      grtskZettaSemiboldBkslnt()
       font-size: pxToRem(141)
       line-height: (129 / 141)
-      animation: none
       .haze-hazy-1
         transform: translateX(pxToRem(27)) translateZ(1px)
+        grtskExaSemiboldBkslnt()
+        animation: none
       .haze-hazy-2
         transform: translateX(pxToRem(-27)) translateY(pxToRem(-25))
         letter-spacing: tracking(40)
+        grtskExaThinBkslnt()
+        animation: none
 
   .top-line
     background: linear-gradient(270deg, #FFD5F8, #BEF7E6, #FFFF05)
