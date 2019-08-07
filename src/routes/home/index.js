@@ -607,13 +607,17 @@ class Home extends Component {
     const query = queryString.parse(document.location.search)
     const themeCode = query.theme || weather.current_observation.condition.code
     const { sunset, sunrise } = weather.current_observation.astronomy
-    const hours = (new Date()).getHours()
+    const pubDate = weather.current_observation.pubDate
+    const timezoneId = weather.location.timezone_id
+    const date = new Date(pubDate * 1000)
+    const nativeDate = new Date(date.toLocaleString(undefined, { timeZone: timezoneId }))
+    const hours = nativeDate.getHours()
     const sunriseHours = toHours(sunrise)
     const sunsetHours = toHours(sunset)
     const isNight =
       this.isNightTheme(query.theme) || (!query.theme && (
         this.isNightHour(hours) ||
-        this.isNightTheme(themeCode)
+        this.isNightTheme(`${themeCode}`)
       ))
     const theme = getTheme(themeCode, isDefault, isNight)
     return {
