@@ -8,9 +8,9 @@ import {
   DEFAULT_THEME_CODE,
   LOADING_INTERVAL,
   LOADING_STEP,
-  NIGHT_THEME_CODES,
   NOT_AVAILABLE,
-  THEMES
+  THEMES,
+  NIGHT
 } from '../../consts'
 import {
   XS,
@@ -275,7 +275,7 @@ const toHours = str => parseInt(str.split(':')[0]) + (str.indexOf('pm') === -1 ?
 
 const getTheme = (weatherConditionCode, isDefault, isNight) => {
   return isNight
-    ? THEMES[NIGHT_THEME_CODES[0]]
+    ? NIGHT
     : (
       isDefault ||
       !THEMES[weatherConditionCode] ||
@@ -601,7 +601,6 @@ class Home extends Component {
     }
   }
 
-  isNightTheme = (code) => NIGHT_THEME_CODES.indexOf(code) !== -1
   isNightHour = (hour) => hour >= 0 && hour < 6
 
   getWeatherData = (weather, isDefault) => {
@@ -615,11 +614,7 @@ class Home extends Component {
     const hours = nativeDate.getHours()
     const sunriseHours = toHours(sunrise)
     const sunsetHours = toHours(sunset)
-    const isNight =
-      this.isNightTheme(query.theme) || (!query.theme && (
-        this.isNightHour(hours) ||
-        this.isNightTheme(`${themeCode}`)
-      ))
+    const isNight = this.isNightHour(hours)
     const theme = getTheme(themeCode, isDefault, isNight)
     return {
       theme,

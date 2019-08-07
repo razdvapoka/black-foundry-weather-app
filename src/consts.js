@@ -248,7 +248,7 @@ const DUST = {
   )
 }
 
-const NIGHT = {
+export const NIGHT = {
   className: 'night',
   icon: Night,
   audio: nightAudio,
@@ -372,14 +372,14 @@ export const THEMES = {
   '24': WINDY,
   '25': COLD,
   '26': CLOUDY,
-  '27': NIGHT,
+  '27': PARTLY_CLOUDY,
   '28': PARTLY_CLOUDY,
-  '29': NIGHT,
+  '29': PARTLY_CLOUDY,
   '30': PARTLY_CLOUDY,
-  '31': NIGHT,
+  '31': DEFAULT,
   '32': SUNNY,
-  '33': NIGHT,
-  '34': SUNNY,
+  '33': DEFAULT,
+  '34': DEFAULT,
   '35': MIXED_RAIN_AND_HAIL,
   '36': SUNNY,
   '37': THUNDERSTORMS,
@@ -392,8 +392,7 @@ export const THEMES = {
   '44': DEFAULT,
   '45': THUNDERSTORMS,
   '46': SNOW,
-  '47': THUNDERSTORMS
+  '47': THUNDERSTORMS,
 }
 
-export const NIGHT_THEME_CODES = [ '27', '29', '31', '33' ]
 export const DEFAULT_THEME_CODE = '44'
