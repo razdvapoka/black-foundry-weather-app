@@ -30,6 +30,10 @@ import tornadoAudio from './assets/audio/tornado.mp3'
 import snowAudio from './assets/audio/snow.mp3'
 import blowingSnowAudio from './assets/audio/blowing-snow.mp3'
 import mixedAudio from './assets/audio/mixed.mp3'
+import hailAudio from './assets/audio/hail.mp3'
+import foggyAudio from './assets/audio/foggy.mp3'
+import sleetAudio from './assets/audio/sleet.mp3'
+import dustAudio from './assets/audio/dust.mp3'
 
 export const MONTH = [
   'January',
@@ -167,6 +171,7 @@ const COLD = {
 const HAIL = {
   className: 'hail',
   icon: Rain,
+  audio: hailAudio,
   title: (
     <Gargantuan as='h1'>
       STAY<br />
@@ -191,6 +196,7 @@ const HAZE = {
 const SMOKY = {
   className: 'smoky',
   icon: Foggy,
+  audio: foggyAudio,
   title: (
     <Gargantuan as='h1'>
       HOLY<br />
@@ -202,6 +208,7 @@ const SMOKY = {
 const FOGGY = {
   className: 'foggy',
   icon: Foggy,
+  audio: foggyAudio,
   title: (
     <Gargantuan as='h1'>
       Fogged<br />
@@ -213,6 +220,7 @@ const FOGGY = {
 const SLEET = {
   className: 'sleet',
   icon: Mixed,
+  audio: sleetAudio,
   title: (
     <Gargantuan as='h1'>
       NEITHER RAIN<br />
@@ -224,6 +232,7 @@ const SLEET = {
 const DUST = {
   className: 'dust',
   icon: Dust,
+  audio: dustAudio,
   title: (
     <div>
       <div className='dust-mask-box'>
