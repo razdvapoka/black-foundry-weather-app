@@ -120,3 +120,12 @@ h2
 
 *:focus
   outline: none
+
+@keyframes blink {
+  to {
+    visibility: hidden
+  }
+}
+
+.blinking
+  animation: blink 1s steps(3, start) infinite

@@ -143,12 +143,14 @@ const getWeather = async (givenLocation) => {
   }
 }
 
-const getCurrentTime = () =>
-  new Date().toLocaleTimeString('en-US', {
+const getCurrentTime = () => {
+  const timeString = new Date().toLocaleTimeString('en-US', {
     hour12: false,
     hour: 'numeric',
     minute: 'numeric'
   })
+  return timeString.replace(':', `<span class='blinking'>:</span>`)
+}
 
 const formatTime = (timeString) => {
   const isPm = timeString.indexOf('pm') !== -1
@@ -217,17 +219,19 @@ const Announcement = ({
 
 const ForecastItem = ({
   label,
-  value
+  value,
+  className
 }) => (
-  <div className={styles.forecastItem}>
+  <div className={cc(styles.forecastItem, className)}>
     <XS>{label}</XS>
-    <XXL>{value}</XXL>
+    <XXL dangerouslySetInnerHTML={{ __html: value }} />
   </div>
 )
 
 const Forecast = ({
   weather,
-  isFahrenheitOn
+  isFahrenheitOn,
+  currentTime
 }) => (
   <Column>
     <ColumnCaption>Forecast</ColumnCaption>
@@ -242,8 +246,9 @@ const Forecast = ({
     </ColumnContent>
     <ColumnContent>
       <ForecastItem
-        label='Now'
-        value={getCurrentTime()}
+        label='Time'
+        value={currentTime}
+        className={styles.forecastItemTime}
         isFirst
       />
       <ForecastItem
@@ -312,7 +317,7 @@ const Credits = () => (
     <span>
       Design:{' '}
       <a
-        href='www.ilyanaumoff.com'
+        href='https://ilyanaumoff.com'
         target='_blank'
         rel='noopener noreferrer'
       >
@@ -432,7 +437,8 @@ class Home extends Component {
     isMusicOn: false,
     isLoading: true,
     isCookiesPopupOpen: false,
-    theme: null
+    theme: null,
+    currentTime: null
   }
 
   intervalHandle = null
@@ -539,7 +545,8 @@ class Home extends Component {
       sunriseHours,
       sunsetHours,
       isCookiesPopupOpen,
-      isNight
+      isNight,
+      currentTime
     } = this.state
 
     if (isLoading) {
@@ -580,6 +587,7 @@ class Home extends Component {
               <Forecast
                 weather={weather}
                 isFahrenheitOn={isFahrenheitOn}
+                currentTime={currentTime}
               />
             </div>
           </div>
@@ -661,7 +669,15 @@ class Home extends Component {
     }
   }
 
+  updateCurrentTime = () => {
+    this.setState({
+      currentTime: getCurrentTime()
+    })
+  }
+
   componentDidMount () {
+    this.updateCurrentTime()
+    setInterval(this.updateCurrentTime, 60000)
     this.loadWeather()
     this.setState({
       isCookiesPopupOpen: !window.localStorage.getItem('areCookiesOk')
