@@ -13,7 +13,6 @@ import {
   THEMES
 } from '../../consts'
 import {
-  XXS,
   XS,
   S,
   M,
@@ -321,8 +320,8 @@ const Credits = () => (
         target='_blank'
         rel='noopener noreferrer'
       >
-      Ilya Naumoff
-    </a>
+        Ilya Naumoff
+      </a>
     </span>
     <span>
       Development:{' '}
@@ -601,6 +600,9 @@ class Home extends Component {
     }
   }
 
+  isNightTheme = (code) => NIGHT_THEME_CODES.indexOf(code) !== -1
+  isNightHour = (hour) => hour >= 0 && hour < 6
+
   getWeatherData = (weather, isDefault) => {
     const query = queryString.parse(document.location.search)
     const themeCode = query.theme || weather.current_observation.condition.code
@@ -609,9 +611,9 @@ class Home extends Component {
     const sunriseHours = toHours(sunrise)
     const sunsetHours = toHours(sunset)
     const isNight =
-      (NIGHT_THEME_CODES.indexOf(query.theme) !== -1) || (!query.theme && (
-        (hours >= sunsetHours || hours <= sunriseHours) ||
-        (NIGHT_THEME_CODES.indexOf(themeCode) !== -1)
+      this.isNightTheme(query.theme) || (!query.theme && (
+        this.isNightHour(hours) ||
+        this.isNightTheme(themeCode)
       ))
     const theme = getTheme(themeCode, isDefault, isNight)
     return {
