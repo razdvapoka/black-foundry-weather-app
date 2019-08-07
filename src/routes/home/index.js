@@ -142,11 +142,12 @@ const getWeather = async (givenLocation) => {
   }
 }
 
-const getCurrentTime = () => {
+const getCurrentTime = (timeZone) => {
   const timeString = new Date().toLocaleTimeString('en-US', {
     hour12: false,
     hour: 'numeric',
-    minute: 'numeric'
+    minute: 'numeric',
+    timeZone
   })
   return timeString.replace(':', `<span class='blinking'>:</span>`)
 }
@@ -640,6 +641,8 @@ class Home extends Component {
         ...this.getWeatherData(weather, isDefault),
         isLoading: false,
         isMusicOn: false
+      }, () => {
+        this.updateCurrentTime()
       })
       if (persistWeather) {
         window.localStorage
@@ -676,14 +679,16 @@ class Home extends Component {
   }
 
   updateCurrentTime = () => {
-    this.setState({
-      currentTime: getCurrentTime()
-    })
+    if (this.state.weather) {
+      const { weather: { location: { timezone_id: timeZone } } } = this.state
+      this.setState({
+        currentTime: getCurrentTime(timeZone)
+      })
+    }
   }
 
   componentDidMount () {
-    this.updateCurrentTime()
-    setInterval(this.updateCurrentTime, 60000)
+    setInterval(this.updateCurrentTime, 1000)
     this.loadWeather()
     this.setState({
       isCookiesPopupOpen: !window.localStorage.getItem('areCookiesOk')
