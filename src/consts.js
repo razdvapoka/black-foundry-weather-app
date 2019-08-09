@@ -384,7 +384,7 @@ export const THEMES = {
   '36': SUNNY,
   '37': THUNDERSTORMS,
   '38': THUNDERSTORMS,
-  '39': THUNDERSTORMS,
+  '39': RAIN,
   '40': RAIN,
   '41': SNOW,
   '42': SNOW,
