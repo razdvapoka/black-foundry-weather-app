@@ -36,6 +36,7 @@
     "preact-cli": "^2.1.0",
     "preact-cli-plugin-fast-async": "^1.0.1",
     "preact-render-spy": "^1.2.1",
+    "prettier": "^1.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2"
   },

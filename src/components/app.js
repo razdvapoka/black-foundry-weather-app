@@ -1,9 +1,9 @@
-import Home from '../routes/home'
+import Home from "../routes/home";
 
 const App = () => (
-  <div id='app'>
+  <div id="app">
     <Home />
   </div>
-)
+);
 
-export default App
+export default App;
