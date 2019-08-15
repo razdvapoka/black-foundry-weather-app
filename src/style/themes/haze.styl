@@ -20,6 +20,15 @@
   }
 }
 
+@keyframes animHazeM {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 600, 'slnt' -15
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' -15
+  }
+}
+
 @keyframes animHazeSecond {
   from {
     font-variation-settings: 'wdth' 760, 'wght' 100, 'slnt' -15
@@ -35,6 +44,15 @@
   }
   to {
     font-variation-settings: 'wdth' 300, 'wght' 700, 'slnt' -15
+  }
+}
+
+@keyframes animHazeSecondM {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' -15
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 600, 'slnt' -15
   }
 }
 
@@ -78,12 +96,12 @@
       .haze-hazy-1
         transform: translateX(pxToRem(27)) translateZ(1px)
         grtskExaSemiboldBkslnt()
-        animation: none
+        animation: animHazeM 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
       .haze-hazy-2
         transform: translateX(pxToRem(-27)) translateY(pxToRem(-25))
         letter-spacing: tracking(40)
         grtskExaThinBkslnt()
-        animation: none
+        animation: animHazeSecondM 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
 
   .top-line
     background: linear-gradient(270deg, #FFD5F8, #BEF7E6, #FFFF05)

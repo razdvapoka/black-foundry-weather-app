@@ -5,38 +5,69 @@
 @keyframes animDrizzle {
   from {
     font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+    letter-spacing: tracking(-10);
   }
   to {
     font-variation-settings: 'wdth' 1000, 'wght' 100, 'slnt' 0
+    letter-spacing: tracking(-40);
   }
 }
 
 @keyframes animDrizzleSecond {
   from {
     font-variation-settings: 'wdth' 1000, 'wght' 100, 'slnt' 0
+    letter-spacing: tracking(-40);
   }
   to {
     font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+    letter-spacing: tracking(-10);
   }
 }
 
 @keyframes animDrizzleT {
   from {
     font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+    letter-spacing: tracking(-20);
   }
   to {
     font-variation-settings: 'wdth' 530, 'wght' 100, 'slnt' 0
+    letter-spacing: tracking(-40);
   }
 }
 
 @keyframes animDrizzleSecondT {
   from {
     font-variation-settings: 'wdth' 530, 'wght' 100, 'slnt' 0
+    letter-spacing: tracking(-40);
   }
   to {
     font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15
+    letter-spacing: tracking(-20);
   }
 }
+
+@keyframes animDrizzleM {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15;
+    letter-spacing: tracking(0);
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' -15;
+    letter-spacing: tracking(-20);
+  }
+}
+
+@keyframes animDrizzleSecondM {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 100, 'slnt' -15;
+    letter-spacing: tracking(-20);
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 15;
+    letter-spacing: tracking(0);
+  }
+}
+
 
 .drizzle
   background-color: #E0F9FF
@@ -58,6 +89,7 @@
     +tablet()
       font-size: pxToRem(232)
       line-height: (210 / 232)
+      letter-spacing: tracking(-20)
       animation: animDrizzleT 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
       .drizzle-second
         grtskTeraThinBkslnt()
@@ -65,12 +97,14 @@
     +mobile()
       font-size: pxToRem(124)
       line-height: (113 / 124)
-      animation: none
+      letter-spacing: tracking(0)
+      animation: animDrizzleM 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
       .drizzle-second
         font-size: pxToRem(124)
         line-height: (113 / 124)
+        letter-spacing: tracking(-20)
         grtskExaThinBkslnt()
-        animation: none
+        animation: animDrizzleSecondM 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
 
   .top-line
     background: linear-gradient(270deg, #FFEC05, #FF9300, #4A9DFF)

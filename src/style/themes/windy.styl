@@ -38,6 +38,33 @@
   }
 }
 
+@keyframes animWindyBlowM {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 300, 'wght' 300, 'slnt' 0
+  }
+}
+
+@keyframes animWindyWithM {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 300, 'slnt' 0
+  }
+}
+
+@keyframes animWindyTheM {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 1000, 'wght' 300, 'slnt' 0
+  }
+}
+
 .windy
   background-color: white
   color: #171717
@@ -50,25 +77,25 @@
     .windy-blow
       animation: animWindyBlow 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
       +mobile()
-        animation: none
+        animation: animWindyBlowM 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
     .windy-tbr
       display: none
     .windy-with
       grtskTeraLight()
       animation: animWindyWith 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
       +mobile()
-        animation: none
+        animation: animWindyWithM 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
     .windy-the
       grtskMegaLight()
       animation: animWindyThe 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
       +tablet()
         animation: animWindyThe 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
       +mobile()
-        animation: none
+        animation: animWindyTheM 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
     .windy-wind
       animation: animWindyWind 2000ms cubic-bezier(0.455, 0.05, 0.55, 0.95) infinite alternate
       +mobile()
-        animation: none
+        animation: animWindyBlowM 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
     +tablet()
       font-size: pxToRem(168)
       line-height: (153 / 168)

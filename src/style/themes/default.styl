@@ -38,6 +38,24 @@
   }
 }
 
+@keyframes animDefaultInitM {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 100, 'slnt' 15
+  }
+}
+
+@keyframes animDefaultLoopM {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 100, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 100, 'slnt' -15
+  }
+}
+
 .default
   background-color: #FFFFE8
 
@@ -61,7 +79,9 @@
       font-size: pxToRem(130)
       line-height: (115 / 130)
       grtskZettaMedium()
-      animation: none
+      animation:
+        animDefaultInitM 750ms cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards,
+        animDefaultLoopM 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) 750ms infinite alternate
 
   .top-line
     background: linear-gradient(270deg, #c42bf2, #ffff05, #aee6d5, #000aff)

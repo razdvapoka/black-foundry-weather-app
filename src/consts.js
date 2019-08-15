@@ -126,11 +126,11 @@ const SNOW = {
   title: (
     <Gargantuan as="h1">
       <span className="ll">L</span>
-      <span className="et">ET</span> <span className="i">I</span>
+      <span className="et">E<span className="t">T</span></span> <span className="i">I</span>
       <span className="tt">T</span>
       <br />
       <span className="sn">
-        <span className="ss">S</span>N
+        <span className="ss">S</span><span className="n">N</span>
       </span>
       <span className="o">O</span>
       <span className="sn">
@@ -167,9 +167,9 @@ const RAIN = {
   audio: rainAudio,
   title: (
     <Gargantuan as="h1">
-      Right
+      <span className="rain-to-zetta">Ri</span><span className="rain-to-mega">g</span><span className="rain-to-zetta">ht</span>
       <br />
-      <span className="rain-a">a</span>s rai<span className="rain-a">n</span>
+      <span className="rain-a">a</span>s <span className="rain-to-mega">r</span>ai<span className="rain-a">n</span>
     </Gargantuan>
   )
 };
@@ -248,7 +248,7 @@ const SLEET = {
     <Gargantuan as="h1">
       NEITHER RAIN
       <br />
-      <span className="sleet-nor-snow">NOR SNOW</span>
+      <span className="sleet-spaces">&nbsp;&nbsp;</span><span className="sleet-nor-snow">NOR SNOW</span>
     </Gargantuan>
   )
 };
@@ -265,10 +265,10 @@ const DUST = {
         <Bottom id="dust-mask-m" rectHeight={90} rectWidth={380} className="dust-mask-m" />
       </div>
       <Gargantuan as="h1">
-        Mak<span className="dust-euy">e</span> <span className="dust-t">T</span>he
+        <span className="dust-m">M</span>ak<span className="dust-euy"><span className="dust-e">e</span></span> <span className="dust-t">T</span><span className="dust-h">h</span>e
         <br />
         <span className="dust-d">D</span>
-        <span className="dust-euy">u</span>st Fl<span className="dust-euy">y</span>
+        <span className="dust-euy">u</span>st <span className="dust-f">F</span>l<span className="dust-euy">y</span>
       </Gargantuan>
     </div>
   )

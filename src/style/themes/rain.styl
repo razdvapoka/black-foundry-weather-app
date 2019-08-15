@@ -20,6 +20,42 @@
   }
 }
 
+@keyframes animRainM {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 200, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 400, 'slnt' 0
+  }
+}
+
+@keyframes animRainToZettaM {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 200, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 400, 'slnt' 0
+  }
+}
+
+@keyframes animRainToMegaM {
+  from {
+    font-variation-settings: 'wdth' 200, 'wght' 200, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 1000, 'wght' 400, 'slnt' 0
+  }
+}
+
+@keyframes animRainFromMegaM {
+  from {
+    font-variation-settings: 'wdth' 1000, 'wght' 200, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 400, 'slnt' 0
+  }
+}
+
 .rain
   background-color: #0000FF
   color: #E8E7E7
@@ -41,10 +77,15 @@
       grtskExaExtralight()
       font-size: pxToRem(121)
       line-height: (109 / 121)
-      animation: none
+      animation: animRainM 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
       text-align: center
       .rain-a
         grtskMegaExtraLight()
+        animation: animRainFromMegaM 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+      .rain-to-mega
+        animation: animRainToMegaM 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+      .rain-to-zetta
+        animation: animRainToZettaM 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
 
   .top-line
     background: linear-gradient(270deg, #FFFF05, #FF1010)

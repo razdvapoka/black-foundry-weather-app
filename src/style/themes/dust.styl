@@ -29,6 +29,42 @@
   }
 }
 
+@keyframes animDust_MDH_M {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 530, 'wght' 300, 'slnt' 0
+  }
+}
+
+@keyframes animDust_E_M {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 200, 'wght' 300, 'slnt' 0
+  }
+}
+
+@keyframes animDust_TUY_M {
+  from {
+    font-variation-settings: 'wdth' 530, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 300, 'slnt' 0
+  }
+}
+
+@keyframes animDust_F_M {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 300, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 1000, 'wght' 300, 'slnt' 0
+  }
+}
+
 .dust
   background-color: #D5D5D5
   color: #0A1640
@@ -79,8 +115,6 @@
       animation: animDustAlt 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
       +tablet()
         animation: animDustAltT 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
-      +mobile()
-        animation: none
     .dust-euy
       padding-bottom: pxToRem(10)
     +tablet()
@@ -98,6 +132,23 @@
         grtskZettaLight()
       .dust-euy
         grtskTeraLight()
+
+    // mobile animations
+    .dust-t
+    .dust-euy
+      +mobile()
+        animation: animDust_TUY_M 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
+    .dust-e
+      +mobile()
+        animation: animDust_E_M 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
+    .dust-m
+    .dust-d
+    .dust-h
+      +mobile()
+        animation: animDust_MDH_M 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
+    .dust-f
+      +mobile()
+        animation: animDust_F_M 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
 
   .top-line
     background: linear-gradient(270deg, #FFD5F8, #BEF7E6, #FFFF05)

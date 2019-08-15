@@ -21,6 +21,24 @@
   }
 }
 
+@keyframes animSleetM {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 700, 'slnt' 15
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 100, 'slnt' 15
+  }
+}
+
+@keyframes animSleetSecondM {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 700, 'slnt' -15
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 100, 'slnt' -15
+  }
+}
+
 .sleet
   background-color: #EFEFEF
   color: $BLUE
@@ -32,6 +50,10 @@
     grtskZettaBoldItalic()
     letter-spacing: tracking(-40)
     animation: animSleet 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
+    .sleet-spaces
+      display: none
+      +mobile()
+        display: inline
     .sleet-nor-snow
       grtskZettaBoldBkslnt()
       font-style: normal
@@ -44,9 +66,9 @@
       font-size: pxToRem(95)
       line-height: (80 / 95)
       margin: 0
-      animation: none
+      animation: animSleetM 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
       .sleet-nor-snow
-        animation: none
+        animation: animSleetSecondM 2000ms cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite alternate
       br
         display: none
 
