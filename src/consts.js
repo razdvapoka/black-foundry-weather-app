@@ -18,22 +18,22 @@ import Foggy from "./components/icons/Foggy";
 import Dust from "./components/icons/Dust";
 import Cold from "./components/icons/Cold";
 import Bottom from "./components/bottom";
-import fairDayAudio from "./assets/audio/fair-day.mp3";
-import cloudyAudio from "./assets/audio/cloudy.mp3";
-import rainAudio from "./assets/audio/rain.mp3";
-import stormAudio from "./assets/audio/storm.mp3";
-import nightAudio from "./assets/audio/night.mp3";
-import hazeAudio from "./assets/audio/haze.mp3";
-import windAudio from "./assets/audio/wind.mp3";
-import drizzleAudio from "./assets/audio/drizzle.mp3";
-import tornadoAudio from "./assets/audio/tornado.mp3";
-import snowAudio from "./assets/audio/snow.mp3";
-import blowingSnowAudio from "./assets/audio/blowing-snow.mp3";
-import mixedAudio from "./assets/audio/mixed.mp3";
-import hailAudio from "./assets/audio/hail.mp3";
-import foggyAudio from "./assets/audio/foggy.mp3";
-import sleetAudio from "./assets/audio/sleet.mp3";
-import dustAudio from "./assets/audio/dust.mp3";
+import fairDayAudio from "./assets/audio/fair-day.lite.mp3";
+import cloudyAudio from "./assets/audio/cloudy.lite.mp3";
+import rainAudio from "./assets/audio/rain.lite.mp3";
+import stormAudio from "./assets/audio/storm.lite.mp3";
+import nightAudio from "./assets/audio/night.lite.mp3";
+import hazeAudio from "./assets/audio/haze.lite.mp3";
+import windAudio from "./assets/audio/wind.lite.mp3";
+import drizzleAudio from "./assets/audio/drizzle.lite.mp3";
+import tornadoAudio from "./assets/audio/tornado.lite.mp3";
+import snowAudio from "./assets/audio/snow.lite.mp3";
+import blowingSnowAudio from "./assets/audio/blowing-snow.lite.mp3";
+import mixedAudio from "./assets/audio/mixed.lite.mp3";
+import hailAudio from "./assets/audio/hail.lite.mp3";
+import foggyAudio from "./assets/audio/foggy.lite.mp3";
+import sleetAudio from "./assets/audio/sleet.lite.mp3";
+import dustAudio from "./assets/audio/dust.lite.mp3";
 
 export const MONTH = [
   "January",
@@ -109,11 +109,14 @@ const CLOUDY = {
   audio: cloudyAudio,
   title: (
     <Gargantuan as="h1">
-      H<span className="cloudy-ztt">e</span><span className="cloudy-grow">a</span>d i<span className="cloudy-wide">n</span> <span className="cloudy-ztm">t</span>h
-      <span className="cloudy-grow">e</span>
+      H<span className="cloudy-ztt">e</span>
+      <span className="cloudy-grow">a</span>d i<span className="cloudy-wide">n</span> 
+      <span className="cloudy-ztm">t</span>h<span className="cloudy-grow">e</span>
       <br />
-      <span className="cloudy-wider"><span className="cloudy-ztt">C</span></span>l<span className="cloudy-grow">o</span>u
-      <span className="cloudy-wider">d</span>
+      <span className="cloudy-wider">
+        <span className="cloudy-ztt">C</span>
+      </span>
+      l<span className="cloudy-grow">o</span>u<span className="cloudy-wider">d</span>
       <span className="cloudy-grow">s</span>
     </Gargantuan>
   )
@@ -126,11 +129,15 @@ const SNOW = {
   title: (
     <Gargantuan as="h1">
       <span className="ll">L</span>
-      <span className="et">E<span className="t">T</span></span> <span className="i">I</span>
+      <span className="et">
+        E<span className="t">T</span>
+      </span>{" "}
+      <span className="i">I</span>
       <span className="tt">T</span>
       <br />
       <span className="sn">
-        <span className="ss">S</span><span className="n">N</span>
+        <span className="ss">S</span>
+        <span className="n">N</span>
       </span>
       <span className="o">O</span>
       <span className="sn">
@@ -167,9 +174,12 @@ const RAIN = {
   audio: rainAudio,
   title: (
     <Gargantuan as="h1">
-      <span className="rain-to-zetta">Ri</span><span className="rain-to-mega">g</span><span className="rain-to-zetta">ht</span>
+      <span className="rain-to-zetta">Ri</span>
+      <span className="rain-to-mega">g</span>
+      <span className="rain-to-zetta">ht</span>
       <br />
-      <span className="rain-a">a</span>s <span className="rain-to-mega">r</span>ai<span className="rain-a">n</span>
+      <span className="rain-a">a</span>s <span className="rain-to-mega">r</span>ai
+      <span className="rain-a">n</span>
     </Gargantuan>
   )
 };
@@ -248,7 +258,8 @@ const SLEET = {
     <Gargantuan as="h1">
       NEITHER RAIN
       <br />
-      <span className="sleet-spaces">&nbsp;&nbsp;</span><span className="sleet-nor-snow">NOR SNOW</span>
+      <span className="sleet-spaces">&nbsp;&nbsp;</span>
+      <span className="sleet-nor-snow">NOR SNOW</span>
     </Gargantuan>
   )
 };
@@ -265,10 +276,16 @@ const DUST = {
         <Bottom id="dust-mask-m" rectHeight={90} rectWidth={380} className="dust-mask-m" />
       </div>
       <Gargantuan as="h1">
-        <span className="dust-m">M</span>ak<span className="dust-euy"><span className="dust-e">e</span></span> <span className="dust-t">T</span><span className="dust-h">h</span>e
+        <span className="dust-m">M</span>ak
+        <span className="dust-euy">
+          <span className="dust-e">e</span>
+        </span>{" "}
+        <span className="dust-t">T</span>
+        <span className="dust-h">h</span>e
         <br />
         <span className="dust-d">D</span>
-        <span className="dust-euy">u</span>st <span className="dust-f">F</span>l<span className="dust-euy">y</span>
+        <span className="dust-euy">u</span>st <span className="dust-f">F</span>l
+        <span className="dust-euy">y</span>
       </Gargantuan>
     </div>
   )
@@ -431,3 +448,5 @@ export const THEMES = {
 };
 
 export const DEFAULT_THEME_CODE = "44";
+
+export const MUSCIC_TRANS_DURATION = 500;

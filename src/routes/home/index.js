@@ -4,6 +4,7 @@ import FontFaceObserver from "fontfaceobserver";
 import queryString from "query-string";
 
 import {
+  MUSCIC_TRANS_DURATION,
   DAY_OF_WEEK_MAP,
   DEFAULT_THEME_CODE,
   LOADING_INTERVAL,
@@ -348,14 +349,16 @@ class Loading extends Component {
 
   updateWidth = (el, width, direction) => {
     const char = document.getElementById(el);
-    char.style.fontVariationSettings = `'wdth' ${width}`;
-    this.frames[el] = window.requestAnimationFrame(() => {
-      this.updateWidth(
-        el,
-        width + direction * LOADING_STEP,
-        (width < 1000 && direction === +1) || (width < 100 && direction === -1) ? +1 : -1
-      );
-    });
+    if (char) {
+      char.style.fontVariationSettings = `'wdth' ${width}`;
+      this.frames[el] = window.requestAnimationFrame(() => {
+        this.updateWidth(
+          el,
+          width + direction * LOADING_STEP,
+          (width < 1000 && direction === +1) || (width < 100 && direction === -1) ? +1 : -1
+        );
+      });
+    }
   };
 
   componentDidMount() {
@@ -410,7 +413,10 @@ class Home extends Component {
     isLoading: true,
     isCookiesPopupOpen: false,
     theme: null,
-    currentTime: null
+    currentTime: null,
+    hasMusicBeenStarted: false,
+    audioContext: null,
+    audio: null
   };
 
   intervalHandle = null;
@@ -427,75 +433,78 @@ class Home extends Component {
     }));
   };
 
-  toggleMusic = () => {
-    this.setState(({ isMusicOn, theme }) => {
-      if (isMusicOn) {
-        this.softPauseAudio();
-      } else {
-        this.softPlayAudio();
-      }
-      return { isMusicOn: !isMusicOn };
-    });
-  };
-
-  softPlayAudioStep = (start, end, distance, duration, stopCallback) => {
-    this.timeElapsed += SOFT_PLAY_TIME_STEP;
-    const direction = end - start >= 0 ? 1 : -1;
-    const volume = easeInOutQuad(this.timeElapsed, start, direction * distance, duration);
-    const audio = document.getElementById("audio");
-    if (direction > 0 ? volume >= end : volume <= end) {
-      window.clearInterval(this.intervalHandle);
-      audio.volume = end;
-      stopCallback && stopCallback();
-    } else {
-      audio.volume = volume;
+  initAudio = () => {
+    const {
+      theme: { audio },
+      audioContext
+    } = this.state;
+    if (audio) {
+      this.setState({ audio: null });
+      const context = audioContext || new (window.AudioContext || window.webkitAudioContext)();
+      fetch(audio, { mode: "cors" })
+        .then(resp => resp.arrayBuffer())
+        .then(buffer => {
+          context.decodeAudioData(buffer, decodedBuffer => {
+            const sourceNode = context.createBufferSource(); // create audio source
+            sourceNode.buffer = decodedBuffer; // use decoded buffer
+            sourceNode.loop = true;
+            const gainNode = context.createGain();
+            sourceNode.connect(gainNode);
+            gainNode.connect(context.destination); // create output
+            context.suspend();
+            sourceNode.start();
+            this.setState({
+              audioContext: context,
+              audio: {
+                isMusicSwitchEnabled: true,
+                sourceNode,
+                gainNode
+              }
+            });
+          });
+        });
     }
   };
 
-  softPlayAudio = () =>
-    new Promise(resolve => {
-      this.timeElapsed = 0;
-      window.clearInterval(this.intervalHandle);
-      const audio = document.getElementById("audio");
-      audio.volume = 0;
-      audio.play();
-      this.intervalHandle = window.setInterval(
-        () =>
-          this.softPlayAudioStep(
-            SOFT_PLAY_START,
-            SOFT_PLAY_END,
-            SOFT_PLAY_DISTANCE,
-            SOFT_PLAY_DURATION,
-            resolve
-          ),
-        1000 / FPS
-      );
-    });
+  playAudio = () => {
+    const { audioContext, audio } = this.state;
+    audio.gainNode.gain.setValueAtTime(0.001, audioContext.currentTime);
+    audioContext.resume();
+    audio.gainNode.gain.exponentialRampToValueAtTime(
+      1.0,
+      audioContext.currentTime + MUSCIC_TRANS_DURATION / 1000
+    );
+  };
 
-  softPauseAudio = () =>
+  pauseAudio = () =>
     new Promise(resolve => {
-      this.timeElapsed = 0;
-      window.clearInterval(this.intervalHandle);
-      const audio = document.getElementById("audio");
-      if (audio && audio.src) {
-        this.intervalHandle = window.setInterval(
-          () =>
-            this.softPlayAudioStep(
-              audio.volume,
-              SOFT_PLAY_START,
-              SOFT_PLAY_DISTANCE,
-              SOFT_PLAY_DURATION,
-              () => {
-                audio.pause();
-                resolve();
-              }
-            ),
-          1000 / FPS
+      const { audioContext, audio } = this.state;
+      if (audio) {
+        audio.gainNode.gain.cancelScheduledValues(audioContext.currentTime);
+        audio.gainNode.gain.setValueAtTime(audio.gainNode.gain.value, audioContext.currentTime);
+        audio.gainNode.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + MUSCIC_TRANS_DURATION / 1000
         );
+        setTimeout(() => {
+          audioContext.suspend();
+          resolve();
+        }, MUSCIC_TRANS_DURATION);
       } else {
         resolve();
       }
     });
+
+  toggleMusic = () => {
+    this.setState(({ isMusicOn, theme }) => {
+      if (isMusicOn) {
+        this.pauseAudio();
+      } else {
+        this.playAudio();
+      }
+      return { isMusicOn: !isMusicOn };
+    });
+  };
 
   render() {
     const {
@@ -550,7 +559,6 @@ class Home extends Component {
           <Promo className={styles.mobilePromo} />
           <Credits />
           <BottomSection />
-          <audio id="audio" src={audio} type="audio/mpeg" loop />
         </HomeBox>
       );
     }
@@ -593,6 +601,7 @@ class Home extends Component {
           },
           () => {
             this.updateCurrentTime();
+            this.initAudio();
           }
         );
         if (persistWeather) {
@@ -619,7 +628,7 @@ class Home extends Component {
         isMusicOn: false
       });
     } else {
-      this.softPauseAudio().then(() => {
+      this.pauseAudio().then(() => {
         this.startLoadingWeather(location);
         const audio = document.getElementById("audio");
         if (audio) {
