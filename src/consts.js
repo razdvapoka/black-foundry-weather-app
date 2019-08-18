@@ -109,10 +109,10 @@ const CLOUDY = {
   audio: cloudyAudio,
   title: (
     <Gargantuan as="h1">
-      He<span className="cloudy-grow">a</span>d i<span className="cloudy-wide">n</span> th
+      H<span className="cloudy-ztt">e</span><span className="cloudy-grow">a</span>d i<span className="cloudy-wide">n</span> <span className="cloudy-ztm">t</span>h
       <span className="cloudy-grow">e</span>
       <br />
-      <span className="cloudy-wider">C</span>l<span className="cloudy-grow">o</span>u
+      <span className="cloudy-wider"><span className="cloudy-ztt">C</span></span>l<span className="cloudy-grow">o</span>u
       <span className="cloudy-wider">d</span>
       <span className="cloudy-grow">s</span>
     </Gargantuan>

@@ -38,6 +38,34 @@
   }
 }
 
+@keyframes animCloudyZettaToTera {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 530, 'wght' 500, 'slnt' 0
+  }
+}
+
+@keyframes animCloudyGigaToZetta {
+  from {
+    font-variation-settings: 'wdth' 760, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 0
+  }
+}
+
+@keyframes animCloudyZettaToMega {
+  from {
+    font-variation-settings: 'wdth' 100, 'wght' 500, 'slnt' 0
+  }
+  to {
+    font-variation-settings: 'wdth' 1000, 'wght' 500, 'slnt' 0
+  }
+}
+
+
 .cloudy
   background-color: #434250
   color: #C49FFF
@@ -63,11 +91,18 @@
       font-size: pxToRem(118)
       line-height: (103 / 118)
 
+  .cloudy-ztt
+    +mobile()
+      animation: animCloudyZettaToTera 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+  .cloudy-ztm
+    +mobile()
+      animation: animCloudyZettaToMega 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
+
   .cloudy-wide
     grtskGiga()
     animation: animCloudyWide 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
     +mobile()
-      animation: none
+      animation: animCloudyGigaToZetta 2000ms cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite alternate
 
   .cloudy-wider
     grtskMegaMedium()
