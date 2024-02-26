@@ -10,26 +10,9 @@
     "build": "preact build --template src/template.html",
     "serve": "preact build && preact serve",
     "dev": "preact watch --template src/template.html",
-    "lint": "eslint src",
     "test": "jest"
   },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor"
-  },
-  "eslintIgnore": [
-    "build/*"
-  ],
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^4.9.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
-    "eslint-config-synacor": "^2.0.2",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-standard": "^4.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "per-env": "^1.0.2",
@@ -43,7 +26,6 @@
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "defaults.css": "^1.2.0",
-    "eslint_d": "^8.0.0",
     "fontfaceobserver": "^2.1.0",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
